@@ -2,13 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package domen;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-
 public class Rezervacija {
+    
+    private List<StavkaRezervacije> stavke = new ArrayList<>();
+    private Frizer frizer;
+    private Klijent klijent;
     private int idRezervacija;
     private LocalDateTime datumRezervacije;
     private int ukupnoVremeTrajanja;
@@ -17,11 +22,37 @@ public class Rezervacija {
     public Rezervacija() {
     }
 
-    public Rezervacija(int idRezervacija, LocalDateTime datumRezervacije, int ukupnoVremeTrajanja, double ukupanIznos) {
+    public Rezervacija(Frizer frizer, Klijent klijent, int idRezervacija, LocalDateTime datumRezervacije, int ukupnoVremeTrajanja, double ukupanIznos) {
+        this.frizer = frizer;
+        this.klijent = klijent;
         this.idRezervacija = idRezervacija;
         this.datumRezervacije = datumRezervacije;
         this.ukupnoVremeTrajanja = ukupnoVremeTrajanja;
         this.ukupanIznos = ukupanIznos;
+    }
+
+    public List<StavkaRezervacije> getStavke() {
+        return stavke;
+    }
+
+    public void setStavke(List<StavkaRezervacije> stavke) {
+        this.stavke = stavke;
+    }
+
+    public Frizer getFrizer() {
+        return frizer;
+    }
+
+    public void setFrizer(Frizer frizer) {
+        this.frizer = frizer;
+    }
+
+    public Klijent getKlijent() {
+        return klijent;
+    }
+
+    public void setKlijent(Klijent klijent) {
+        this.klijent = klijent;
     }
 
     public int getIdRezervacija() {
@@ -57,8 +88,13 @@ public class Rezervacija {
     }
 
     @Override
+    public String toString() {
+        return "Rezervacija{" + "frizer=" + frizer + ", klijent=" + klijent + ", datumRezervacije=" + datumRezervacije + '}';
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 5;
         return hash;
     }
 
@@ -74,12 +110,13 @@ public class Rezervacija {
             return false;
         }
         final Rezervacija other = (Rezervacija) obj;
+        if (!Objects.equals(this.frizer, other.frizer)) {
+            return false;
+        }
+        if (!Objects.equals(this.klijent, other.klijent)) {
+            return false;
+        }
         return Objects.equals(this.datumRezervacije, other.datumRezervacije);
-    }
-
-    @Override
-    public String toString() {
-        return datumRezervacije + ": " + ukupnoVremeTrajanja+ ", cena: "+ukupanIznos;
     }
     
 }

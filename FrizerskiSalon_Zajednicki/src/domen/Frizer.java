@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package domen;
 
 import java.util.Objects;
 
@@ -12,17 +12,21 @@ public class Frizer {
     private String prezime;
     private String korisnickoIme;
     private String sifra;
-
+    private Mesto mesto;
+    
     public Frizer() {
     }
 
-    public Frizer(int idFrizer, String ime, String prezime, String korisnickoIme, String sifra) {
+    public Frizer(int idFrizer, String ime, String prezime, String korisnickoIme, String sifra, Mesto mesto) {
         this.idFrizer = idFrizer;
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
         this.sifra = sifra;
+        this.mesto = mesto;
     }
+
+    
 
     public int getIdFrizer() {
         return idFrizer;
@@ -90,6 +94,15 @@ public class Frizer {
 
     @Override
     public String toString() {
-        return ime + " " + prezime;
+        return ime + " " + prezime+ ", " + mesto;
     }
+
+    public Mesto getMesto() {
+        return mesto;
+    }
+
+    public void setMesto(Mesto mesto) {
+        this.mesto = mesto;
+    }
+    
 }
