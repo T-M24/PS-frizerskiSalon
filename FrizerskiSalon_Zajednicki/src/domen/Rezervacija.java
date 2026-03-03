@@ -4,13 +4,14 @@
  */
 package domen;
 
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Rezervacija {
-    
+public class Rezervacija implements AbstractDomainObject {
+
     private List<StavkaRezervacije> stavke = new ArrayList<>();
     private Frizer frizer;
     private Klijent klijent;
@@ -118,5 +119,52 @@ public class Rezervacija {
         }
         return Objects.equals(this.datumRezervacije, other.datumRezervacije);
     }
-    
+
+    @Override
+    public String getTableName() {
+        return "rezervacija";
+    }
+
+    @Override
+    public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getInsertColumns() {
+        return "datumRezervacije,ukupanIznos, ukupnoVremeTrajanja,frizer,klijent";
+    }
+
+    @Override
+    public String getInsertValues() {
+        return "'" + datumRezervacije + "'," + ukupanIznos + "," + ukupnoVremeTrajanja + "," + frizer.getIdFrizer() + "," + klijent.getIdKlijent();
+    }
+
+    @Override
+    public String getPrimaryKey() {
+        return "rezervacija.idRezervacija=" + idRezervacija;
+    }
+
+    @Override
+    public AbstractDomainObject getObjectFromRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getEditableValues() {
+        return "datumRezervacije='" + datumRezervacije + "', ukupanIznos=" + ukupanIznos + ", ukupnoVremeTrajanja=" + ukupnoVremeTrajanja + ", frizer=" + frizer.getIdFrizer() + ", klijent=" + klijent.getIdKlijent();
+    }
+
+    public void izracunajUkupnoVreme() {
+        int ukupnoVreme = 0;
+        double ukupnoIznos = 0;
+
+        for (StavkaRezervacije stavka : stavke) {
+            ukupnoVreme += stavka.getUsluga().getVremeTrajanja() * stavka.getKolicina();
+            ukupnoIznos += stavka.getIznos();
+        }
+
+        this.ukupnoVremeTrajanja = ukupnoVreme;
+        this.ukupanIznos = ukupnoIznos;
+    }
 }

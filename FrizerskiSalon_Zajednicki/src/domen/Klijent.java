@@ -4,9 +4,12 @@
  */
 package domen;
 
+import java.sql.ResultSet;
+import java.util.List;
 import java.util.Objects;
 
-public class Klijent {
+public class Klijent implements AbstractDomainObject {
+
     private int idKlijent;
     private String ime;
     private String prezime;
@@ -23,6 +26,14 @@ public class Klijent {
         this.prezime = prezime;
         this.brojTelefona = brojTelefona;
         this.email = email;
+        this.mesto = mesto;
+    }
+
+    public Mesto getMesto() {
+        return mesto;
+    }
+
+    public void setMesto(Mesto mesto) {
         this.mesto = mesto;
     }
 
@@ -101,12 +112,39 @@ public class Klijent {
         return Objects.equals(this.email, other.email);
     }
 
-    public Mesto getMesto() {
-        return mesto;
+    @Override
+    public String getTableName() {
+        return "klijent";
     }
 
-    public void setMesto(Mesto mesto) {
-        this.mesto = mesto;
+    @Override
+    public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    @Override
+    public String getInsertColumns() {
+        return "ime, prezime, brojTelefona,email,mesto";
+    }
+
+    @Override
+    public String getInsertValues() {
+        return "'" + ime + "','" + prezime + "','" + brojTelefona + "','" + email + "'," + mesto.getIdMesto();
+    }
+
+    @Override
+    public String getPrimaryKey() {
+        return "klijent.idKlijent=" + idKlijent;
+    }
+
+    @Override
+    public AbstractDomainObject getObjectFromRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getEditableValues() {
+        return "ime='" + ime + "', prezime='" + prezime + "', brojTelefona='" + brojTelefona + "', email='" + email + "', mesto=" + mesto.getIdMesto();
+    }
+
 }

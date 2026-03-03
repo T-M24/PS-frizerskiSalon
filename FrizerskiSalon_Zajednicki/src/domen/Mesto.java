@@ -4,10 +4,12 @@
  */
 package domen;
 
+import java.sql.ResultSet;
+import java.util.List;
 import java.util.Objects;
 
+public class Mesto implements AbstractDomainObject {
 
-public class Mesto {
     private int idMesto;
     private String naziv;
     private String postanskiBroj;
@@ -46,8 +48,13 @@ public class Mesto {
     }
 
     @Override
+    public String toString() {
+        return "Mesto{" + "naziv=" + naziv + ", postanskiBroj=" + postanskiBroj + '}';
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
         return hash;
     }
 
@@ -63,15 +70,42 @@ public class Mesto {
             return false;
         }
         final Mesto other = (Mesto) obj;
-        if (!Objects.equals(this.naziv, other.naziv)) {
-            return false;
-        }
         return Objects.equals(this.postanskiBroj, other.postanskiBroj);
     }
 
     @Override
-    public String toString() {
-        return "Mesto{" + "naziv=" + naziv + ", postanskiBroj=" + postanskiBroj + '}';
+    public String getTableName() {
+        return "mesto";
     }
-    
+
+    @Override
+    public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getInsertColumns() {
+        return "naziv, postanskiBroj";
+    }
+
+    @Override
+    public String getInsertValues() {
+        return "'" + naziv + "','" + postanskiBroj + "'";
+    }
+
+    @Override
+    public String getPrimaryKey() {
+        return "mesto.idMesto=" + idMesto;
+    }
+
+    @Override
+    public AbstractDomainObject getObjectFromRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getEditableValues() {
+        return "naziv='" + naziv + "', postanskiBroj='" + postanskiBroj + "'";
+    }
+
 }

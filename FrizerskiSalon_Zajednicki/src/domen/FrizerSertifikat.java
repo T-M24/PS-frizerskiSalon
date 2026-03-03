@@ -4,14 +4,13 @@
  */
 package domen;
 
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
-/**
- *
- * @author Nikola Manjencic
- */
-public class FrizerSertifikat {
+public class FrizerSertifikat implements AbstractDomainObject {
+
     private LocalDateTime datumIzdavanja;
     private Frizer frizer;
     private Sertifikat sertifikat;
@@ -74,5 +73,39 @@ public class FrizerSertifikat {
     public String toString() {
         return "FrizerSertifikat{" + "datumIzdavanja=" + datumIzdavanja + ", frizer=" + frizer + ", sertifikat=" + sertifikat + '}';
     }
-    
+
+    @Override
+    public String getTableName() {
+        return "frizersertifikat";
+    }
+
+    @Override
+    public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getInsertColumns() {
+        return "frizer,sertifikat,datumIzdavanja";
+    }
+
+    @Override
+    public String getInsertValues() {
+        return frizer.getIdFrizer() + "," + sertifikat.getIdSertifikat() + ",'" + datumIzdavanja + "'";
+    }
+
+    @Override
+    public String getPrimaryKey() {
+        return "frizer=" + frizer.getIdFrizer() + " AND sertifikat=" + sertifikat.getIdSertifikat();
+    }
+
+    @Override
+    public AbstractDomainObject getObjectFromRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getEditableValues() {
+        return "frizer=" + frizer.getIdFrizer() + ", sertifikat=" + sertifikat.getIdSertifikat() + ", datumIzdavanja='" + datumIzdavanja + "'";
+    }
 }

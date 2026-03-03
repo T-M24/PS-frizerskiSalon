@@ -4,30 +4,39 @@
  */
 package domen;
 
+import java.sql.ResultSet;
+import java.util.List;
 import java.util.Objects;
 
-/**
- *
- * @author Nikola Manjencic
- */
-public class StavkaRezervacije {
+public class StavkaRezervacije implements AbstractDomainObject {
+
     private int rb;
     private String opis;
     private double cena;
     private int kolicina;
     private double iznos;
     private Usluga usluga;
+    private Rezervacija rezervacija;
 
     public StavkaRezervacije() {
     }
 
-    public StavkaRezervacije(int rb, String opis, double cena, int kolicina, double iznos, Usluga usluga) {
+    public StavkaRezervacije(int rb, String opis, double cena, int kolicina, double iznos, Usluga usluga, Rezervacija rezervacija) {
         this.rb = rb;
         this.opis = opis;
         this.cena = cena;
         this.kolicina = kolicina;
         this.iznos = iznos;
         this.usluga = usluga;
+        this.rezervacija = rezervacija;
+    }
+
+    public Rezervacija getRezervacija() {
+        return rezervacija;
+    }
+
+    public void setRezervacija(Rezervacija rezervacija) {
+        this.rezervacija = rezervacija;
     }
 
     public int getRb() {
@@ -109,6 +118,43 @@ public class StavkaRezervacije {
         }
         return Objects.equals(this.usluga, other.usluga);
     }
-    
-    
+
+    @Override
+    public String getTableName() {
+        return "stavkarezervacije";
+    }
+
+    @Override
+    public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getInsertColumns() {
+        return "rb,rezervacija,opis,cena,kolicina,iznos,usluga";
+    }
+
+    @Override
+    public String getInsertValues() {
+        return rb + "," + rezervacija.getIdRezervacija() + ",'" + opis + "'," + cena + "," + kolicina + "," + iznos + "," + usluga.getIdUsluga();
+    }
+
+    @Override
+    public String getPrimaryKey() {
+        return "rb=" + rb + " AND rezervacija=" + rezervacija.getIdRezervacija();
+    }
+
+    @Override
+    public AbstractDomainObject getObjectFromRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getEditableValues() {
+        return "rb=" + rb + ", rezervacija=" + rezervacija.getIdRezervacija() + ", opis='" + opis + "', cena=" + cena + ", kolicina=" + kolicina + ", iznos=" + iznos + ", usluga=" + usluga.getIdUsluga();
+    }
+
+    public int getVremeTrajanja() {
+        return usluga.getVremeTrajanja() * kolicina;
+    }
 }

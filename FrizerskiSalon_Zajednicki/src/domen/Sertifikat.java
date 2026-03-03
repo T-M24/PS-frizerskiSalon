@@ -4,10 +4,12 @@
  */
 package domen;
 
+import java.sql.ResultSet;
+import java.util.List;
 import java.util.Objects;
 
+public class Sertifikat implements AbstractDomainObject {
 
-public class Sertifikat {
     private int idSertifikat;
     private String naziv;
     private String institucija;
@@ -48,7 +50,7 @@ public class Sertifikat {
     @Override
     public String toString() {
         return naziv + ", " + institucija;
-    }    
+    }
 
     @Override
     public int hashCode() {
@@ -73,5 +75,40 @@ public class Sertifikat {
         }
         return Objects.equals(this.institucija, other.institucija);
     }
-    
+
+    @Override
+    public String getTableName() {
+        return "sertifikat";
+    }
+
+    @Override
+    public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getInsertColumns() {
+        return "naziv, institucija";
+    }
+
+    @Override
+    public String getInsertValues() {
+        return "'" + naziv + "','" + institucija + "'";
+    }
+
+    @Override
+    public String getPrimaryKey() {
+        return "sertifikat.idSertifikat=" + idSertifikat;
+    }
+
+    @Override
+    public AbstractDomainObject getObjectFromRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getEditableValues() {
+        return "naziv='" + naziv + "', institucija='" + institucija + "'";
+    }
+
 }

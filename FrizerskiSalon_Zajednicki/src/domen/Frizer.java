@@ -4,16 +4,18 @@
  */
 package domen;
 
+import java.sql.ResultSet;
+import java.util.List;
 import java.util.Objects;
 
-public class Frizer {
+public class Frizer implements AbstractDomainObject {
+
     private int idFrizer;
     private String ime;
     private String prezime;
     private String korisnickoIme;
     private String sifra;
 
-    
     public Frizer() {
     }
 
@@ -24,8 +26,6 @@ public class Frizer {
         this.korisnickoIme = korisnickoIme;
         this.sifra = sifra;
     }
-
-    
 
     public int getIdFrizer() {
         return idFrizer;
@@ -96,7 +96,39 @@ public class Frizer {
         return ime + " " + prezime;
     }
 
-    
+    @Override
+    public String getTableName() {
+        return "frizer";
+    }
 
-    
+    @Override
+    public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getInsertColumns() {
+        return "ime,prezime,korisnickoIme,sifra";
+    }
+
+    @Override
+    public String getInsertValues() {
+        return "'" + ime + "','" + prezime + "','" + korisnickoIme + "','" + sifra + "'";
+    }
+
+    @Override
+    public String getPrimaryKey() {
+        return "frizer.idFrizer=" + idFrizer;
+    }
+
+    @Override
+    public AbstractDomainObject getObjectFromRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getEditableValues() {
+        return "ime='" + ime + "', prezime='" + prezime + "', korisnickoIme='" + korisnickoIme + "', sifra='" + sifra + "'";
+    }
+
 }
