@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -119,7 +120,23 @@ public class Klijent implements AbstractDomainObject {
 
     @Override
     public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<AbstractDomainObject> lista = new ArrayList<>();
+        while(rs.next()){
+//            int idKlijent = rs.getInt("idKlijent");
+//            String ime = rs.getString("ime");
+//            String prezime = rs.getString("prezime");
+//            String brojTelefona = rs.getString("brojTelefona");
+//            String email = rs.getString("email");
+//            int idMesto = rs.getInt("mesto");
+//            Mesto mesto = new Mesto();
+//            mesto.setIdMesto(idMesto);
+//            Klijent kl = new Klijent(idKlijent, ime, prezime, brojTelefona, email, mesto);
+//            lista.add(kl);
+
+            //PROBLEMATIKA ZA MESTO!
+        }
+        
+        return lista;
     }
 
     @Override

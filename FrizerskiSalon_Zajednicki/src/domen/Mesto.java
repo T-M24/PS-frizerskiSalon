@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -80,7 +81,15 @@ public class Mesto implements AbstractDomainObject {
 
     @Override
     public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<AbstractDomainObject> lista = new ArrayList<>();
+        while (rs.next()) {
+            int idMesto = rs.getInt("idMesto");
+            String naziv = rs.getString("naziv");
+            String postanskiBroj = rs.getString("postanskiBroj");
+            Mesto mesto = new Mesto(idMesto, naziv, postanskiBroj);
+            lista.add(mesto);
+        }
+        return lista;
     }
 
     @Override

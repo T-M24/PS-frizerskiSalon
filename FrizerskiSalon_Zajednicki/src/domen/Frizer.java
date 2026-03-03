@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -103,7 +104,17 @@ public class Frizer implements AbstractDomainObject {
 
     @Override
     public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<AbstractDomainObject> lista = new ArrayList<>();
+        while(rs.next()){
+            int idFrizer = rs.getInt("idFrizer");
+            String ime = rs.getString("ime");
+            String prezime = rs.getString("prezime");
+            String korisnickoIme = rs.getString("korisnickoIme");
+            String sifra = rs.getString("sifra");
+            Frizer frizer = new Frizer(idFrizer, ime, prezime, korisnickoIme, sifra);
+            lista.add(frizer);
+        }
+        return lista;
     }
 
     @Override
