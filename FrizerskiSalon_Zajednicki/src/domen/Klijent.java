@@ -12,16 +12,18 @@ public class Klijent {
     private String prezime;
     private String brojTelefona;
     private String email;
+    private Mesto mesto;
 
     public Klijent() {
     }
 
-    public Klijent(int idKlijent, String ime, String prezime, String brojTelefona, String email) {
+    public Klijent(int idKlijent, String ime, String prezime, String brojTelefona, String email, Mesto mesto) {
         this.idKlijent = idKlijent;
         this.ime = ime;
         this.prezime = prezime;
         this.brojTelefona = brojTelefona;
         this.email = email;
+        this.mesto = mesto;
     }
 
     public int getIdKlijent() {
@@ -97,6 +99,14 @@ public class Klijent {
             return false;
         }
         return Objects.equals(this.email, other.email);
+    }
+
+    public Mesto getMesto() {
+        return mesto;
+    }
+
+    public void setMesto(Mesto mesto) {
+        this.mesto = mesto;
     }
     
 }

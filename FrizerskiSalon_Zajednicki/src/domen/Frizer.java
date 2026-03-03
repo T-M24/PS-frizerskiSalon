@@ -12,18 +12,17 @@ public class Frizer {
     private String prezime;
     private String korisnickoIme;
     private String sifra;
-    private Mesto mesto;
+
     
     public Frizer() {
     }
 
-    public Frizer(int idFrizer, String ime, String prezime, String korisnickoIme, String sifra, Mesto mesto) {
+    public Frizer(int idFrizer, String ime, String prezime, String korisnickoIme, String sifra) {
         this.idFrizer = idFrizer;
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
         this.sifra = sifra;
-        this.mesto = mesto;
     }
 
     
@@ -94,15 +93,10 @@ public class Frizer {
 
     @Override
     public String toString() {
-        return ime + " " + prezime+ ", " + mesto;
+        return ime + " " + prezime;
     }
 
-    public Mesto getMesto() {
-        return mesto;
-    }
+    
 
-    public void setMesto(Mesto mesto) {
-        this.mesto = mesto;
-    }
     
 }
