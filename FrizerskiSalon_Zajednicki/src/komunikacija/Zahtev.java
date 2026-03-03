@@ -7,15 +7,15 @@ package komunikacija;
 import java.io.Serializable;
 
 
-public class Request implements Serializable{
-    private Operation operation;
+public class Zahtev implements Serializable{
+    private Operacija operation;
     private Object parametar;
 
-    public Operation getOperacija() {
+    public Operacija getOperacija() {
         return operation;
     }
 
-    public void setOperacija(Operation operation) {
+    public void setOperacija(Operacija operation) {
         this.operation = operation;
     }
 
@@ -27,12 +27,12 @@ public class Request implements Serializable{
         this.parametar = parametar;
     }
 
-    public Request(Operation operation, Object parametar) {
+    public Zahtev(Operacija operation, Object parametar) {
         this.operation = operation;
         this.parametar = parametar;
     }
 
-    public Request() {
+    public Zahtev() {
     }
 
 }

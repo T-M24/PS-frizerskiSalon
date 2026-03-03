@@ -5,30 +5,30 @@
 package komunikacija;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-public class Receiver {
+public class Posiljalac {
 
     private Socket socket;
 
-    public Receiver(Socket socket) {
+    public Posiljalac(Socket socket) {
         this.socket = socket;
     }
 
-    public Object accept(Object obj) {
+    public void send(Object obj) {
         try {
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-            return in.readObject();
+            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            out.writeObject(obj);
+            out.flush();
         } catch (IOException ex) {
             ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
         }
-        return null;
+    }
+
+    public void posalji(Odgovor odgovor) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -7,7 +7,7 @@ package komunikacija;
 import java.io.Serializable;
 
 
-public class Response implements Serializable{
+public class Odgovor implements Serializable{
     private Object response;
 
     public Object getResponse() {
@@ -18,10 +18,10 @@ public class Response implements Serializable{
         this.response = response;
     }
 
-    public Response() {
+    public Odgovor() {
     }
 
-    public Response(Object response) {
+    public Odgovor(Object response) {
         this.response = response;
     }
     

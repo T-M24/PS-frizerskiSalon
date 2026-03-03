@@ -7,7 +7,7 @@ package komunikacija;
 import java.io.Serializable;
 
 
-public enum Operation implements Serializable{
+public enum Operacija implements Serializable{
     LOGIN,
     A,
     B;
