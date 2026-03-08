@@ -2,18 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package repository;
+package repozitorijum;
 
+import domen.Frizer;
 import java.util.List;
 
 /**
  *
  * @author Nikola Manjencic
  */
-public interface Repository<T> {
+public interface Repozitorijum<T> {
     List<T> getAll(T param, String uslov) throws Exception;
     void add(T param) throws Exception;
     void edit(T param) throws Exception;
     void delete(T param) throws Exception;
     List<T> getAll();
+
 }

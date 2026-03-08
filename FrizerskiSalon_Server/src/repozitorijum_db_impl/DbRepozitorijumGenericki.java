@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package repository_db_impl;
+package repozitorijum_db_impl;
 
 import domen.AbstractDomainObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Statement;
 import java.sql.ResultSet;
-import repository_db.DBRepository;
-import repository_db.DbConnectionFactory;
+import repozitorijum_db.DbConnectionFactory;
+import repozitorijum_db.DBRepozitorijum;
 
 /**
  *
  * @author Nikola Manjencic
  */
-public class DbRepositoryGeneric implements DBRepository<AbstractDomainObject> {
+public class DbRepozitorijumGenericki implements DBRepozitorijum<AbstractDomainObject> {
 
     @Override
     public List<AbstractDomainObject> getAll(AbstractDomainObject param, String uslov) throws Exception {

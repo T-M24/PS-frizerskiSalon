@@ -20,7 +20,7 @@ public class Primalac {
         this.socket = socket;
     }
 
-    public Object accept(Object obj) {
+    public Object accept() {
         try {
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             return in.readObject();
@@ -32,9 +32,6 @@ public class Primalac {
         return null;
     }
 
-    public Zahtev primi() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+   
 
 }

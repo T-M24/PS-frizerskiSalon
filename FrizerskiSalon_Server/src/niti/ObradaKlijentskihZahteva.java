@@ -4,6 +4,7 @@
  */
 package niti;
 
+import domen.Frizer;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -35,16 +36,28 @@ public class ObradaKlijentskihZahteva extends Thread {
     @Override
     public void run() {
         while (!kraj) {
-            Zahtev zahtev = primalac.primi();
-            Odgovor odgovor = new Odgovor();
-            switch (zahtev.getOperacija()) {
-                //case val:
-                //
-
-                default:
-                    System.out.println("Ova operacija ne postoji.");
+            try {
+                Zahtev zahtev = (Zahtev) primalac.accept();
+                ////////////////// NAKNADNO DODATO, proveriti da li sme ovako?
+                if (zahtev == null) {
+                    kraj = true;
+                    break;
+                }
+                ////////////////
+                Odgovor odgovor = new Odgovor();
+                switch (zahtev.getOperacija()) {
+                    case LOGIN:
+                        Frizer frizer = (Frizer) zahtev.getParametar();
+                        frizer = kontroler.Kontroler.getInstance().login(frizer);
+                        odgovor.setResponse(frizer);
+                        break;
+                    default:
+                        System.out.println("Ova operacija ne postoji.");
+                }
+                posiljalac.send(odgovor);
+            } catch (Exception ex) {
+                Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
             }
-            posiljalac.posalji(odgovor);
         }
     }
 
@@ -57,4 +70,5 @@ public class ObradaKlijentskihZahteva extends Thread {
         }
         interrupt();
     }
+
 }

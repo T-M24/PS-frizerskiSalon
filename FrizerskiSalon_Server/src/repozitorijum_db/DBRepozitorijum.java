@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package repository_db;
+package repozitorijum_db;
 
 /**
  *
  * @author Nikola Manjencic
  */
-public interface DBRepository<T> extends repository.Repository<T> {
+public interface DBRepozitorijum<T> extends repozitorijum.Repozitorijum<T> {
 
     default public void connect() throws Exception {
         DbConnectionFactory.getInstance().getConnection();
