@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import niti.ObradaKlijentskihZahteva;
 
-public class PokreniServer {
+public class PokreniServer extends Thread {
 
     ServerSocket serverSocket;
     boolean kraj = false;
@@ -24,14 +24,19 @@ public class PokreniServer {
         listaKlijenata = new ArrayList<>();
     }
 
-    public void pokreniServer() throws IOException {
-        serverSocket = new ServerSocket(9000);
-        while (!kraj) {
-            Socket s = serverSocket.accept();
-            System.out.println("Klijent je povezan!");
-            ObradaKlijentskihZahteva okz = new ObradaKlijentskihZahteva(s);
-            listaKlijenata.add(okz);
-            okz.start();
+    @Override
+    public void run() {
+        try {
+            serverSocket = new ServerSocket(9000);
+            while (!kraj) {
+                Socket s = serverSocket.accept();
+                System.out.println("Klijent je povezan!");
+                ObradaKlijentskihZahteva okz = new ObradaKlijentskihZahteva(s);
+                listaKlijenata.add(okz); //prijem vise klijenata
+                okz.start();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(PokreniServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

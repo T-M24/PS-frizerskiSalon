@@ -50,7 +50,7 @@ public class Konfiguracija {
     }
     
     public void sacuvajIzmene(){
-        
+        // u config fajl upisuje korisnikov unos
         try {
             konfiguracija.store(new FileOutputStream("C:\\Users\\Nikola Manjencic\\Desktop\\frizerkiSalon projektovanje softvera\\FrizerskiSalon_Server\\config\\config.properties"),null);
         } catch (FileNotFoundException ex) {

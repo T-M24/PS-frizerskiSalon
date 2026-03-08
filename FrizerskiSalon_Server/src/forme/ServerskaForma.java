@@ -25,6 +25,7 @@ public class ServerskaForma extends javax.swing.JFrame {
         initComponents();
         ps = new PokreniServer();
         jLabelStatus.setText("");
+        jButtonZaustaviServer.setEnabled(false);
     }
 
     /**
@@ -133,55 +134,21 @@ public class ServerskaForma extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButtonPokreniServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPokreniServerActionPerformed
-        try {
-            ps.pokreniServer();
-        } catch (IOException ex) {
-            Logger.getLogger(ServerskaForma.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ps.start();
         jLabelStatus.setText("Pokrenut");
-        jLabelStatus.setBackground(Color.green);
+        jLabelStatus.setForeground(Color.GREEN);
+        jButtonZaustaviServer.setEnabled(true);
+        jButtonPokreniServer.setEnabled(false);
     }//GEN-LAST:event_jButtonPokreniServerActionPerformed
 
     private void jButtonZaustaviServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZaustaviServerActionPerformed
         ps.zaustaviServer();
         jLabelStatus.setText("Zaustavljen");
-        jLabelStatus.setBackground(Color.red);
+        jLabelStatus.setForeground(Color.RED);
+        jButtonZaustaviServer.setEnabled(false);
+        jButtonPokreniServer.setEnabled(true);
     }//GEN-LAST:event_jButtonZaustaviServerActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ServerskaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ServerskaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ServerskaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ServerskaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ServerskaForma().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonPokreniServer;
