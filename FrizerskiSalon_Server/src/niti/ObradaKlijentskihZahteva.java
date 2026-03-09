@@ -6,6 +6,7 @@ package niti;
 
 import domen.Frizer;
 import domen.Klijent;
+import domen.Mesto;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -65,7 +66,20 @@ public class ObradaKlijentskihZahteva extends Thread {
                     } catch (Exception ex) {
                         odgovor.setResponse(ex);
                     }
-                    break;
+                        break;
+                    case UCITAJ_MESTA:
+                        List<Mesto> mesta = kontroler.Kontroler.getInstance().ucitajMesta();
+                        odgovor.setResponse(mesta);
+                        break;
+                    case DODAJ_KLIJENTA:
+                        try{
+                        Klijent k = (Klijent) zahtev.getParametar();
+                        Kontroler.getInstance().dodajKlijenta(k);
+                        odgovor.setResponse(null);
+                        } catch(Exception ex){
+                            odgovor.setResponse(ex);
+                        }
+                        break;
                     default:
                         System.out.println("Ova operacija ne postoji.");
                 }

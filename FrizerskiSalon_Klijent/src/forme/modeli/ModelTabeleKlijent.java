@@ -17,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTabeleKlijent extends AbstractTableModel{
 
     List<Klijent> listaSvihKlijenata;
-    String[] kolone = {"ID","Ime","Prezime","Broj telefona","Email"};
+    String[] kolone = {"ID","Ime","Prezime","Broj telefona","Email","Mesto"};
 
     public ModelTabeleKlijent(List<Klijent> listaSvihKlijenata) {
         this.listaSvihKlijenata = listaSvihKlijenata;
@@ -47,6 +47,8 @@ public class ModelTabeleKlijent extends AbstractTableModel{
                 return klijent.getBrojTelefona();
             case 4:
                 return klijent.getEmail();
+            case 5:
+                return klijent.getMesto().getNaziv();
             default:
                 return "N/A";
         }

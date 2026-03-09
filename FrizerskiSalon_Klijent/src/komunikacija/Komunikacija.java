@@ -6,6 +6,7 @@ package komunikacija;
 
 import domen.Frizer;
 import domen.Klijent;
+import domen.Mesto;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -80,4 +81,19 @@ public class Komunikacija {
         }
     }
 
+    public List<Mesto> ucitajMesta() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_MESTA, null);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        return (List<Mesto>) odgovor.getResponse();
+    }
+    
+    public void dodajKlijenta(Klijent k) throws Exception{
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_KLIJENTA,k);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        if(odgovor.getResponse()!=null){
+            throw new Exception("Sistem nije mogao da doda klijenta!");
+        }
+    }
 }

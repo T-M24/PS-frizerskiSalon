@@ -5,9 +5,11 @@
 package koordinator;
 
 import domen.Frizer;
+import forme.DodajKlijentaForma;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazKlijenataForma;
+import kontroleri.DodajKlijentaKontroler;
 import kontroleri.LoginKontroler;
 import kontroleri.GlavnaFormaKontroler;
 import kontroleri.PrikazKlijenataKontroler;
@@ -20,6 +22,7 @@ public class Koordinator {
     private LoginKontroler loginKontroler;
     private GlavnaFormaKontroler glavnaFormaKontroler;
     private PrikazKlijenataKontroler prikazKlijenataKontroler;
+    private DodajKlijentaKontroler dodajKlijentaKontroler;
     
     public static Koordinator getInstance() {
         if (instance == null) {
@@ -53,5 +56,10 @@ public class Koordinator {
     public void otvoriPrikazKlijenataForma() {
         prikazKlijenataKontroler = new PrikazKlijenataKontroler(new PrikazKlijenataForma());
         prikazKlijenataKontroler.otvoriFormu();
+    }
+
+    public void otvoriDodajKlijentaFormu() {
+        dodajKlijentaKontroler = new DodajKlijentaKontroler(new DodajKlijentaForma());
+        dodajKlijentaKontroler.otvoriFormu();
     }
 }

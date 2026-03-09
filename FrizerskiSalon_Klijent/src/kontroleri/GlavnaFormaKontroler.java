@@ -27,7 +27,7 @@ public class GlavnaFormaKontroler {
     }
 
     private void addActionListeners() {
-        
+        //IMPLEMENTIRATI POSLE!!!!
     }
     
      

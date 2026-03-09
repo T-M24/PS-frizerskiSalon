@@ -2,22 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package operacija.klijenti;
+package operacija.mesta;
 
-import domen.Klijent;
+import domen.Mesto;
 import java.util.List;
 import operacija.ApstraktnaGenerickaOperacija;
 
-/**
- *
- * @author Nikola Manjencic
- */
-public class UcitajKlijenteSO extends ApstraktnaGenerickaOperacija{
+public class UcitajMestaSO extends ApstraktnaGenerickaOperacija {
 
-    List<Klijent> klijenti;
+    List<Mesto> mesta;
 
-    public List<Klijent> getKlijenti() {
-        return klijenti;
+    public List<Mesto> getMesta() {
+        return mesta;
     }
     
     @Override
@@ -26,7 +22,7 @@ public class UcitajKlijenteSO extends ApstraktnaGenerickaOperacija{
 
     @Override
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
-        klijenti = broker.getAll(new Klijent(), " JOIN mesto ON klijent.mesto = mesto.idMesto");
-    } //ovde napravljena izmena
-    
+        mesta = broker.getAll(new Mesto(), "");
+    }
+
 }

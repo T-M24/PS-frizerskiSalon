@@ -9,5 +9,9 @@ import java.io.Serializable;
 
 public enum Operacija implements Serializable{
     LOGIN,
-    UCITAJ_KLIJENTE, OBRISI_KLIJENTA;
+    UCITAJ_KLIJENTE, 
+    OBRISI_KLIJENTA,
+    UCITAJ_MESTA,
+    DODAJ_KLIJENTA
+    ;
 }

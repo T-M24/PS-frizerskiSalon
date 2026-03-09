@@ -4,6 +4,12 @@
  */
 package forme;
 
+import domen.Mesto;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
 
 public class DodajKlijentaForma extends javax.swing.JFrame {
 
@@ -12,6 +18,34 @@ public class DodajKlijentaForma extends javax.swing.JFrame {
      */
     public DodajKlijentaForma() {
         initComponents();
+    }
+
+    public JButton getjButtonDodaj() {
+        return jButtonDodaj;
+    }
+
+    public JButton getjButtonIzmeni() {
+        return jButtonIzmeni;
+    }
+
+    public JComboBox<Mesto> getjComboBoxMesta() {
+        return jComboBoxMesta;
+    }
+
+    public JTextField getjTextFieldBrojTelefona() {
+        return jTextFieldBrojTelefona;
+    }
+
+    public JTextField getjTextFieldEmail() {
+        return jTextFieldEmail;
+    }
+
+    public JTextField getjTextFieldIme() {
+        return jTextFieldIme;
+    }
+
+    public JTextField getjTextFieldPrezime() {
+        return jTextFieldPrezime;
     }
 
     /**
@@ -47,8 +81,6 @@ public class DodajKlijentaForma extends javax.swing.JFrame {
         jLabel4.setText("Email");
 
         jLabel5.setText("Mesto");
-
-        jComboBoxMesta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButtonDodaj.setText("Dodaj");
 
@@ -119,7 +151,7 @@ public class DodajKlijentaForma extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDodaj;
     private javax.swing.JButton jButtonIzmeni;
-    private javax.swing.JComboBox<String> jComboBoxMesta;
+    private javax.swing.JComboBox<Mesto> jComboBoxMesta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -130,4 +162,8 @@ public class DodajKlijentaForma extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldIme;
     private javax.swing.JTextField jTextFieldPrezime;
     // End of variables declaration//GEN-END:variables
+
+    public void addBtnDodajActionListener(ActionListener actionListener) {
+        jButtonDodaj.addActionListener(actionListener);
+    }
 }

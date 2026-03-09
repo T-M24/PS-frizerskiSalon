@@ -50,7 +50,7 @@ public class Mesto implements AbstractDomainObject {
 
     @Override
     public String toString() {
-        return "Mesto{" + "naziv=" + naziv + ", postanskiBroj=" + postanskiBroj + '}';
+        return naziv;
     }
 
     @Override

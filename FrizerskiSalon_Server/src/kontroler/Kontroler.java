@@ -6,11 +6,14 @@ package kontroler;
 
 import domen.Frizer;
 import domen.Klijent;
+import domen.Mesto;
 import java.util.List;
 import komunikacija.Zahtev;
+import operacija.klijenti.DodajKlijentaSO;
 import operacija.klijenti.ObrisiKlijentaSO;
 import operacija.login.LoginOperacija;
 import operacija.klijenti.UcitajKlijenteSO;
+import operacija.mesta.UcitajMestaSO;
 
 /**
  *
@@ -47,4 +50,17 @@ public class Kontroler {
         ObrisiKlijentaSO operacija = new ObrisiKlijentaSO();
         operacija.izvrsi(k, null);
     }
+
+    public List<Mesto> ucitajMesta() throws Exception {
+        UcitajMestaSO operacija = new UcitajMestaSO();
+        operacija.izvrsi(null, null);
+        return operacija.getMesta();
+    }
+    
+    public void dodajKlijenta(Klijent k) throws Exception{
+        DodajKlijentaSO operacija = new DodajKlijentaSO();
+        operacija.izvrsi(k, null);
+    }
+
+   
 }
