@@ -10,6 +10,7 @@ import domen.Mesto;
 import java.util.List;
 import komunikacija.Zahtev;
 import operacija.klijenti.DodajKlijentaSO;
+import operacija.klijenti.IzmeniKlijentaSO;
 import operacija.klijenti.ObrisiKlijentaSO;
 import operacija.login.LoginOperacija;
 import operacija.klijenti.UcitajKlijenteSO;
@@ -62,5 +63,9 @@ public class Kontroler {
         operacija.izvrsi(k, null);
     }
 
-   
+    public void izmeniKlijenta(Klijent k) throws Exception {
+        IzmeniKlijentaSO operacija = new IzmeniKlijentaSO();
+        operacija.izvrsi(k, null);
+    }
+
 }

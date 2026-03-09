@@ -80,6 +80,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                             odgovor.setResponse(ex);
                         }
                         break;
+                    case IZMENI_KLIJENTA:
+                        try{
+                        Klijent k = (Klijent) zahtev.getParametar();
+                        Kontroler.getInstance().izmeniKlijenta(k);
+                        odgovor.setResponse(null);
+                        }catch(Exception ex){
+                            odgovor.setResponse(ex);
+                        }
+                        break;
                     default:
                         System.out.println("Ova operacija ne postoji.");
                 }

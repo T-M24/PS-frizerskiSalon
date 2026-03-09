@@ -47,7 +47,20 @@ public class PrikazKlijenataKontroler {
                 }
             }
         });
-        
+        pkf.addBtnIzmeniActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selektovaniRed = pkf.getjTableKlijenti().getSelectedRow();
+                if (selektovaniRed == -1) {
+                    JOptionPane.showMessageDialog(pkf, "Selektujte klijenta za izmenu!", "Greska", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                ModelTabeleKlijent mtk = (ModelTabeleKlijent) pkf.getjTableKlijenti().getModel();
+                Klijent k = mtk.getListaSvihKlijenata().get(selektovaniRed);
+                koordinator.Koordinator.getInstance().otvoriIzmeniKlijentaFormu(k);
+            }
+        });
+
     }
 
     public void otvoriFormu() {

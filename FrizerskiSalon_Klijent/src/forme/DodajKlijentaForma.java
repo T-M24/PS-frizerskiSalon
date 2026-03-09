@@ -166,4 +166,8 @@ public class DodajKlijentaForma extends javax.swing.JFrame {
     public void addBtnDodajActionListener(ActionListener actionListener) {
         jButtonDodaj.addActionListener(actionListener);
     }
+    
+    public void addBtnIzmeniActionListener(ActionListener actionListener){
+        jButtonIzmeni.addActionListener(actionListener);
+    }
 }

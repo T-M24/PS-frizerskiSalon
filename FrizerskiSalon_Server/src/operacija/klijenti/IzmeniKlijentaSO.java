@@ -5,28 +5,24 @@
 package operacija.klijenti;
 
 import domen.Klijent;
-import java.util.List;
 import operacija.ApstraktnaGenerickaOperacija;
 
 /**
  *
  * @author Nikola Manjencic
  */
-public class UcitajKlijenteSO extends ApstraktnaGenerickaOperacija{
+public class IzmeniKlijentaSO extends ApstraktnaGenerickaOperacija{
 
-    List<Klijent> klijenti;
-
-    public List<Klijent> getKlijenti() {
-        return klijenti;
-    }
-    
     @Override
     protected void preduslovi(Object param) throws Exception {
+        if(param == null || !(param instanceof Klijent)){
+            throw new Exception("Sistem ne moze da izmeni klijenta!");
+        }
     }
 
     @Override
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
-        klijenti = broker.getAll(new Klijent(), " JOIN mesto ON klijent.mesto = mesto.idMesto");
-    } 
+        broker.edit((Klijent) param);
+    }
     
 }

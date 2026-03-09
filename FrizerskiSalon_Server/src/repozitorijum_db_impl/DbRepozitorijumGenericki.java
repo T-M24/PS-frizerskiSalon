@@ -46,12 +46,12 @@ public class DbRepozitorijumGenericki implements DBRepozitorijum<AbstractDomainO
 
     @Override
     public void edit(AbstractDomainObject param) throws Exception {
-        String upit = "UPDATE " + param.getTableName() + " SET " + param.getEditableValues();
+        String upit = "UPDATE " + param.getTableName() + " SET " + param.getEditableValues() +
+                " WHERE " + param.getPrimaryKey();
         System.out.println(upit);
         Statement st = DbConnectionFactory.getInstance().getConnection().createStatement();
         st.executeUpdate(upit);
         st.close();
-
     }
 
     @Override

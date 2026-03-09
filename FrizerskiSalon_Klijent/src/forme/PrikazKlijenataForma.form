@@ -26,8 +26,12 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="18" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonObrisi" min="-2" pref="131" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="625" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButtonObrisi" min="-2" pref="131" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="jButtonIzmeni" min="-2" pref="131" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -39,8 +43,11 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="jButtonObrisi" min="-2" pref="39" max="-2" attributes="0"/>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonObrisi" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="jButtonIzmeni" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,6 +77,11 @@
     <Component class="javax.swing.JButton" name="jButtonObrisi">
       <Properties>
         <Property name="text" type="java.lang.String" value="Obrisi"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonIzmeni">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Izmeni"/>
       </Properties>
     </Component>
   </SubComponents>

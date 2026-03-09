@@ -33,6 +33,7 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableKlijenti = new javax.swing.JTable();
         jButtonObrisi = new javax.swing.JButton();
+        jButtonIzmeni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +52,8 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
 
         jButtonObrisi.setText("Obrisi");
 
+        jButtonIzmeni.setText("Izmeni");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,8 +61,11 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButtonIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -68,8 +74,10 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(jButtonObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,10 +91,8 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
         return jButtonObrisi;
     }
 
-   
-  
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonIzmeni;
     private javax.swing.JButton jButtonObrisi;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableKlijenti;
@@ -94,5 +100,9 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
 
     public void addBtnObrisiActionListener(ActionListener actionListener) {
         jButtonObrisi.addActionListener(actionListener);
+    }
+
+    public void addBtnIzmeniActionListener(ActionListener actionListener) {
+        jButtonIzmeni.addActionListener(actionListener);
     }
 }
