@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package operacija.login;
+package operacija;
 
 import repozitorijum_db_impl.DbRepozitorijumGenericki;
 import repozitorijum.Repozitorijum;
@@ -29,7 +29,7 @@ public abstract class ApstraktnaGenerickaOperacija {
             ponistiTransakciju();
             throw e;
         } finally{
-            ugasiKonekciju();
+//            ugasiKonekciju(); OVDE SE VRATITI
         }
     }
 

@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
+import koordinator.Koordinator;
 
 /**
  *
@@ -45,6 +46,8 @@ public class LoginKontroler {
                     } else{
                         /////////////
                         JOptionPane.showMessageDialog(lf, "Prijava na sistem je uspesna!", "Uspeh!", JOptionPane.INFORMATION_MESSAGE);
+                        Koordinator.getInstance().setUlogovani(ulogovani);
+                        koordinator.Koordinator.getInstance().otvoriGlavnuFormu();
                         lf.dispose();
                     }
                 } catch (Exception ex) {

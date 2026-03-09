@@ -6,6 +6,7 @@ package operacija.login;
 
 import domen.Frizer;
 import java.util.List;
+import operacija.ApstraktnaGenerickaOperacija;
 import repozitorijum.Repozitorijum;
 
 public class LoginOperacija extends ApstraktnaGenerickaOperacija {
@@ -17,6 +18,9 @@ public class LoginOperacija extends ApstraktnaGenerickaOperacija {
 
     @Override
     protected void preduslovi(Object param) throws Exception {
+    if(param == null || !(param instanceof Frizer)){
+           throw new Exception("Sistem ne moze da pronadje frizera!");
+        }
     }
 
     @Override

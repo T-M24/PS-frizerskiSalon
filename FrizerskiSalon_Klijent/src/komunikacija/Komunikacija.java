@@ -5,8 +5,12 @@
 package komunikacija;
 
 import domen.Frizer;
+import domen.Klijent;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,7 +39,7 @@ public class Komunikacija {
             soket = new Socket("localhost", 9000);
             posiljalac = new Posiljalac(soket);
             primalac = new Primalac(soket);
-        } catch(IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
 
@@ -45,13 +49,35 @@ public class Komunikacija {
         Frizer frizer = new Frizer();
         frizer.setKorisnickoIme(username);
         frizer.setSifra(password);
-        
+
         Zahtev zahtev = new Zahtev(Operacija.LOGIN, frizer);
         posiljalac.send(zahtev);
-        
+
         Odgovor odgovor = (Odgovor) primalac.accept();
-        
+
         return (Frizer) odgovor.getResponse();
+    }
+
+    public List<Klijent> ucitajKlijente() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_KLIJENTE, null);
+        List<Klijent> klijenti = new ArrayList<>();
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        klijenti = (List<Klijent>) odgovor.getResponse();
+        return klijenti;
+    }
+
+    public void obrisiKlijenta(Klijent k) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_KLIJENTA, k);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        if(odgovor.getResponse() == null){
+            System.out.println("Sistem je uspesno obrisao klijenta!");
+        } else{
+            System.out.println("Sistem nije mogao da obrise klijenta!");
+            ((Exception)odgovor.getResponse()).printStackTrace();
+            throw new Exception("Sistem nije mogao da obrise klijenta!");
+        }
     }
 
 }

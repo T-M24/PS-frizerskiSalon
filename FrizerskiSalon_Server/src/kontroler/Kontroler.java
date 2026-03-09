@@ -5,8 +5,12 @@
 package kontroler;
 
 import domen.Frizer;
+import domen.Klijent;
+import java.util.List;
 import komunikacija.Zahtev;
+import operacija.klijenti.ObrisiKlijentaSO;
 import operacija.login.LoginOperacija;
+import operacija.klijenti.UcitajKlijenteSO;
 
 /**
  *
@@ -30,5 +34,17 @@ public class Kontroler {
         operacija.izvrsi(frizer, null); 
         System.out.println("Kontroler: "+ operacija.getFrizer());
         return operacija.getFrizer();
+    }
+
+    public List<Klijent> ucitajKlijente() throws Exception {
+        UcitajKlijenteSO operacija = new UcitajKlijenteSO();
+        operacija.izvrsi(null, null);
+        System.out.println("Kontroler: " + operacija.getKlijenti());
+        return operacija.getKlijenti();
+    }
+
+    public void obrisiKlijenta(Klijent k) throws Exception {
+        ObrisiKlijentaSO operacija = new ObrisiKlijentaSO();
+        operacija.izvrsi(k, null);
     }
 }

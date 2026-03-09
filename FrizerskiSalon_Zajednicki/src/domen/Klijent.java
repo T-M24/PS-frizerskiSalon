@@ -122,18 +122,18 @@ public class Klijent implements AbstractDomainObject {
     public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
         List<AbstractDomainObject> lista = new ArrayList<>();
         while(rs.next()){
-//            int idKlijent = rs.getInt("idKlijent");
-//            String ime = rs.getString("ime");
-//            String prezime = rs.getString("prezime");
-//            String brojTelefona = rs.getString("brojTelefona");
-//            String email = rs.getString("email");
-//            int idMesto = rs.getInt("mesto");
-//            Mesto mesto = new Mesto();
-//            mesto.setIdMesto(idMesto);
-//            Klijent kl = new Klijent(idKlijent, ime, prezime, brojTelefona, email, mesto);
-//            lista.add(kl);
+            int idKlijent = rs.getInt("idKlijent");
+            String ime = rs.getString("ime");
+            String prezime = rs.getString("prezime");
+            String brojTelefona = rs.getString("brojTelefona");
+            String email = rs.getString("email");
+            int idMesto = rs.getInt("mesto");
+            Mesto mesto = new Mesto();
+            mesto.setIdMesto(idMesto);
+            Klijent kl = new Klijent(idKlijent, ime, prezime, brojTelefona, email, mesto);
+            lista.add(kl);
 
-            //PROBLEMATIKA ZA MESTO!
+            //PROBLEMATIKA ZA MESTO!, samo po ID-u spajam? je l treba cela klasa?
         }
         
         return lista;
