@@ -7,6 +7,7 @@ package komunikacija;
 import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
+import domen.Rezervacija;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -107,6 +108,13 @@ public class Komunikacija {
             ((Exception)odgovor.getResponse()).printStackTrace();
             throw new Exception("Sistem nije mogao da zimeni korisnika!");
         }
+    }
+    
+    public List<Rezervacija> ucitajRezervacije(){
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_REZERVACIJE,null);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        return (List<Rezervacija>) odgovor.getResponse();
     }
     
 }

@@ -7,6 +7,7 @@ package kontroler;
 import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
+import domen.Rezervacija;
 import java.util.List;
 import komunikacija.Zahtev;
 import operacija.klijenti.DodajKlijentaSO;
@@ -15,6 +16,7 @@ import operacija.klijenti.ObrisiKlijentaSO;
 import operacija.login.LoginOperacija;
 import operacija.klijenti.UcitajKlijenteSO;
 import operacija.mesta.UcitajMestaSO;
+import operacije.rezervacija.UcitajRezervacijeSO;
 
 /**
  *
@@ -68,4 +70,10 @@ public class Kontroler {
         operacija.izvrsi(k, null);
     }
 
+    public List<Rezervacija> ucitajRezervacije() throws Exception{
+        UcitajRezervacijeSO operacija = new UcitajRezervacijeSO();
+        operacija.izvrsi(null, null);
+        return operacija.getRezervacije();
+    }
+    
 }

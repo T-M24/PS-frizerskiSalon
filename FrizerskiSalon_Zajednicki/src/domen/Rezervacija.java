@@ -125,9 +125,28 @@ public class Rezervacija implements AbstractDomainObject {
         return "rezervacija";
     }
 
-    @Override
+    @Override //radili smo JOIN frizer klijent tabela
     public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<AbstractDomainObject> lista = new ArrayList<>();
+        while (rs.next()) {
+            int idRezervacija = rs.getInt("idRezervacija");
+            LocalDateTime datumRezervacije = rs.getTimestamp("datumRezervacije").toLocalDateTime();
+            int ukupnoVremeTrajanja = rs.getInt("ukupnoVremeTrajanja");
+            double ukupanIznos = rs.getDouble("ukupanIznos");
+
+            Frizer frizer = new Frizer();
+            frizer.setIdFrizer(rs.getInt("rezervacija.frizer"));
+            frizer.setIme(rs.getString("frizer.ime"));      // alias
+            frizer.setPrezime(rs.getString("frizer.prezime")); // alias
+
+            Klijent klijent = new Klijent();
+            klijent.setIdKlijent(rs.getInt("rezervacija.klijent"));
+            klijent.setIme(rs.getString("klijent.ime"));
+            klijent.setPrezime(rs.getString("klijent.prezime"));
+            Rezervacija r = new Rezervacija(frizer, klijent, idRezervacija, datumRezervacije, ukupnoVremeTrajanja, ukupanIznos);
+            lista.add(r);
+        }
+        return lista;
     }
 
     @Override

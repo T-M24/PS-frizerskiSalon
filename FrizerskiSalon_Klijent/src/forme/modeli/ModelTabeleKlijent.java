@@ -6,23 +6,25 @@ package forme.modeli;
 
 import domen.Frizer;
 import domen.Klijent;
+import domen.Mesto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author Nikola Manjencic
  */
-public class ModelTabeleKlijent extends AbstractTableModel{
+public class ModelTabeleKlijent extends AbstractTableModel {
 
     List<Klijent> listaSvihKlijenata;
-    String[] kolone = {"ID","Ime","Prezime","Broj telefona","Email","Mesto"};
+    String[] kolone = {"ID", "Ime", "Prezime", "Broj telefona", "Email", "Mesto"};
 
     public ModelTabeleKlijent(List<Klijent> listaSvihKlijenata) {
         this.listaSvihKlijenata = listaSvihKlijenata;
     }
-    
+
     @Override
     public int getRowCount() {
         return listaSvihKlijenata.size();
@@ -36,7 +38,7 @@ public class ModelTabeleKlijent extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Klijent klijent = listaSvihKlijenata.get(rowIndex);
-        switch(columnIndex){
+        switch (columnIndex) {
             case 0:
                 return klijent.getIdKlijent();
             case 1:
@@ -62,7 +64,16 @@ public class ModelTabeleKlijent extends AbstractTableModel{
     public List<Klijent> getListaSvihKlijenata() {
         return listaSvihKlijenata;
     }
-    
-    
-    
+
+    public void pretrazi(String ime, String prezime, Mesto mesto) {
+        List<Klijent> filtriranaLista = listaSvihKlijenata.stream()
+                .filter(klijent -> (ime == null || ime.isEmpty() || klijent.getIme().toLowerCase().contains(ime.toLowerCase())))
+                .filter(klijent -> (prezime == null || prezime.isEmpty() || klijent.getPrezime().toLowerCase().contains(prezime.toLowerCase())))
+                .filter(klijent -> (mesto == null || klijent.getMesto().getIdMesto() == mesto.getIdMesto()))
+                .collect(Collectors.toList());
+
+        this.listaSvihKlijenata = filtriranaLista;
+        fireTableDataChanged();
+    }
+
 }

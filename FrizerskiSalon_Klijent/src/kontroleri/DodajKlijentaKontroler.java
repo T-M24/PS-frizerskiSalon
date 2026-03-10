@@ -93,13 +93,16 @@ public class DodajKlijentaKontroler {
             dkf.getjComboBoxMesta().addItem(m);
         }
 
-        //u slucaju izmene, radimo:
         if (selektovaniKlijent != null) {
             dkf.getjTextFieldIme().setText(selektovaniKlijent.getIme());
             dkf.getjTextFieldPrezime().setText(selektovaniKlijent.getPrezime());
             dkf.getjTextFieldBrojTelefona().setText(selektovaniKlijent.getBrojTelefona());
             dkf.getjTextFieldEmail().setText(selektovaniKlijent.getEmail());
             dkf.getjComboBoxMesta().setSelectedItem(selektovaniKlijent.getMesto());
+            dkf.prikaziDugmeIzmeni();
+        } else {
+            // forma za dodavanje, sakrij dugme izmeni
+            dkf.sakrijiDugmeIzmeni();
         }
     }
 }

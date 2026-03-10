@@ -7,6 +7,7 @@ package niti;
 import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
+import domen.Rezervacija;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -88,6 +89,10 @@ public class ObradaKlijentskihZahteva extends Thread {
                         }catch(Exception ex){
                             odgovor.setResponse(ex);
                         }
+                        break;
+                    case UCITAJ_REZERVACIJE:
+                        List<Rezervacija> rezervacije = Kontroler.getInstance().ucitajRezervacije();
+                        odgovor.setResponse(rezervacije);
                         break;
                     default:
                         System.out.println("Ova operacija ne postoji.");

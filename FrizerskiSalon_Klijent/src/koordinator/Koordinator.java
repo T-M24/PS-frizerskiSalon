@@ -68,4 +68,10 @@ public class Koordinator {
         dodajKlijentaKontroler.otvoriFormu();
     }
 
+    public void osveziKlijente() {
+        if (prikazKlijenataKontroler != null) {
+            prikazKlijenataKontroler.osveziTabelu();
+        }
+    }
+
 }

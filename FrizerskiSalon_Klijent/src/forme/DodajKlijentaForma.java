@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-
 public class DodajKlijentaForma extends javax.swing.JFrame {
 
     /**
@@ -146,7 +145,6 @@ public class DodajKlijentaForma extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDodaj;
@@ -166,8 +164,16 @@ public class DodajKlijentaForma extends javax.swing.JFrame {
     public void addBtnDodajActionListener(ActionListener actionListener) {
         jButtonDodaj.addActionListener(actionListener);
     }
-    
-    public void addBtnIzmeniActionListener(ActionListener actionListener){
+
+    public void addBtnIzmeniActionListener(ActionListener actionListener) {
         jButtonIzmeni.addActionListener(actionListener);
+    }
+
+    public void sakrijiDugmeIzmeni() {
+        jButtonIzmeni.setVisible(false);
+    }
+
+    public void prikaziDugmeIzmeni() {
+        jButtonIzmeni.setVisible(true);
     }
 }

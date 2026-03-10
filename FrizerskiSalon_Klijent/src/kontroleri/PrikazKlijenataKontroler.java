@@ -5,6 +5,7 @@
 package kontroleri;
 
 import domen.Klijent;
+import domen.Mesto;
 import forme.GlavnaForma;
 import forme.PrikazKlijenataForma;
 import forme.modeli.ModelTabeleKlijent;
@@ -61,6 +62,18 @@ public class PrikazKlijenataKontroler {
             }
         });
 
+        pkf.addBtnPretraziActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ime = pkf.getjTextFieldIme().getText();
+                String prezime = pkf.getjTextFieldPrezime().getText();
+                Mesto mesto = (Mesto) pkf.getjComboBoxMesto().getSelectedItem();
+
+                ModelTabeleKlijent mtk = (ModelTabeleKlijent) pkf.getjTableKlijenti().getModel();
+                mtk.pretrazi(ime, prezime, mesto);
+            }
+        });
+
     }
 
     public void otvoriFormu() {
@@ -72,6 +85,16 @@ public class PrikazKlijenataKontroler {
         List<Klijent> klijenti = komunikacija.Komunikacija.getInstance().ucitajKlijente();
         ModelTabeleKlijent mtk = new ModelTabeleKlijent(klijenti);
         pkf.getjTableKlijenti().setModel(mtk);
-    }
 
+        List<Mesto> mesta = komunikacija.Komunikacija.getInstance().ucitajMesta();
+        pkf.getjComboBoxMesto().removeAllItems();
+        for (Mesto m : mesta) {
+            pkf.getjComboBoxMesto().addItem(m);
+        }
+    }
+    
+    public void osveziTabelu(){
+        pripremiFormu();
+    }
+    
 }
