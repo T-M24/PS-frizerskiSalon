@@ -8,6 +8,8 @@ import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
 import domen.Rezervacija;
+import domen.StavkaRezervacije;
+import domen.Usluga;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -73,11 +75,11 @@ public class Komunikacija {
         Zahtev zahtev = new Zahtev(Operacija.OBRISI_KLIJENTA, k);
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
-        if(odgovor.getResponse() == null){
+        if (odgovor.getResponse() == null) {
             System.out.println("Sistem je uspesno obrisao klijenta!");
-        } else{
+        } else {
             System.out.println("Sistem nije mogao da obrise klijenta!");
-            ((Exception)odgovor.getResponse()).printStackTrace();
+            ((Exception) odgovor.getResponse()).printStackTrace();
             throw new Exception("Sistem nije mogao da obrise klijenta!");
         }
     }
@@ -88,12 +90,12 @@ public class Komunikacija {
         Odgovor odgovor = (Odgovor) primalac.accept();
         return (List<Mesto>) odgovor.getResponse();
     }
-    
-    public void dodajKlijenta(Klijent k) throws Exception{
-        Zahtev zahtev = new Zahtev(Operacija.DODAJ_KLIJENTA,k);
+
+    public void dodajKlijenta(Klijent k) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_KLIJENTA, k);
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
-        if(odgovor.getResponse()!=null){
+        if (odgovor.getResponse() != null) {
             throw new Exception("Sistem nije mogao da doda klijenta!");
         }
     }
@@ -102,19 +104,48 @@ public class Komunikacija {
         Zahtev zahtev = new Zahtev(Operacija.IZMENI_KLIJENTA, k);
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
-        if(odgovor.getResponse() == null){
+        if (odgovor.getResponse() == null) {
             System.out.println("Sistem je uspesno izmenio klijenta!");
-        } else{
-            ((Exception)odgovor.getResponse()).printStackTrace();
+        } else {
+            ((Exception) odgovor.getResponse()).printStackTrace();
             throw new Exception("Sistem nije mogao da zimeni korisnika!");
         }
     }
-    
-    public List<Rezervacija> ucitajRezervacije(){
-        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_REZERVACIJE,null);
+
+    public List<Rezervacija> ucitajRezervacije() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_REZERVACIJE, null);
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
         return (List<Rezervacija>) odgovor.getResponse();
     }
-    
+
+    public List<StavkaRezervacije> ucitajStavke(Rezervacija r) {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_STAVKE, r);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        return (List<StavkaRezervacije>) odgovor.getResponse();
+    }
+
+    public void dodajRezervaciju(Rezervacija rezervacija) throws Exception {
+        System.out.println("Saljem rezervaciju: " + rezervacija);
+        System.out.println("Stavke: " + rezervacija.getStavke());
+        System.out.println("Frizer: " + rezervacija.getFrizer());
+        System.out.println("Klijent: " + rezervacija.getKlijent());
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_REZERVACIJU, rezervacija);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        if (odgovor.getResponse() != null) {
+            Exception ex = (Exception) odgovor.getResponse();
+            ex.printStackTrace();
+            throw new Exception(ex.getMessage());
+        }
+    }
+
+    public List<Usluga> ucitajUsluge() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_USLUGE, null);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        return (List<Usluga>) odgovor.getResponse();
+    }
+
 }

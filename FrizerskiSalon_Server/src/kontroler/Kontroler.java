@@ -8,6 +8,8 @@ import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
 import domen.Rezervacija;
+import domen.StavkaRezervacije;
+import domen.Usluga;
 import java.util.List;
 import komunikacija.Zahtev;
 import operacija.klijenti.DodajKlijentaSO;
@@ -16,29 +18,34 @@ import operacija.klijenti.ObrisiKlijentaSO;
 import operacija.login.LoginOperacija;
 import operacija.klijenti.UcitajKlijenteSO;
 import operacija.mesta.UcitajMestaSO;
+import operacije.rezervacija.DodajRezervacijuSO;
 import operacije.rezervacija.UcitajRezervacijeSO;
+import operacije.stavkerezervacije.UcitajStavkeRezervacijeSO;
+import operacije.usluga.UcitajUslugeSO;
 
 /**
  *
  * @author Nikola Manjencic
  */
 public class Kontroler {
+
     private static Kontroler instance;
-    public static Kontroler getInstance(){
-        if(instance == null){
+
+    public static Kontroler getInstance() {
+        if (instance == null) {
             instance = new Kontroler();
         }
         return instance;
     }
-    
-    private Kontroler(){
-        
+
+    private Kontroler() {
+
     }
 
     public Frizer login(Frizer frizer) throws Exception {
         LoginOperacija operacija = new LoginOperacija();
-        operacija.izvrsi(frizer, null); 
-        System.out.println("Kontroler: "+ operacija.getFrizer());
+        operacija.izvrsi(frizer, null);
+        System.out.println("Kontroler: " + operacija.getFrizer());
         return operacija.getFrizer();
     }
 
@@ -59,8 +66,8 @@ public class Kontroler {
         operacija.izvrsi(null, null);
         return operacija.getMesta();
     }
-    
-    public void dodajKlijenta(Klijent k) throws Exception{
+
+    public void dodajKlijenta(Klijent k) throws Exception {
         DodajKlijentaSO operacija = new DodajKlijentaSO();
         operacija.izvrsi(k, null);
     }
@@ -70,10 +77,27 @@ public class Kontroler {
         operacija.izvrsi(k, null);
     }
 
-    public List<Rezervacija> ucitajRezervacije() throws Exception{
+    public List<Rezervacija> ucitajRezervacije() throws Exception {
         UcitajRezervacijeSO operacija = new UcitajRezervacijeSO();
         operacija.izvrsi(null, null);
+        System.out.println("Kontroler: " + operacija.getRezervacije());
         return operacija.getRezervacije();
     }
-    
+
+    public List<StavkaRezervacije> ucitajStavke(Rezervacija r) throws Exception {
+        UcitajStavkeRezervacijeSO operacija = new UcitajStavkeRezervacijeSO();
+        operacija.izvrsi(r, null);
+        return operacija.getListaStavki();
+    }
+
+    public void dodajRezervaciju(Rezervacija r) throws Exception {
+        DodajRezervacijuSO operacija = new DodajRezervacijuSO();
+        operacija.izvrsi(r, null);
+    }
+
+    public List<Usluga> ucitajUsluge() throws Exception {
+        UcitajUslugeSO operacija = new UcitajUslugeSO();
+        operacija.izvrsi(null, null);
+        return operacija.getUsluge();
+    }
 }

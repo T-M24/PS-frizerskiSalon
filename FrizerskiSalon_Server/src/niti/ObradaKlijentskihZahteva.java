@@ -8,6 +8,8 @@ import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
 import domen.Rezervacija;
+import domen.StavkaRezervacije;
+import domen.Usluga;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -67,32 +69,59 @@ public class ObradaKlijentskihZahteva extends Thread {
                     } catch (Exception ex) {
                         odgovor.setResponse(ex);
                     }
-                        break;
+                    break;
                     case UCITAJ_MESTA:
                         List<Mesto> mesta = kontroler.Kontroler.getInstance().ucitajMesta();
                         odgovor.setResponse(mesta);
                         break;
                     case DODAJ_KLIJENTA:
-                        try{
+                        try {
                         Klijent k = (Klijent) zahtev.getParametar();
                         Kontroler.getInstance().dodajKlijenta(k);
                         odgovor.setResponse(null);
-                        } catch(Exception ex){
-                            odgovor.setResponse(ex);
-                        }
-                        break;
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
+                    break;
                     case IZMENI_KLIJENTA:
-                        try{
+                        try {
                         Klijent k = (Klijent) zahtev.getParametar();
                         Kontroler.getInstance().izmeniKlijenta(k);
                         odgovor.setResponse(null);
-                        }catch(Exception ex){
-                            odgovor.setResponse(ex);
-                        }
-                        break;
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
+                    break;
                     case UCITAJ_REZERVACIJE:
                         List<Rezervacija> rezervacije = Kontroler.getInstance().ucitajRezervacije();
+                        System.out.println("Obrada Klijentskih Zahteva:" + rezervacije);
                         odgovor.setResponse(rezervacije);
+                        break;
+                    case UCITAJ_STAVKE:
+                        try {
+                        Rezervacija r = (Rezervacija) zahtev.getParametar();
+                        List<StavkaRezervacije> stavke = Kontroler.getInstance().ucitajStavke(r);
+                        odgovor.setResponse(stavke);
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
+                    break;
+                    case DODAJ_REZERVACIJU:
+                        try {
+                        System.out.println("Primljen zahtev DODAJ_REZERVACIJU");
+                        System.out.println("Parametar raw: " + zahtev.getParametar());
+                        System.out.println("Parametar class: " + (zahtev.getParametar() == null ? "NULL" : zahtev.getParametar().getClass().getName()));
+                        Rezervacija r = (Rezervacija) zahtev.getParametar();
+                        System.out.println("Rezervacija: " + r);
+                        Kontroler.getInstance().dodajRezervaciju(r);
+                        odgovor.setResponse(null);
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
+                    break;
+                    case UCITAJ_USLUGE:
+                        List<Usluga> usluge = Kontroler.getInstance().ucitajUsluge();
+                        odgovor.setResponse(usluge);
                         break;
                     default:
                         System.out.println("Ova operacija ne postoji.");

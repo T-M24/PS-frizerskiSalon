@@ -7,10 +7,7 @@ package operacija.klijenti;
 import domen.Klijent;
 import operacija.ApstraktnaGenerickaOperacija;
 
-/**
- *
- * @author Nikola Manjencic
- */
+
 public class DodajKlijentaSO extends ApstraktnaGenerickaOperacija{
 
     Klijent klijent = new Klijent();

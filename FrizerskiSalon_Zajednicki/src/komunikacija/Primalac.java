@@ -11,18 +11,22 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class Primalac {
 
     private Socket socket;
+    private ObjectInputStream in;
 
     public Primalac(Socket socket) {
         this.socket = socket;
+        try {
+            in = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public Object accept() {
         try {
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
             return in.readObject();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -31,7 +35,5 @@ public class Primalac {
         }
         return null;
     }
-
-   
 
 }

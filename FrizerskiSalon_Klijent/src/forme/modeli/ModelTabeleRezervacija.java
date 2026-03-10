@@ -17,6 +17,10 @@ public class ModelTabeleRezervacija extends AbstractTableModel {
         this.listaRezervacija = listaRezervacija;
     }
 
+    public List<Rezervacija> getListaRezervacija() {
+        return listaRezervacija;
+    }
+
     @Override
     public int getRowCount() {
         return listaRezervacija.size();

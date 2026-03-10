@@ -6,14 +6,17 @@ package koordinator;
 
 import domen.Frizer;
 import domen.Klijent;
+import domen.Rezervacija;
 import forme.DodajKlijentaForma;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazKlijenataForma;
+import forme.PrikazRezervacijaForma;
 import kontroleri.DodajKlijentaKontroler;
 import kontroleri.LoginKontroler;
 import kontroleri.GlavnaFormaKontroler;
 import kontroleri.PrikazKlijenataKontroler;
+import kontroleri.PrikazRezervacijaKontroler;
 
 public class Koordinator {
 
@@ -23,6 +26,7 @@ public class Koordinator {
     private GlavnaFormaKontroler glavnaFormaKontroler;
     private PrikazKlijenataKontroler prikazKlijenataKontroler;
     private DodajKlijentaKontroler dodajKlijentaKontroler;
+    private PrikazRezervacijaKontroler prikazRezervacijaKontroler;
 
     public static Koordinator getInstance() {
         if (instance == null) {
@@ -72,6 +76,15 @@ public class Koordinator {
         if (prikazKlijenataKontroler != null) {
             prikazKlijenataKontroler.osveziTabelu();
         }
+    }
+
+    public void otvoriPrikaziRezervacijaForma(){
+        prikazRezervacijaKontroler = new PrikazRezervacijaKontroler(new PrikazRezervacijaForma());
+        prikazRezervacijaKontroler.otvoriFormu();
+    }
+
+    public void otvoriDetaljeRezervacije(Rezervacija r) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

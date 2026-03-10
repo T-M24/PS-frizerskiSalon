@@ -14,6 +14,9 @@ public enum Operacija implements Serializable{
     UCITAJ_MESTA,
     DODAJ_KLIJENTA,
     IZMENI_KLIJENTA,
-    UCITAJ_REZERVACIJE
+    UCITAJ_REZERVACIJE,
+    UCITAJ_STAVKE,
+    UCITAJ_USLUGE,
+    DODAJ_REZERVACIJU
     ;
 }

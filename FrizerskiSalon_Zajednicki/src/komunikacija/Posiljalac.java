@@ -13,20 +13,23 @@ import java.util.logging.Logger;
 public class Posiljalac {
 
     private Socket socket;
+    private ObjectOutputStream out;
 
     public Posiljalac(Socket socket) {
         this.socket = socket;
+        try {
+            out = new ObjectOutputStream(socket.getOutputStream());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void send(Object obj) {
         try {
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
             out.writeObject(obj);
             out.flush();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-
-    
 }

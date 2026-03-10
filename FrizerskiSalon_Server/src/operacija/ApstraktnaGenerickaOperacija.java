@@ -8,10 +8,7 @@ import repozitorijum_db_impl.DbRepozitorijumGenericki;
 import repozitorijum.Repozitorijum;
 import repozitorijum_db.DBRepozitorijum;
 
-/**
- *
- * @author Nikola Manjencic
- */
+
 public abstract class ApstraktnaGenerickaOperacija {
     protected final Repozitorijum broker;
 

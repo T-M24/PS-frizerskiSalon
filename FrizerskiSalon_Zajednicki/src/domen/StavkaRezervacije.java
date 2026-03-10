@@ -4,7 +4,9 @@
  */
 package domen;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -126,7 +128,24 @@ public class StavkaRezervacije implements AbstractDomainObject {
 
     @Override
     public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<AbstractDomainObject> lista = new ArrayList<>();
+        while (rs.next()) {
+            int rb = rs.getInt("rb");
+            String opis = rs.getString("opis");
+            double cena = rs.getDouble("cena");
+            int kolicina = rs.getInt("kolicina");
+            double iznos = rs.getDouble("iznos");
+
+            Usluga usluga = new Usluga();
+            usluga.setIdUsluga(rs.getInt("usluga.idUsluga"));
+            usluga.setNaziv(rs.getString("naziv"));
+            usluga.setVremeTrajanja(rs.getInt("vremeTrajanja"));
+            usluga.setCena(rs.getDouble("usluga.cena"));
+
+            StavkaRezervacije stavka = new StavkaRezervacije(rb, opis, cena, kolicina, iznos, usluga, null);
+            lista.add(stavka);
+        }
+        return lista;
     }
 
     @Override

@@ -4,12 +4,13 @@
  */
 package domen;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Mesto implements AbstractDomainObject {
+public class Mesto implements AbstractDomainObject{
 
     private int idMesto;
     private String naziv;
