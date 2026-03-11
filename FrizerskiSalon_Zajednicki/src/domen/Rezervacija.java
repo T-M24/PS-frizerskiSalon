@@ -91,7 +91,7 @@ public class Rezervacija implements AbstractDomainObject {
 
     @Override
     public String toString() {
-        return "Rezervacija{" + "frizer=" + frizer + ", klijent=" + klijent + ", datumRezervacije=" + datumRezervacije + '}';
+        return frizer.getIme() + " " + frizer.getPrezime() + "( " + datumRezervacije + " )";
     }
 
     @Override
@@ -126,26 +126,56 @@ public class Rezervacija implements AbstractDomainObject {
         return "rezervacija";
     }
 
-    @Override //radili smo JOIN frizer klijent tabela
+    @Override
     public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
         List<AbstractDomainObject> lista = new ArrayList<>();
+        Rezervacija trenutna = null;
+
         while (rs.next()) {
-            int idRezervacija = rs.getInt("idRezervacija");
-            LocalDateTime datumRezervacije = rs.getTimestamp("datumRezervacije").toLocalDateTime();
-            int ukupnoVremeTrajanja = rs.getInt("ukupnoVremeTrajanja");
-            double ukupanIznos = rs.getDouble("ukupanIznos");
+            int idRez = rs.getInt("idRezervacija");
 
-            Frizer frizer = new Frizer();
-            frizer.setIdFrizer(rs.getInt("rezervacija.frizer"));
-            frizer.setIme(rs.getString("frizer.ime"));      // alias
-            frizer.setPrezime(rs.getString("frizer.prezime")); // alias
+            if (trenutna == null || trenutna.getIdRezervacija() != idRez) {
+                LocalDateTime datum = rs.getTimestamp("datumRezervacije").toLocalDateTime();
+                int ukupnoVreme = rs.getInt("ukupnoVremeTrajanja");
+                double ukupanIznos = rs.getDouble("ukupanIznos");
 
-            Klijent klijent = new Klijent();
-            klijent.setIdKlijent(rs.getInt("rezervacija.klijent"));
-            klijent.setIme(rs.getString("klijent.ime"));
-            klijent.setPrezime(rs.getString("klijent.prezime"));
-            Rezervacija r = new Rezervacija(frizer, klijent, idRezervacija, datumRezervacije, ukupnoVremeTrajanja, ukupanIznos);
-            lista.add(r);
+                Frizer frizer = new Frizer();
+                frizer.setIdFrizer(rs.getInt("rezervacija.frizer"));
+                frizer.setIme(rs.getString("frizer.ime"));
+                frizer.setPrezime(rs.getString("frizer.prezime"));
+
+                Klijent klijent = new Klijent();
+                klijent.setIdKlijent(rs.getInt("rezervacija.klijent"));
+                klijent.setIme(rs.getString("klijent.ime"));
+                klijent.setPrezime(rs.getString("klijent.prezime"));
+                klijent.setBrojTelefona(rs.getString("brojTelefona"));
+                klijent.setEmail(rs.getString("email"));
+
+                Mesto mesto = new Mesto();
+                mesto.setIdMesto(rs.getInt("klijent.mesto"));
+                mesto.setNaziv(rs.getString("naziv"));
+                klijent.setMesto(mesto);
+
+                trenutna = new Rezervacija(frizer, klijent, idRez, datum, ukupnoVreme, ukupanIznos);
+                lista.add(trenutna);
+            }
+
+            Usluga usluga = new Usluga();
+            usluga.setIdUsluga(rs.getInt("usluga.idUsluga"));
+            usluga.setNaziv(rs.getString("usluga.naziv"));
+            usluga.setCena(rs.getDouble("usluga.cena"));
+            usluga.setVremeTrajanja(rs.getInt("vremeTrajanja"));
+
+            StavkaRezervacije stavka = new StavkaRezervacije(
+                    rs.getInt("rb"),
+                    rs.getString("opis"),
+                    rs.getDouble("stavkarezervacije.cena"),
+                    rs.getInt("kolicina"),
+                    rs.getDouble("iznos"),
+                    usluga,
+                    trenutna
+            );
+            trenutna.getStavke().add(stavka);
         }
         return lista;
     }

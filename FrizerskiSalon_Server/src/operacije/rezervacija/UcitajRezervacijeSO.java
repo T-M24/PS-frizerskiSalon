@@ -22,8 +22,12 @@ public class UcitajRezervacijeSO extends ApstraktnaGenerickaOperacija {
 
     @Override
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
-        rezervacije = broker.getAll(new Rezervacija(), " JOIN frizer ON rezervacija.frizer = frizer.idFrizer"
-                + " JOIN klijent ON rezervacija.klijent = klijent.idKlijent");
+        rezervacije = broker.getAll(new Rezervacija(),
+                " JOIN frizer ON rezervacija.frizer = frizer.idFrizer"
+                + " JOIN klijent ON rezervacija.klijent = klijent.idKlijent"
+                + " JOIN mesto ON klijent.mesto = mesto.idMesto"
+                + " JOIN stavkarezervacije ON rezervacija.idRezervacija = stavkarezervacije.rezervacija"
+                + " JOIN usluga ON stavkarezervacije.usluga = usluga.idUsluga");
     }
 
 }

@@ -20,7 +20,6 @@ import operacija.klijenti.UcitajKlijenteSO;
 import operacija.mesta.UcitajMestaSO;
 import operacije.rezervacija.DodajRezervacijuSO;
 import operacije.rezervacija.UcitajRezervacijeSO;
-import operacije.stavkerezervacije.UcitajStavkeRezervacijeSO;
 import operacije.usluga.UcitajUslugeSO;
 
 /**
@@ -82,12 +81,6 @@ public class Kontroler {
         operacija.izvrsi(null, null);
         System.out.println("Kontroler: " + operacija.getRezervacije());
         return operacija.getRezervacije();
-    }
-
-    public List<StavkaRezervacije> ucitajStavke(Rezervacija r) throws Exception {
-        UcitajStavkeRezervacijeSO operacija = new UcitajStavkeRezervacijeSO();
-        operacija.izvrsi(r, null);
-        return operacija.getListaStavki();
     }
 
     public void dodajRezervaciju(Rezervacija r) throws Exception {

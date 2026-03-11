@@ -97,15 +97,6 @@ public class ObradaKlijentskihZahteva extends Thread {
                         System.out.println("Obrada Klijentskih Zahteva:" + rezervacije);
                         odgovor.setResponse(rezervacije);
                         break;
-                    case UCITAJ_STAVKE:
-                        try {
-                        Rezervacija r = (Rezervacija) zahtev.getParametar();
-                        List<StavkaRezervacije> stavke = Kontroler.getInstance().ucitajStavke(r);
-                        odgovor.setResponse(stavke);
-                    } catch (Exception ex) {
-                        odgovor.setResponse(ex);
-                    }
-                    break;
                     case DODAJ_REZERVACIJU:
                         try {
                         System.out.println("Primljen zahtev DODAJ_REZERVACIJU");

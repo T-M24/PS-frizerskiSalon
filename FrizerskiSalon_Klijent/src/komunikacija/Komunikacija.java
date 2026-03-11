@@ -16,10 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class Komunikacija {
 
     private Socket soket;
@@ -117,13 +113,6 @@ public class Komunikacija {
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
         return (List<Rezervacija>) odgovor.getResponse();
-    }
-
-    public List<StavkaRezervacije> ucitajStavke(Rezervacija r) {
-        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_STAVKE, r);
-        posiljalac.send(zahtev);
-        Odgovor odgovor = (Odgovor) primalac.accept();
-        return (List<StavkaRezervacije>) odgovor.getResponse();
     }
 
     public void dodajRezervaciju(Rezervacija rezervacija) throws Exception {

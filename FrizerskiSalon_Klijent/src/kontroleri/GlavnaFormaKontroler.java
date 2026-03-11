@@ -40,6 +40,43 @@ public class GlavnaFormaKontroler {
     }
 
     private void addActionListeners() {
+        gf.getjComboBoxRezervacija().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Rezervacija r = (Rezervacija) gf.getjComboBoxRezervacija().getSelectedItem();
+                if (r == null) {
+                    return;
+                }
+
+                // popuni podatke klijenta
+                Klijent k = r.getKlijent();
+                gf.getjTextFieldIme().setText(k.getIme());
+                gf.getjTextFieldPrezime().setText(k.getPrezime());
+                gf.getjTextFieldBrojTelefona().setText(k.getBrojTelefona());
+                gf.getjTextFieldEmail().setText(k.getEmail());
+
+                // postavi mesto u combobox
+                if (k.getMesto() != null) {
+                    for (int i = 0; i < gf.getjComboBoxMesto().getItemCount(); i++) {
+                        if (gf.getjComboBoxMesto().getItemAt(i).getIdMesto() == k.getMesto().getIdMesto()) {
+                            gf.getjComboBoxMesto().setSelectedIndex(i);
+                            break;
+                        }
+                    }
+                }
+
+                // popuni ukupno
+                gf.getjTextFieldUkupnoVreme().setText(String.valueOf(r.getUkupnoVremeTrajanja()));
+                gf.getjTextFieldUkupanIznos().setText(String.format("%.2f", r.getUkupanIznos()));
+
+                // popuni tabelu stavki
+                gf.getjTableStavke().setModel(new ModelTabeleStavke(new ArrayList<>(r.getStavke())));
+
+                // azuriraj lokalne promenljive
+                ukupnoVreme = r.getUkupnoVremeTrajanja();
+                ukupanIznos = r.getUkupanIznos();
+            }
+        });
         // kad se izabere usluga, automtaski popuni cenu
         gf.addCmbUslugaActionListener(new ActionListener() {
             @Override
@@ -85,7 +122,6 @@ public class GlavnaFormaKontroler {
 
                     gf.getjTextFieldUkupnoVreme().setText(String.valueOf(ukupnoVreme));
                     gf.getjTextFieldUkupanIznos().setText(String.format("%.2f", ukupanIznos));
-                    gf.getjTextFieldIznos().setText(String.format("%.2f", iznos));
 
                     // reset polja stavke
                     gf.getjTextFieldKolicina().setText("");
@@ -181,12 +217,17 @@ public class GlavnaFormaKontroler {
         gf.getjTextFieldKolicina().setText("");
         gf.getjTextAreaOpis().setText("");
         gf.getjTextFieldCena().setText("");
-        gf.getjTextFieldIznos().setText("");
         gf.getjTextFieldUkupnoVreme().setText("0");
         gf.getjTextFieldUkupanIznos().setText("0.00");
     }
 
     private void pripremiFormu() {
+        List<Rezervacija> rezervacije = komunikacija.Komunikacija.getInstance().ucitajRezervacije();
+        gf.getjComboBoxRezervacija().removeAllItems();
+        for (Rezervacija r : rezervacije) {
+            gf.getjComboBoxRezervacija().addItem(r);
+        }
+
         List<Mesto> mesta = komunikacija.Komunikacija.getInstance().ucitajMesta();
         gf.getjComboBoxMesto().removeAllItems();
         for (Mesto m : mesta) {

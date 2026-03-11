@@ -5,6 +5,7 @@
 package forme;
 
 import domen.Mesto;
+import domen.Rezervacija;
 import domen.Usluga;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -14,10 +15,6 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class GlavnaForma extends javax.swing.JFrame {
 
     /**
@@ -65,14 +62,13 @@ public class GlavnaForma extends javax.swing.JFrame {
         jTextAreaOpis = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldCena = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jTextFieldIznos = new javax.swing.JTextField();
         jButtonDodajStavku = new javax.swing.JButton();
         jButtonObrisiStavku = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableStavke = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jButtonSacuvajRezervaciju = new javax.swing.JButton();
+        jComboBoxRezervacija = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -96,6 +92,16 @@ public class GlavnaForma extends javax.swing.JFrame {
         jLabelBrojTelefona.setText("Broj telefona");
 
         jLabelEmail.setText("Email");
+
+        jComboBoxMesto.setEnabled(false);
+
+        jTextFieldIme.setEditable(false);
+
+        jTextFieldPrezime.setEditable(false);
+
+        jTextFieldBrojTelefona.setEditable(false);
+
+        jTextFieldEmail.setEditable(false);
 
         jLabel3.setText("Mesto");
 
@@ -124,10 +130,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         jLabel11.setText("Cena");
 
         jTextFieldCena.setEditable(false);
-
-        jLabel12.setText("Iznos");
-
-        jTextFieldIznos.setEditable(false);
 
         jButtonDodajStavku.setText("Dodaj stavku");
 
@@ -163,15 +165,13 @@ public class GlavnaForma extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBoxUsluga, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldKolicina)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCena)
-                            .addComponent(jTextFieldIznos))))
+                            .addComponent(jTextFieldCena))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -191,17 +191,12 @@ public class GlavnaForma extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jLabel10)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(1, 1, 1)
                         .addComponent(jLabel11))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jTextFieldIznos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonDodajStavku)
@@ -224,13 +219,15 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addContainerGap(440, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabelIme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
+                                    .addComponent(jLabelIme, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabelEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -239,6 +236,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                                 .addComponent(jLabelBrojTelefona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxRezervacija, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldBrojTelefona)
                             .addComponent(jComboBoxMesto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldEmail)
@@ -246,10 +244,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                             .addComponent(jTextFieldUkupanIznos)
                             .addComponent(jTextFieldPrezime)
                             .addComponent(jTextFieldIme))
-                        .addGap(24, 24, 24))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addContainerGap(440, Short.MAX_VALUE))))
+                        .addGap(24, 24, 24))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,7 +260,9 @@ public class GlavnaForma extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jComboBoxRezervacija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIme)
@@ -367,10 +364,10 @@ public class GlavnaForma extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(jLabelUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelImeKorisnika))
         );
@@ -454,10 +451,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         return jTextFieldIme;
     }
 
-    public JTextField getjTextFieldIznos() {
-        return jTextFieldIznos;
-    }
-
     public JTextField getjTextFieldKolicina() {
         return jTextFieldKolicina;
     }
@@ -494,16 +487,23 @@ public class GlavnaForma extends javax.swing.JFrame {
         return jTableStavke;
     }
 
+    public JComboBox<Rezervacija> getjComboBoxRezervacija() {
+        return jComboBoxRezervacija;
+    }
+
+    public void addCmbRezervacijaActionListener(ActionListener actionListener) {
+        jComboBoxRezervacija.addActionListener(actionListener);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDodajStavku;
     private javax.swing.JButton jButtonObrisiStavku;
     private javax.swing.JButton jButtonSacuvajRezervaciju;
     private javax.swing.JComboBox<Mesto> jComboBoxMesto;
+    private javax.swing.JComboBox<Rezervacija> jComboBoxRezervacija;
     private javax.swing.JComboBox<Usluga> jComboBoxUsluga;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -537,7 +537,6 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCena;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldIme;
-    private javax.swing.JTextField jTextFieldIznos;
     private javax.swing.JTextField jTextFieldKolicina;
     private javax.swing.JTextField jTextFieldPrezime;
     private javax.swing.JTextField jTextFieldUkupanIznos;
