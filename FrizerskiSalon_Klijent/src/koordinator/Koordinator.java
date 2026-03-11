@@ -8,11 +8,13 @@ import domen.Frizer;
 import domen.Klijent;
 import domen.Rezervacija;
 import forme.DodajKlijentaForma;
+import forme.DodajRezervacijaForma;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazKlijenataForma;
 import forme.PrikazRezervacijaForma;
 import kontroleri.DodajKlijentaKontroler;
+import kontroleri.DodajRezervacijaKontroler;
 import kontroleri.LoginKontroler;
 import kontroleri.GlavnaFormaKontroler;
 import kontroleri.PrikazKlijenataKontroler;
@@ -27,6 +29,7 @@ public class Koordinator {
     private PrikazKlijenataKontroler prikazKlijenataKontroler;
     private DodajKlijentaKontroler dodajKlijentaKontroler;
     private PrikazRezervacijaKontroler prikazRezervacijaKontroler;
+    private DodajRezervacijaKontroler dodajRezervacijaKontroler;
 
     public static Koordinator getInstance() {
         if (instance == null) {
@@ -83,8 +86,9 @@ public class Koordinator {
         prikazRezervacijaKontroler.otvoriFormu();
     }
 
-    public void otvoriDetaljeRezervacije(Rezervacija r) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void otvoriDodajRezervacijaForma() {
+        dodajRezervacijaKontroler = new DodajRezervacijaKontroler(new DodajRezervacijaForma());
+        dodajRezervacijaKontroler.otvoriFormu();
     }
 
 }

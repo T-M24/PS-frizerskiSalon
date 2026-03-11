@@ -22,6 +22,7 @@ public class PrikazRezervacijaKontroler {
 
     public PrikazRezervacijaKontroler(PrikazRezervacijaForma prf) {
         this.prf = prf;
+        addActionListeners();
     }
 
     public void otvoriFormu() {
@@ -30,17 +31,12 @@ public class PrikazRezervacijaKontroler {
     }
 
     private void addActionListeners() {
-        prf.addBtnDetaljiActionListener(new ActionListener() {
+         prf.addBtnPretraziActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selektovaniRed = prf.getjTableRezervacija().getSelectedRow();
-                if (selektovaniRed == -1) {
-                    JOptionPane.showMessageDialog(prf, "Selektujte rezervaciju!", "Greska", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
+                String imeFrizera = prf.getjTextFieldImeFrizera().getText().trim();
                 ModelTabeleRezervacija mtr = (ModelTabeleRezervacija) prf.getjTableRezervacija().getModel();
-                Rezervacija r = mtr.getListaRezervacija().get(selektovaniRed);
-                koordinator.Koordinator.getInstance().otvoriDetaljeRezervacije(r);
+                mtr.pretrazi(imeFrizera);
             }
         });
     }

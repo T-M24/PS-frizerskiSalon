@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package forme.modeli;
 
 import domen.Rezervacija;
@@ -10,11 +6,13 @@ import javax.swing.table.AbstractTableModel;
 
 public class ModelTabeleRezervacija extends AbstractTableModel {
 
+    List<Rezervacija> originalnaLista;
     List<Rezervacija> listaRezervacija;
     String[] kolone = {"ID", "Frizer", "Klijent", "Datum", "Vreme trajanja", "Iznos"};
 
     public ModelTabeleRezervacija(List<Rezervacija> listaRezervacija) {
         this.listaRezervacija = listaRezervacija;
+        this.originalnaLista = new java.util.ArrayList<>(listaRezervacija);
     }
 
     public List<Rezervacija> getListaRezervacija() {
@@ -55,5 +53,17 @@ public class ModelTabeleRezervacija extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         return kolone[column];
+    }
+
+    public void pretrazi(String imeFrizera) {
+        if (imeFrizera == null || imeFrizera.isEmpty()) {
+            listaRezervacija = new java.util.ArrayList<>(originalnaLista);
+        } else {
+            listaRezervacija = originalnaLista.stream()
+                    .filter(r -> (r.getFrizer().getIme() + " " + r.getFrizer().getPrezime())
+                    .toLowerCase().contains(imeFrizera.toLowerCase()))
+                    .collect(java.util.stream.Collectors.toList());
+        }
+        fireTableDataChanged();
     }
 }

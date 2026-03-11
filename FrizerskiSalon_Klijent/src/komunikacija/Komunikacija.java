@@ -116,10 +116,6 @@ public class Komunikacija {
     }
 
     public void dodajRezervaciju(Rezervacija rezervacija) throws Exception {
-        System.out.println("Saljem rezervaciju: " + rezervacija);
-        System.out.println("Stavke: " + rezervacija.getStavke());
-        System.out.println("Frizer: " + rezervacija.getFrizer());
-        System.out.println("Klijent: " + rezervacija.getKlijent());
         Zahtev zahtev = new Zahtev(Operacija.DODAJ_REZERVACIJU, rezervacija);
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
@@ -135,6 +131,13 @@ public class Komunikacija {
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
         return (List<Usluga>) odgovor.getResponse();
+    }
+
+    public List<Frizer> ucitajFrizere() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_FRIZERA, null);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        return (List<Frizer>) odgovor.getResponse();
     }
 
 }

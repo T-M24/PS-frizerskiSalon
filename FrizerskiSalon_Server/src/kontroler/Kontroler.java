@@ -18,6 +18,7 @@ import operacija.klijenti.ObrisiKlijentaSO;
 import operacija.login.LoginOperacija;
 import operacija.klijenti.UcitajKlijenteSO;
 import operacija.mesta.UcitajMestaSO;
+import operacije.frizer.UcitajFrizereSO;
 import operacije.rezervacija.DodajRezervacijuSO;
 import operacije.rezervacija.UcitajRezervacijeSO;
 import operacije.usluga.UcitajUslugeSO;
@@ -92,5 +93,11 @@ public class Kontroler {
         UcitajUslugeSO operacija = new UcitajUslugeSO();
         operacija.izvrsi(null, null);
         return operacija.getUsluge();
+    }
+
+    public List<Frizer> ucitajFrizere() throws Exception {
+        UcitajFrizereSO so = new UcitajFrizereSO();
+        so.izvrsi(null, null);
+        return so.getFrizeri();
     }
 }

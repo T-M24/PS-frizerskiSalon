@@ -99,9 +99,6 @@ public class ObradaKlijentskihZahteva extends Thread {
                         break;
                     case DODAJ_REZERVACIJU:
                         try {
-                        System.out.println("Primljen zahtev DODAJ_REZERVACIJU");
-                        System.out.println("Parametar raw: " + zahtev.getParametar());
-                        System.out.println("Parametar class: " + (zahtev.getParametar() == null ? "NULL" : zahtev.getParametar().getClass().getName()));
                         Rezervacija r = (Rezervacija) zahtev.getParametar();
                         System.out.println("Rezervacija: " + r);
                         Kontroler.getInstance().dodajRezervaciju(r);
@@ -113,6 +110,10 @@ public class ObradaKlijentskihZahteva extends Thread {
                     case UCITAJ_USLUGE:
                         List<Usluga> usluge = Kontroler.getInstance().ucitajUsluge();
                         odgovor.setResponse(usluge);
+                        break;
+                    case UCITAJ_FRIZERA:
+                        List<Frizer> frizeri = Kontroler.getInstance().ucitajFrizere();
+                        odgovor.setResponse(frizeri);
                         break;
                     default:
                         System.out.println("Ova operacija ne postoji.");
