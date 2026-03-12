@@ -27,7 +27,8 @@ public class UcitajRezervacijeSO extends ApstraktnaGenerickaOperacija {
                 + " JOIN klijent ON rezervacija.klijent = klijent.idKlijent"
                 + " JOIN mesto ON klijent.mesto = mesto.idMesto"
                 + " JOIN stavkarezervacije ON rezervacija.idRezervacija = stavkarezervacije.rezervacija"
-                + " JOIN usluga ON stavkarezervacije.usluga = usluga.idUsluga");
+                + " JOIN usluga ON stavkarezervacije.usluga = usluga.idUsluga"
+                + " ORDER BY rezervacija.idRezervacija"); // ← DODAJ OVO
     }
 
 }

@@ -91,7 +91,9 @@ public class Rezervacija implements AbstractDomainObject {
 
     @Override
     public String toString() {
-        return frizer.getIme() + " " + frizer.getPrezime() + "( " + datumRezervacije + " )";
+        return frizer.getIme() + " " + frizer.getPrezime() + " ("
+                + datumRezervacije.format(java.time.format.DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))
+                + ")";
     }
 
     @Override

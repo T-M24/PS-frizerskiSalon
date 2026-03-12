@@ -183,4 +183,12 @@ public class Komunikacija {
         }
     }
 
+    public void obrisiRezervaciju(Rezervacija r) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_REZERVACIJU, r);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        if (odgovor.getResponse() != null) {
+            throw new Exception(((Exception) odgovor.getResponse()).getMessage());
+        }
+    }
 }

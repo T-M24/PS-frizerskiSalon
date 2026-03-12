@@ -41,7 +41,7 @@ public class ModelTabeleRezervacija extends AbstractTableModel {
             case 2:
                 return r.getKlijent().getIme() + " " + r.getKlijent().getPrezime();
             case 3:
-                return r.getDatumRezervacije();
+                return r.getDatumRezervacije().format(java.time.format.DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
             case 4:
                 return r.getUkupnoVremeTrajanja();
             case 5:

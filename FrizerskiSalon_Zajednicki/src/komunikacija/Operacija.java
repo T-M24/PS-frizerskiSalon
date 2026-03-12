@@ -6,10 +6,9 @@ package komunikacija;
 
 import java.io.Serializable;
 
-
-public enum Operacija implements Serializable{
+public enum Operacija implements Serializable {
     LOGIN,
-    UCITAJ_KLIJENTE, 
+    UCITAJ_KLIJENTE,
     OBRISI_KLIJENTA,
     UCITAJ_MESTA,
     DODAJ_KLIJENTA,
@@ -19,6 +18,7 @@ public enum Operacija implements Serializable{
     DODAJ_REZERVACIJU,
     UCITAJ_FRIZERA,
     IZMENI_REZERVACIJU,
+    OBRISI_REZERVACIJU,
     DODAJ_USLUGU,
     IZMENI_USLUGU,
     OBRISI_USLUGU;

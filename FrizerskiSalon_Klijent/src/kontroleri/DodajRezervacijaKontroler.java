@@ -128,7 +128,7 @@ public class DodajRezervacijaKontroler {
                     LocalDateTime datum;
                     try {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-                        datum = LocalDateTime.parse(drf.getjTextFieldDatum().getText() + " 00:00", formatter);
+                        datum = LocalDateTime.parse(drf.getjTextFieldDatum().getText(), formatter);
                     } catch (DateTimeParseException ex) {
                         JOptionPane.showMessageDialog(drf, "Datum mora biti u formatu dd-MM-yyyy!");
                         return;

@@ -5,13 +5,10 @@
 package forme;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class PrikazRezervacijaForma extends javax.swing.JFrame {
 
     /**
@@ -35,6 +32,7 @@ public class PrikazRezervacijaForma extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldImeFrizera = new javax.swing.JTextField();
         jButtonPretrazi = new javax.swing.JButton();
+        jButtonObrisi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -55,6 +53,8 @@ public class PrikazRezervacijaForma extends javax.swing.JFrame {
 
         jButtonPretrazi.setText("Pretraži");
 
+        jButtonObrisi.setText("Obriši");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,6 +68,8 @@ public class PrikazRezervacijaForma extends javax.swing.JFrame {
                         .addComponent(jTextFieldImeFrizera, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(jButtonPretrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -81,7 +83,8 @@ public class PrikazRezervacijaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldImeFrizera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonPretrazi))
+                    .addComponent(jButtonPretrazi)
+                    .addComponent(jButtonObrisi))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(11, Short.MAX_VALUE))
@@ -101,9 +104,22 @@ public class PrikazRezervacijaForma extends javax.swing.JFrame {
     public void addBtnPretraziActionListener(ActionListener actionListener) {
         jButtonPretrazi.addActionListener(actionListener);
     }
+    
+    public void addBtnObrisiActionListener(ActionListener actionListener) {
+        jButtonObrisi.addActionListener(actionListener);
+    }
+
+    public JButton getjButtonObrisi() {
+        return jButtonObrisi;
+    }
+
+    public JButton getjButtonPretrazi() {
+        return jButtonPretrazi;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonObrisi;
     private javax.swing.JButton jButtonPretrazi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

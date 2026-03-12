@@ -120,6 +120,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setResponse(ex);
                     }
                     break;
+                    case OBRISI_REZERVACIJU:
+                        try{
+                            Rezervacija r = (Rezervacija) zahtev.getParametar();
+                            Kontroler.getInstance().obrisiRezervaciju(r);
+                            odgovor.setResponse(null);
+                        }catch(Exception ex){
+                            odgovor.setResponse(ex);
+                        }
+                        break;
                     case DODAJ_USLUGU:
                         try {
                         Usluga u = (Usluga) zahtev.getParametar();

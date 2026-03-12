@@ -32,6 +32,8 @@
                       <Component id="jTextFieldImeFrizera" min="-2" pref="149" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jButtonPretrazi" min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonObrisi" min="-2" pref="94" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -51,6 +53,7 @@
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldImeFrizera" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonPretrazi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonObrisi" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="150" max="-2" attributes="0"/>
@@ -91,6 +94,11 @@
     <Component class="javax.swing.JButton" name="jButtonPretrazi">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pretra&#x17e;i"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonObrisi">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
       </Properties>
     </Component>
   </SubComponents>

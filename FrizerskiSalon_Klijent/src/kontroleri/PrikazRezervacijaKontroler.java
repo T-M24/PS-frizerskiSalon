@@ -12,10 +12,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class PrikazRezervacijaKontroler {
 
     private final PrikazRezervacijaForma prf;
@@ -31,12 +27,33 @@ public class PrikazRezervacijaKontroler {
     }
 
     private void addActionListeners() {
-         prf.addBtnPretraziActionListener(new ActionListener() {
+        prf.addBtnPretraziActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String imeFrizera = prf.getjTextFieldImeFrizera().getText().trim();
                 ModelTabeleRezervacija mtr = (ModelTabeleRezervacija) prf.getjTableRezervacija().getModel();
                 mtr.pretrazi(imeFrizera);
+            }
+        });
+        prf.addBtnObrisiActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selektovaniRed = prf.getjTableRezervacija().getSelectedRow();
+                if (selektovaniRed == -1) {
+                    JOptionPane.showMessageDialog(prf, "Sistem nije uspeo da obriše rezervaciju!", "Greška", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    ModelTabeleRezervacija mtr = (ModelTabeleRezervacija) prf.getjTableRezervacija().getModel();
+                    Rezervacija r = mtr.getListaRezervacija().get(selektovaniRed);
+                    try {
+                        komunikacija.Komunikacija.getInstance().obrisiRezervaciju(r);
+                        koordinator.Koordinator.getInstance().osveziGlavnuFormu();
+                        pripremiFormu();
+                        JOptionPane.showMessageDialog(prf, "Sistem je uspešno obrisao rezervaciju!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(prf, "Sistem nije uspeo da obriše rezervaciju!", "Greška", JOptionPane.ERROR_MESSAGE);
+                        ex.printStackTrace();
+                    }
+                }
             }
         });
     }

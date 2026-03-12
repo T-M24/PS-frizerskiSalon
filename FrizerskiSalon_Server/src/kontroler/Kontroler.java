@@ -21,6 +21,7 @@ import operacija.mesta.UcitajMestaSO;
 import operacije.frizer.UcitajFrizereSO;
 import operacije.rezervacija.DodajRezervacijuSO;
 import operacije.rezervacija.IzmeniRezervacijuSO;
+import operacije.rezervacija.ObrisiRezervacijuSO;
 import operacije.rezervacija.UcitajRezervacijeSO;
 import operacije.usluga.DodajUsluguSO;
 import operacije.usluga.IzmeniUsluguSO;
@@ -118,5 +119,10 @@ public class Kontroler {
     public void obrisiUslugu(Usluga u) throws Exception {
         ObrisiUsluguSO operacija = new ObrisiUsluguSO();
         operacija.izvrsi(u, null);
+    }
+
+    public void obrisiRezervaciju(Rezervacija r) throws Exception {
+        ObrisiRezervacijuSO operacija = new ObrisiRezervacijuSO();
+        operacija.izvrsi(r, null);
     }
 }
