@@ -16,7 +16,7 @@ public class IzmeniKlijentaSO extends ApstraktnaGenerickaOperacija{
     @Override
     protected void preduslovi(Object param) throws Exception {
         if(param == null || !(param instanceof Klijent)){
-            throw new Exception("Sistem ne moze da izmeni klijenta!");
+            throw new Exception("Sistem ne može da izmeni klijenta!");
         }
     }
 

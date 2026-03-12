@@ -14,10 +14,6 @@ import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 import koordinator.Koordinator;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class LoginKontroler {
 
     private final LoginForma lf;
@@ -38,13 +34,18 @@ public class LoginKontroler {
                 try {
                     String username = lf.getjTextFieldUsername().getText().trim();
                     String password = String.valueOf(lf.getjPasswordField().getPassword());
+
+                    if (username.isEmpty() || password.isEmpty()) {
+                        JOptionPane.showMessageDialog(lf, "Korisničko ime i šifra su obavezni!", "Greška", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
                     Komunikacija.getInstance().konekcija();
-                    Frizer ulogovani = Komunikacija.getInstance().login(username,password);
-                    
-                    if(ulogovani == null){
-                        JOptionPane.showMessageDialog(lf, "Korisnik sa ovim parametrima ne postoji!","Greška",JOptionPane.ERROR_MESSAGE);
-                    } else{
-                        /////////////
+                    Frizer ulogovani = Komunikacija.getInstance().login(username, password);
+
+                    if (ulogovani == null) {
+                        JOptionPane.showMessageDialog(lf, "Korisnik sa ovim parametrima ne postoji!", "Greška", JOptionPane.ERROR_MESSAGE);
+                    } else {
                         JOptionPane.showMessageDialog(lf, "Prijava na sistem je uspešna!", "Uspeh!", JOptionPane.INFORMATION_MESSAGE);
                         Koordinator.getInstance().setUlogovani(ulogovani);
                         koordinator.Koordinator.getInstance().otvoriGlavnuFormu();
@@ -58,6 +59,7 @@ public class LoginKontroler {
     }
 
     public void otvoriFormu() {
+        lf.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         lf.setVisible(true);
     }
 

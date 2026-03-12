@@ -4,10 +4,6 @@
  */
 package main;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class Main {
     public static void main(String[] args) {
         koordinator.Koordinator.getInstance().otvoriLoginFormu();

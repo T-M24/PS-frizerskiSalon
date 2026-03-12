@@ -90,7 +90,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonPretrazi">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pretrazi"/>
+        <Property name="text" type="java.lang.String" value="Pretra&#x17e;i"/>
       </Properties>
     </Component>
   </SubComponents>

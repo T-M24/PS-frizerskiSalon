@@ -53,7 +53,7 @@ public class DodajRezervacijaKontroler {
 
                     int kolicina = Integer.parseInt(drf.getjTextFieldKolicina().getText());
                     if (kolicina <= 0) {
-                        JOptionPane.showMessageDialog(drf, "Količina mora biti veca od 0!");
+                        JOptionPane.showMessageDialog(drf, "Količina mora biti veća od 0!");
                         return;
                     }
 
@@ -161,7 +161,7 @@ public class DodajRezervacijaKontroler {
                     osveziFormu(mts);
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(drf, "Greska: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(drf, "Greška: " + ex.getMessage());
                     ex.printStackTrace();
                 }
             }

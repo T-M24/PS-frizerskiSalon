@@ -44,7 +44,7 @@ public class FormaKonfiguracijaBaza extends javax.swing.JDialog {
 
         jLabel3.setText("Password:");
 
-        jButtonSacuvaj.setText("Sacuvaj");
+        jButtonSacuvaj.setText("Sačuvaj");
         jButtonSacuvaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSacuvajActionPerformed(evt);

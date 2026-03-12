@@ -20,7 +20,7 @@ public class GlavnaFormaKontroler {
     private final GlavnaForma gf;
     private int ukupnoVreme = 0;
     private double ukupanIznos = 0;
-    private boolean punjenje = false; // flag da sprecimo listener tokom punjenja
+    private boolean punjenje = false; // flag sprecavanje listener tokom punjenja
 
     public GlavnaFormaKontroler(GlavnaForma gf) {
         this.gf = gf;
@@ -31,6 +31,7 @@ public class GlavnaFormaKontroler {
         Frizer ulogovani = koordinator.Koordinator.getInstance().getUlogovani();
         gf.getjLabelUsername().setText(ulogovani.getIme() + " " + ulogovani.getPrezime());
         pripremiFormu();
+        gf.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         gf.setVisible(true);
     }
 
@@ -92,14 +93,14 @@ public class GlavnaFormaKontroler {
                 }
 
                 if (gf.getjTextFieldKolicina().getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(gf, "Unesite kolicinu!");
+                    JOptionPane.showMessageDialog(gf, "Unesite količinu!");
                     return;
                 }
 
                 try {
                     int kolicina = Integer.parseInt(gf.getjTextFieldKolicina().getText());
                     if (kolicina <= 0) {
-                        JOptionPane.showMessageDialog(gf, "Kolicina mora biti veca od 0!");
+                        JOptionPane.showMessageDialog(gf, "Količina mora biti veća od 0!");
                         return;
                     }
 
@@ -124,7 +125,7 @@ public class GlavnaFormaKontroler {
                     gf.getjTextAreaOpis().setText("");
 
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(gf, "Kolicina mora biti broj!");
+                    JOptionPane.showMessageDialog(gf, "Količina mora biti broj!");
                 }
             }
         });
@@ -170,11 +171,11 @@ public class GlavnaFormaKontroler {
                     r.setStavke(mts.getListaStavki());
                     komunikacija.Komunikacija.getInstance().izmeniRezervaciju(r);
 
-                    JOptionPane.showMessageDialog(gf, "Rezervacija je uspesno izmenjena!");
+                    JOptionPane.showMessageDialog(gf, "Rezervacija je uspešno izmenjena!");
                     pripremiFormu();
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(gf, "Greska: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(gf, "Greška: " + ex.getMessage());
                     ex.printStackTrace();
                 }
             }

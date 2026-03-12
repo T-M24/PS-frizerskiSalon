@@ -51,10 +51,10 @@ public class DodajKlijentaKontroler {
                     k.setMesto(mesto);
 
                     komunikacija.Komunikacija.getInstance().dodajKlijenta(k);
-                    JOptionPane.showMessageDialog(dkf, "Sistem je uspesno dodao klijent!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem je uspešno dodao klijenta!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(dkf, "Sistem nije uspeo da doda klijenta!", "Greska", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem nije uspeo da doda klijenta!", "Greška", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -63,7 +63,7 @@ public class DodajKlijentaKontroler {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (selektovaniKlijent == null) {
-                        JOptionPane.showMessageDialog(dkf, "Nije selektovan klijent za izmenu!", "Greska", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(dkf, "Nije selektovan klijent za izmenu!", "Greška", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                     selektovaniKlijent.setIme(dkf.getjTextFieldIme().getText());
@@ -76,7 +76,7 @@ public class DodajKlijentaKontroler {
                     JOptionPane.showMessageDialog(dkf, "Klijent je uspesno izmenjen!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(dkf, "Sistem nije uspeo da izmeni klijenta!", "Greska", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem nije uspeo da izmeni klijenta!", "Greška", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

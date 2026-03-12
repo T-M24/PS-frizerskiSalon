@@ -59,7 +59,7 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableKlijenti);
 
-        jButtonObrisi.setText("Obrisi");
+        jButtonObrisi.setText("Obriši");
 
         jButtonIzmeni.setText("Izmeni");
 
@@ -67,7 +67,7 @@ public class PrikazKlijenataForma extends javax.swing.JFrame {
 
         jLabel2.setText("Prezime");
 
-        jButtonPretrazi.setText("Pretrazi");
+        jButtonPretrazi.setText("Pretraži");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

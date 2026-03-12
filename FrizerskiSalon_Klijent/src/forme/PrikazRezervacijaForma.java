@@ -53,7 +53,7 @@ public class PrikazRezervacijaForma extends javax.swing.JFrame {
 
         jLabel1.setText("Pretraga (po imenu frizera):");
 
-        jButtonPretrazi.setText("Pretrazi");
+        jButtonPretrazi.setText("Pretraži");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

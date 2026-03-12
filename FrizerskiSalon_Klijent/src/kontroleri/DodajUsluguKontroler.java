@@ -44,7 +44,7 @@ public class DodajUsluguKontroler {
                     }
                     int vremeTrajanja = Integer.parseInt(duf.getjTextFieldVremeTrajanja().getText().trim());
                     if (vremeTrajanja <= 0) {
-                        JOptionPane.showMessageDialog(duf, "Vreme trajanja mora biti vece od 0!");
+                        JOptionPane.showMessageDialog(duf, "Vreme trajanja mora biti veće od 0!");
                         return;
                     }
                     double cena = Double.parseDouble(duf.getjTextFieldCena().getText().trim());
@@ -54,7 +54,7 @@ public class DodajUsluguKontroler {
                     }
                     Usluga usluga = new Usluga(0, duf.getjTextFieldNaziv().getText().trim(), vremeTrajanja, cena);
                     komunikacija.Komunikacija.getInstance().dodajUslugu(usluga);
-                    JOptionPane.showMessageDialog(duf, "Usluga je uspesno dodata!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(duf, "Usluga je uspešno dodata!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                     koordinator.Koordinator.getInstance().osveziGlavnuFormu();
                     duf.dispose();
                 } catch (NumberFormatException ex) {

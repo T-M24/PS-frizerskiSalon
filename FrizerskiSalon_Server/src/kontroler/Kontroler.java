@@ -27,10 +27,7 @@ import operacije.usluga.IzmeniUsluguSO;
 import operacije.usluga.ObrisiUsluguSO;
 import operacije.usluga.UcitajUslugeSO;
 
-/**
- *
- * @author Nikola Manjencic
- */
+
 public class Kontroler {
 
     private static Kontroler instance;
@@ -49,7 +46,6 @@ public class Kontroler {
     public Frizer login(Frizer frizer) throws Exception {
         LoginOperacija operacija = new LoginOperacija();
         operacija.izvrsi(frizer, null);
-        System.out.println("Kontroler: " + operacija.getFrizer());
         return operacija.getFrizer();
     }
 
@@ -84,7 +80,6 @@ public class Kontroler {
     public List<Rezervacija> ucitajRezervacije() throws Exception {
         UcitajRezervacijeSO operacija = new UcitajRezervacijeSO();
         operacija.izvrsi(null, null);
-        System.out.println("Kontroler: " + operacija.getRezervacije());
         return operacija.getRezervacije();
     }
 

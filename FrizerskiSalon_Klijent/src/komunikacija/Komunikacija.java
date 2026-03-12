@@ -101,7 +101,7 @@ public class Komunikacija {
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
         if (odgovor.getResponse() == null) {
-            System.out.println("Sistem je uspesno izmenio klijenta!");
+            System.out.println("Sistem je uspešno izmenio klijenta!");
         } else {
             ((Exception) odgovor.getResponse()).printStackTrace();
             throw new Exception("Sistem nije mogao da izmeni korisnika!");

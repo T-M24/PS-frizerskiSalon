@@ -20,7 +20,7 @@ public class DodajKlijentaSO extends ApstraktnaGenerickaOperacija{
     @Override
     protected void preduslovi(Object param) throws Exception {
         if(param == null || !(param instanceof Klijent)){
-            throw new Exception("Sistem ne moze da doda klijenta!");
+            throw new Exception("Sistem ne može da doda klijenta!");
         }
     }
 

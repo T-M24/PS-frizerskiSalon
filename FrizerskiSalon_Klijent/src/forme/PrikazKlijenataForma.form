@@ -104,7 +104,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButtonObrisi">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Obrisi"/>
+        <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonIzmeni">
@@ -138,7 +138,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonPretrazi">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pretrazi"/>
+        <Property name="text" type="java.lang.String" value="Pretra&#x17e;i"/>
       </Properties>
     </Component>
   </SubComponents>

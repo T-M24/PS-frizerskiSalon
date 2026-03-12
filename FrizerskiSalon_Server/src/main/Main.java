@@ -13,6 +13,7 @@ import forme.ServerskaForma;
 public class Main {
     public static void main(String[] args) {
         ServerskaForma sf = new ServerskaForma();
+        sf.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         sf.setVisible(true);
     }
 }

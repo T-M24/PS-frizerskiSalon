@@ -29,7 +29,7 @@ public class PrikazKlijenataKontroler {
             public void actionPerformed(ActionEvent e) {
                 int selektovaniRed = pkf.getjTableKlijenti().getSelectedRow();
                 if (selektovaniRed == -1) {
-                    JOptionPane.showMessageDialog(pkf, "Sistem nije uspeo da obrise klijenta!", "Greska", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(pkf, "Sistem nije uspeo da obriše klijenta!", "Greška", JOptionPane.ERROR_MESSAGE);
                 } else {
                     ModelTabeleKlijent mtk = (ModelTabeleKlijent) pkf.getjTableKlijenti().getModel();
                     Klijent k = mtk.getListaSvihKlijenata().get(selektovaniRed);
@@ -37,9 +37,9 @@ public class PrikazKlijenataKontroler {
                         komunikacija.Komunikacija.getInstance().obrisiKlijenta(k);
                         koordinator.Koordinator.getInstance().osveziGlavnuFormu();
                         pripremiFormu();
-                        JOptionPane.showMessageDialog(pkf, "Sistem je uspesno obrisao klijenta!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(pkf, "Sistem je uspešno obrisao klijenta!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(pkf, "Sistem nije uspeo da obrise klijenta!", "Greska", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(pkf, "Sistem nije uspeo da obriše klijenta!", "Greška", JOptionPane.ERROR_MESSAGE);
                         ex.printStackTrace(); //ConstraintViolationException
                     }
                 }
@@ -50,7 +50,7 @@ public class PrikazKlijenataKontroler {
             public void actionPerformed(ActionEvent e) {
                 int selektovaniRed = pkf.getjTableKlijenti().getSelectedRow();
                 if (selektovaniRed == -1) {
-                    JOptionPane.showMessageDialog(pkf, "Selektujte klijenta za izmenu!", "Greska", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(pkf, "Selektujte klijenta za izmenu!", "Greška", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 ModelTabeleKlijent mtk = (ModelTabeleKlijent) pkf.getjTableKlijenti().getModel();
