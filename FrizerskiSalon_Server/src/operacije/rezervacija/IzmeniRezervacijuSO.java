@@ -20,15 +20,15 @@ public class IzmeniRezervacijuSO extends ApstraktnaGenerickaOperacija {
     @Override
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
         Rezervacija r = (Rezervacija) param;
-
         r.izracunajUkupnoVreme();
         broker.edit(r);
 
-        StavkaRezervacije pomocna = new StavkaRezervacije();
-        pomocna.setRb(0);
-        pomocna.setRezervacija(r);
-        broker.delete(pomocna);
+        // obrisi SVE stavke te rezervacije
+        java.sql.Statement st = repozitorijum_db.DbConnectionFactory.getInstance().getConnection().createStatement();
+        st.executeUpdate("DELETE FROM stavkarezervacije WHERE rezervacija=" + r.getIdRezervacija());
+        st.close();
 
+        // ubaci stavke koje su ostale
         int rb = 1;
         for (StavkaRezervacije stavka : r.getStavke()) {
             stavka.setRb(rb++);

@@ -140,4 +140,14 @@ public class Komunikacija {
         return (List<Frizer>) odgovor.getResponse();
     }
 
+    public void izmeniRezervaciju(Rezervacija r) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.IZMENI_REZERVACIJU, r);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        if (odgovor.getResponse() != null) {
+            Exception ex = (Exception) odgovor.getResponse();
+            throw new Exception(ex.getMessage());
+        }
+    }
+
 }

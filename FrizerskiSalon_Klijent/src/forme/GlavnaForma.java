@@ -119,7 +119,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jLabel8.setText("Usluga");
 
-        jLabel9.setText("Kolicina");
+        jLabel9.setText("Količina");
 
         jLabel10.setText("Opis");
 
@@ -134,7 +134,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jButtonDodajStavku.setText("Dodaj stavku");
 
-        jButtonObrisiStavku.setText("Obrisi stavku");
+        jButtonObrisiStavku.setText("Obriši stavku");
 
         jTableStavke.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -210,7 +210,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Stavka rezervacije");
 
-        jButtonSacuvajRezervaciju.setText("Sacuvaj rezervaciju");
+        jButtonSacuvajRezervaciju.setText("Sačuvaj rezervaciju");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -324,9 +324,19 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenu2.setText("Usluga");
 
         jMenuItem3.setText("Dodaj");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Prikaži");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -399,6 +409,14 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         koordinator.Koordinator.getInstance().otvoriDodajRezervacijaForma();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        koordinator.Koordinator.getInstance().otvoriPrikazUslugaForma();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        koordinator.Koordinator.getInstance().otvoriDodajUsluguForma();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     public JLabel getjLabelUsername() {
         return jLabelUsername;

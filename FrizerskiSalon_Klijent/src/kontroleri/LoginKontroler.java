@@ -42,10 +42,10 @@ public class LoginKontroler {
                     Frizer ulogovani = Komunikacija.getInstance().login(username,password);
                     
                     if(ulogovani == null){
-                        JOptionPane.showMessageDialog(lf, "Korisnik sa ovim parametrima ne postoji!","Greska",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(lf, "Korisnik sa ovim parametrima ne postoji!","Greška",JOptionPane.ERROR_MESSAGE);
                     } else{
                         /////////////
-                        JOptionPane.showMessageDialog(lf, "Prijava na sistem je uspesna!", "Uspeh!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(lf, "Prijava na sistem je uspešna!", "Uspeh!", JOptionPane.INFORMATION_MESSAGE);
                         Koordinator.getInstance().setUlogovani(ulogovani);
                         koordinator.Koordinator.getInstance().otvoriGlavnuFormu();
                         lf.dispose();

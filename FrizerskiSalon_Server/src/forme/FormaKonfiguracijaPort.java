@@ -6,10 +6,6 @@ package forme;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class FormaKonfiguracijaPort extends javax.swing.JDialog {
 
     /**
@@ -74,24 +70,29 @@ public class FormaKonfiguracijaPort extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajActionPerformed
-        int port;
-        try {
-            port = Integer.parseInt(jTextFieldPort.getText());
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (jTextFieldPort.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Port ne sme biti prazan!", "Greska!", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
+        int port;
+        try {
+            port = Integer.parseInt(jTextFieldPort.getText().trim());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Port mora biti broj!", "Greska!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if (port >= 0 && port <= 65535) {
             konfiguracija.Konfiguracija.getInstance().setProperty("port", port + "");
             konfiguracija.Konfiguracija.getInstance().sacuvajIzmene();
-            JOptionPane.showMessageDialog(this, "Parametri su uspesno sacuvani!", "Uspeh!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Parametri su uspesno sačuvani!", "Uspeh!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Unesen je nevalidan port!", "Greska!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Port mora biti izmedju 0 i 65535!", "Greska!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonSacuvajActionPerformed
 
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSacuvaj;

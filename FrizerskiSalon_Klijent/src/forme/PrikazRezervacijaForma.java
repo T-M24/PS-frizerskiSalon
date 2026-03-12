@@ -36,7 +36,7 @@ public class PrikazRezervacijaForma extends javax.swing.JFrame {
         jTextFieldImeFrizera = new javax.swing.JTextField();
         jButtonPretrazi = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTableRezervacija.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -1,6 +1,7 @@
 package forme.modeli;
 
 import domen.Rezervacija;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -12,7 +13,7 @@ public class ModelTabeleRezervacija extends AbstractTableModel {
 
     public ModelTabeleRezervacija(List<Rezervacija> listaRezervacija) {
         this.listaRezervacija = listaRezervacija;
-        this.originalnaLista = new java.util.ArrayList<>(listaRezervacija);
+        this.originalnaLista = new ArrayList<>(listaRezervacija);
     }
 
     public List<Rezervacija> getListaRezervacija() {

@@ -88,6 +88,8 @@ public class PrikazKlijenataKontroler {
 
         List<Mesto> mesta = komunikacija.Komunikacija.getInstance().ucitajMesta();
         pkf.getjComboBoxMesto().removeAllItems();
+        //ovo dodajem da ne ogranicavam korisnika da mora da pretrazuje po mestu!
+        pkf.getjComboBoxMesto().addItem(null);
         for (Mesto m : mesta) {
             pkf.getjComboBoxMesto().addItem(m);
         }

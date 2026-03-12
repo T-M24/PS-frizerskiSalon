@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package kontroleri;
 
 import domen.Frizer;
@@ -11,11 +7,10 @@ import domen.Rezervacija;
 import domen.StavkaRezervacije;
 import domen.Usluga;
 import forme.GlavnaForma;
-import forme.modeli.ModelTabeleRezervacija;
+import forme.modeli.ModelTabeleKlijent;
 import forme.modeli.ModelTabeleStavke;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -25,6 +20,7 @@ public class GlavnaFormaKontroler {
     private final GlavnaForma gf;
     private int ukupnoVreme = 0;
     private double ukupanIznos = 0;
+    private boolean punjenje = false; // flag da sprecimo listener tokom punjenja
 
     public GlavnaFormaKontroler(GlavnaForma gf) {
         this.gf = gf;
@@ -33,51 +29,49 @@ public class GlavnaFormaKontroler {
 
     public void otvoriFormu() {
         Frizer ulogovani = koordinator.Koordinator.getInstance().getUlogovani();
-        String imePrezime = ulogovani.getIme() + " " + ulogovani.getPrezime();
-        gf.getjLabelUsername().setText(imePrezime);
+        gf.getjLabelUsername().setText(ulogovani.getIme() + " " + ulogovani.getPrezime());
         pripremiFormu();
         gf.setVisible(true);
     }
 
     private void addActionListeners() {
+
         gf.getjComboBoxRezervacija().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (punjenje) {
+                    return;  // ovo moram zbog nullpointer exception u comboboxu
+                }
                 Rezervacija r = (Rezervacija) gf.getjComboBoxRezervacija().getSelectedItem();
                 if (r == null) {
                     return;
                 }
 
-                // popuni podatke klijenta
                 Klijent k = r.getKlijent();
                 gf.getjTextFieldIme().setText(k.getIme());
                 gf.getjTextFieldPrezime().setText(k.getPrezime());
                 gf.getjTextFieldBrojTelefona().setText(k.getBrojTelefona());
                 gf.getjTextFieldEmail().setText(k.getEmail());
 
-                // postavi mesto u combobox
                 if (k.getMesto() != null) {
                     for (int i = 0; i < gf.getjComboBoxMesto().getItemCount(); i++) {
-                        if (gf.getjComboBoxMesto().getItemAt(i).getIdMesto() == k.getMesto().getIdMesto()) {
+                        Mesto m = gf.getjComboBoxMesto().getItemAt(i);
+                        if (m != null && m.getIdMesto() == k.getMesto().getIdMesto()) {
                             gf.getjComboBoxMesto().setSelectedIndex(i);
                             break;
                         }
                     }
                 }
 
-                // popuni ukupno
                 gf.getjTextFieldUkupnoVreme().setText(String.valueOf(r.getUkupnoVremeTrajanja()));
                 gf.getjTextFieldUkupanIznos().setText(String.format("%.2f", r.getUkupanIznos()));
-
-                // popuni tabelu stavki
                 gf.getjTableStavke().setModel(new ModelTabeleStavke(new ArrayList<>(r.getStavke())));
 
-                // azuriraj lokalne promenljive
                 ukupnoVreme = r.getUkupnoVremeTrajanja();
                 ukupanIznos = r.getUkupanIznos();
             }
         });
-        // kad se izabere usluga, automtaski popuni cenu
+
         gf.addCmbUslugaActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,24 +82,28 @@ public class GlavnaFormaKontroler {
             }
         });
 
-        // Dodaj stavku
         gf.addBtnDodajStavkuActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Rezervacija r = (Rezervacija) gf.getjComboBoxRezervacija().getSelectedItem();
+                if (r == null) {
+                    JOptionPane.showMessageDialog(gf, "Izaberite rezervaciju!");
+                    return;
+                }
+
+                if (gf.getjTextFieldKolicina().getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(gf, "Unesite kolicinu!");
+                    return;
+                }
+
                 try {
-                    if (gf.getjTextFieldKolicina().getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(gf, "Unesite kolicinu!");
-                        return;
-                    }
-
-                    Usluga usluga = (Usluga) gf.getjComboBoxUsluga().getSelectedItem();
                     int kolicina = Integer.parseInt(gf.getjTextFieldKolicina().getText());
-
                     if (kolicina <= 0) {
                         JOptionPane.showMessageDialog(gf, "Kolicina mora biti veca od 0!");
                         return;
                     }
 
+                    Usluga usluga = (Usluga) gf.getjComboBoxUsluga().getSelectedItem();
                     String opis = gf.getjTextAreaOpis().getText().trim();
                     double cena = usluga.getCena();
                     double iznos = cena * kolicina;
@@ -116,14 +114,12 @@ public class GlavnaFormaKontroler {
                     StavkaRezervacije stavka = new StavkaRezervacije(rb, opis, cena, kolicina, iznos, usluga, null);
                     mts.dodajStavku(stavka);
 
-                    // automatski izracunaj ukupno
                     ukupnoVreme += usluga.getVremeTrajanja() * kolicina;
                     ukupanIznos += iznos;
 
                     gf.getjTextFieldUkupnoVreme().setText(String.valueOf(ukupnoVreme));
                     gf.getjTextFieldUkupanIznos().setText(String.format("%.2f", ukupanIznos));
 
-                    // reset polja stavke
                     gf.getjTextFieldKolicina().setText("");
                     gf.getjTextAreaOpis().setText("");
 
@@ -133,69 +129,49 @@ public class GlavnaFormaKontroler {
             }
         });
 
-        // Obrisi stavku
         gf.addBtnObrisiStavkuActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = gf.getjTableStavke().getSelectedRow();
-                if (row >= 0) {
-                    ModelTabeleStavke mts = (ModelTabeleStavke) gf.getjTableStavke().getModel();
-                    StavkaRezervacije stavka = mts.getListaStavki().get(row);
-
-                    ukupnoVreme -= stavka.getUsluga().getVremeTrajanja() * stavka.getKolicina();
-                    ukupanIznos -= stavka.getIznos();
-
-                    gf.getjTextFieldUkupnoVreme().setText(String.valueOf(ukupnoVreme));
-                    gf.getjTextFieldUkupanIznos().setText(String.format("%.2f", ukupanIznos));
-
-                    mts.obrisiStavku(row);
-                } else {
+                if (row < 0) {
                     JOptionPane.showMessageDialog(gf, "Selektujte stavku za brisanje!");
+                    return;
                 }
+
+                ModelTabeleStavke mts = (ModelTabeleStavke) gf.getjTableStavke().getModel();
+                StavkaRezervacije stavka = mts.getListaStavki().get(row);
+
+                ukupnoVreme -= stavka.getUsluga().getVremeTrajanja() * stavka.getKolicina();
+                ukupanIznos -= stavka.getIznos();
+
+                gf.getjTextFieldUkupnoVreme().setText(String.valueOf(ukupnoVreme));
+                gf.getjTextFieldUkupanIznos().setText(String.format("%.2f", ukupanIznos));
+
+                mts.obrisiStavku(row);
             }
         });
 
-        // Sacuvaj rezervaciju
         gf.addBtnSacuvajRezervacijuActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    // validacija klijenta
-                    if (gf.getjTextFieldIme().getText().isEmpty()
-                            || gf.getjTextFieldPrezime().getText().isEmpty()
-                            || gf.getjTextFieldBrojTelefona().getText().isEmpty()
-                            || gf.getjTextFieldEmail().getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(gf, "Popunite sve podatke o klijentu!");
+                    Rezervacija r = (Rezervacija) gf.getjComboBoxRezervacija().getSelectedItem();
+                    if (r == null) {
+                        JOptionPane.showMessageDialog(gf, "Izaberite rezervaciju!");
                         return;
                     }
 
                     ModelTabeleStavke mts = (ModelTabeleStavke) gf.getjTableStavke().getModel();
                     if (mts.getRowCount() == 0) {
-                        JOptionPane.showMessageDialog(gf, "Morate dodati bar jednu stavku!");
+                        JOptionPane.showMessageDialog(gf, "Morate imati bar jednu stavku!");
                         return;
                     }
 
-                    // kreiraj klijenta
-                    Klijent klijent = new Klijent();
-                    klijent.setIme(gf.getjTextFieldIme().getText());
-                    klijent.setPrezime(gf.getjTextFieldPrezime().getText());
-                    klijent.setBrojTelefona(gf.getjTextFieldBrojTelefona().getText());
-                    klijent.setEmail(gf.getjTextFieldEmail().getText());
-                    klijent.setMesto((Mesto) gf.getjComboBoxMesto().getSelectedItem());
+                    r.setStavke(mts.getListaStavki());
+                    komunikacija.Komunikacija.getInstance().izmeniRezervaciju(r);
 
-                    // ovo mi je pravilo problem, null pointer exc
-                    //komunikacija.Komunikacija.getInstance().dodajKlijenta(klijent);
-                    // kreiraj rezervaciju
-                    Frizer frizer = koordinator.Koordinator.getInstance().getUlogovani();
-                    LocalDateTime datum = LocalDateTime.now();
-                    Rezervacija rezervacija = new Rezervacija(frizer, klijent, 0, datum, ukupnoVreme, ukupanIznos);
-                    rezervacija.setStavke(mts.getListaStavki());
-
-                    komunikacija.Komunikacija.getInstance().dodajRezervaciju(rezervacija);
-
-                    JOptionPane.showMessageDialog(gf, "Rezervacija je uspesno sacuvana!");
-
-                    osveziFormu(mts);
+                    JOptionPane.showMessageDialog(gf, "Rezervacija je uspesno izmenjena!");
+                    pripremiFormu();
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(gf, "Greska: " + ex.getMessage());
@@ -205,23 +181,9 @@ public class GlavnaFormaKontroler {
         });
     }
 
-    private void osveziFormu(ModelTabeleStavke mts) {
-        mts.getListaStavki().clear();
-        mts.fireTableDataChanged();
-        ukupnoVreme = 0;
-        ukupanIznos = 0;
-        gf.getjTextFieldIme().setText("");
-        gf.getjTextFieldPrezime().setText("");
-        gf.getjTextFieldBrojTelefona().setText("");
-        gf.getjTextFieldEmail().setText("");
-        gf.getjTextFieldKolicina().setText("");
-        gf.getjTextAreaOpis().setText("");
-        gf.getjTextFieldCena().setText("");
-        gf.getjTextFieldUkupnoVreme().setText("0");
-        gf.getjTextFieldUkupanIznos().setText("0.00");
-    }
-
     private void pripremiFormu() {
+        punjenje = true; // ukljuci flag
+
         List<Rezervacija> rezervacije = komunikacija.Komunikacija.getInstance().ucitajRezervacije();
         gf.getjComboBoxRezervacija().removeAllItems();
         for (Rezervacija r : rezervacije) {
@@ -240,9 +202,16 @@ public class GlavnaFormaKontroler {
             gf.getjComboBoxUsluga().addItem(u);
         }
 
-        gf.getjTableStavke().setModel(new ModelTabeleStavke(new ArrayList<>()));
+        punjenje = false; // iskljuci flag
 
+        gf.getjTableStavke().setModel(new ModelTabeleStavke(new ArrayList<>()));
+        gf.getjTextFieldIme().setText("");
+        gf.getjTextFieldPrezime().setText("");
+        gf.getjTextFieldBrojTelefona().setText("");
+        gf.getjTextFieldEmail().setText("");
         gf.getjTextFieldUkupnoVreme().setText("0");
         gf.getjTextFieldUkupanIznos().setText("0.00");
+        ukupnoVreme = 0;
+        ukupanIznos = 0;
     }
 }

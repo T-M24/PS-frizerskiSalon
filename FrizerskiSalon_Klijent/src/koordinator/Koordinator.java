@@ -13,12 +13,14 @@ import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazKlijenataForma;
 import forme.PrikazRezervacijaForma;
+import forme.PrikazUslugaForma;
 import kontroleri.DodajKlijentaKontroler;
 import kontroleri.DodajRezervacijaKontroler;
 import kontroleri.LoginKontroler;
 import kontroleri.GlavnaFormaKontroler;
 import kontroleri.PrikazKlijenataKontroler;
 import kontroleri.PrikazRezervacijaKontroler;
+import kontroleri.PrikazUslugaKontroler;
 
 public class Koordinator {
 
@@ -30,6 +32,7 @@ public class Koordinator {
     private DodajKlijentaKontroler dodajKlijentaKontroler;
     private PrikazRezervacijaKontroler prikazRezervacijaKontroler;
     private DodajRezervacijaKontroler dodajRezervacijaKontroler;
+    private PrikazUslugaKontroler prikazUslugaKontroler;
 
     public static Koordinator getInstance() {
         if (instance == null) {
@@ -89,6 +92,15 @@ public class Koordinator {
     public void otvoriDodajRezervacijaForma() {
         dodajRezervacijaKontroler = new DodajRezervacijaKontroler(new DodajRezervacijaForma());
         dodajRezervacijaKontroler.otvoriFormu();
+    }
+
+    public void otvoriPrikazUslugaForma() {
+        prikazUslugaKontroler = new PrikazUslugaKontroler(new PrikazUslugaForma());
+        prikazUslugaKontroler.otvoriFormu();
+    }
+
+    public void otvoriDodajUsluguForma() {
+        
     }
 
 }

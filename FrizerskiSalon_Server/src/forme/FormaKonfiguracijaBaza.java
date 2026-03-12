@@ -6,10 +6,6 @@ package forme;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class FormaKonfiguracijaBaza extends javax.swing.JDialog {
 
     /**
@@ -106,12 +102,18 @@ public class FormaKonfiguracijaBaza extends javax.swing.JDialog {
         String url = jTextFieldURL.getText().trim();
         String username = jTextFieldUsername.getText().trim();
         String password = String.valueOf(jPasswordField1.getPassword()).trim();
+
+        if (url.isEmpty() || username.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Unesite username i url porta!", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         try {
             konfiguracija.Konfiguracija.getInstance().setProperty("URL", url);
             konfiguracija.Konfiguracija.getInstance().setProperty("username", username);
             konfiguracija.Konfiguracija.getInstance().setProperty("password", password);
             konfiguracija.Konfiguracija.getInstance().sacuvajIzmene();
-            JOptionPane.showMessageDialog(this, "Parametri su uspesno sacuvani!","Uspeh!",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Parametri su uspešno sačuvani!", "Uspeh!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (Exception ex) {
             ex.printStackTrace();

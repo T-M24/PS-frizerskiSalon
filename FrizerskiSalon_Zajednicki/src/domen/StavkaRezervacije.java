@@ -170,7 +170,7 @@ public class StavkaRezervacije implements AbstractDomainObject {
 
     @Override
     public String getEditableValues() {
-        return "rb=" + rb + ", rezervacija=" + rezervacija.getIdRezervacija() + ", opis='" + opis + "', cena=" + cena + ", kolicina=" + kolicina + ", iznos=" + iznos + ", usluga=" + usluga.getIdUsluga();
+        return "rezervacija=" + rezervacija.getIdRezervacija() + ", opis='" + opis + "', cena=" + cena + ", kolicina=" + kolicina + ", iznos=" + iznos + ", usluga=" + usluga.getIdUsluga();
     }
 
     public int getVremeTrajanja() {

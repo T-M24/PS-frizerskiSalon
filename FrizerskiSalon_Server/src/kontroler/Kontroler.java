@@ -20,6 +20,7 @@ import operacija.klijenti.UcitajKlijenteSO;
 import operacija.mesta.UcitajMestaSO;
 import operacije.frizer.UcitajFrizereSO;
 import operacije.rezervacija.DodajRezervacijuSO;
+import operacije.rezervacija.IzmeniRezervacijuSO;
 import operacije.rezervacija.UcitajRezervacijeSO;
 import operacije.usluga.UcitajUslugeSO;
 
@@ -99,5 +100,10 @@ public class Kontroler {
         UcitajFrizereSO so = new UcitajFrizereSO();
         so.izvrsi(null, null);
         return so.getFrizeri();
+    }
+
+    public void izmeniRezervaciju(Rezervacija r) throws Exception {
+        IzmeniRezervacijuSO operacija = new IzmeniRezervacijuSO();
+        operacija.izvrsi(r, null);
     }
 }

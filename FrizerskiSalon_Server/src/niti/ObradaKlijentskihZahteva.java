@@ -115,6 +115,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         List<Frizer> frizeri = Kontroler.getInstance().ucitajFrizere();
                         odgovor.setResponse(frizeri);
                         break;
+                    case IZMENI_REZERVACIJU:
+    try {
+                        Rezervacija r = (Rezervacija) zahtev.getParametar();
+                        Kontroler.getInstance().izmeniRezervaciju(r);
+                        odgovor.setResponse(null);
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
+                    break;
                     default:
                         System.out.println("Ova operacija ne postoji.");
                 }

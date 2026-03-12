@@ -7,6 +7,7 @@ package forme.modeli;
 import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
+import domen.Rezervacija;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,11 +19,13 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelTabeleKlijent extends AbstractTableModel {
 
+    List<Klijent> originalnaLista;
     List<Klijent> listaSvihKlijenata;
     String[] kolone = {"ID", "Ime", "Prezime", "Broj telefona", "Email", "Mesto"};
 
     public ModelTabeleKlijent(List<Klijent> listaSvihKlijenata) {
         this.listaSvihKlijenata = listaSvihKlijenata;
+        this.originalnaLista = new ArrayList<>(listaSvihKlijenata);
     }
 
     @Override
@@ -66,13 +69,13 @@ public class ModelTabeleKlijent extends AbstractTableModel {
     }
 
     public void pretrazi(String ime, String prezime, Mesto mesto) {
-        List<Klijent> filtriranaLista = listaSvihKlijenata.stream()
+
+        listaSvihKlijenata = originalnaLista.stream()
                 .filter(klijent -> (ime == null || ime.isEmpty() || klijent.getIme().toLowerCase().contains(ime.toLowerCase())))
                 .filter(klijent -> (prezime == null || prezime.isEmpty() || klijent.getPrezime().toLowerCase().contains(prezime.toLowerCase())))
                 .filter(klijent -> (mesto == null || klijent.getMesto().getIdMesto() == mesto.getIdMesto()))
                 .collect(Collectors.toList());
 
-        this.listaSvihKlijenata = filtriranaLista;
         fireTableDataChanged();
     }
 
