@@ -7,8 +7,10 @@ package koordinator;
 import domen.Frizer;
 import domen.Klijent;
 import domen.Rezervacija;
+import domen.Usluga;
 import forme.DodajKlijentaForma;
 import forme.DodajRezervacijaForma;
+import forme.DodajUsluguForma;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazKlijenataForma;
@@ -16,6 +18,7 @@ import forme.PrikazRezervacijaForma;
 import forme.PrikazUslugaForma;
 import kontroleri.DodajKlijentaKontroler;
 import kontroleri.DodajRezervacijaKontroler;
+import kontroleri.DodajUsluguKontroler;
 import kontroleri.LoginKontroler;
 import kontroleri.GlavnaFormaKontroler;
 import kontroleri.PrikazKlijenataKontroler;
@@ -33,6 +36,7 @@ public class Koordinator {
     private PrikazRezervacijaKontroler prikazRezervacijaKontroler;
     private DodajRezervacijaKontroler dodajRezervacijaKontroler;
     private PrikazUslugaKontroler prikazUslugaKontroler;
+    private DodajUsluguKontroler dodajUsluguKontroler;
 
     public static Koordinator getInstance() {
         if (instance == null) {
@@ -84,7 +88,7 @@ public class Koordinator {
         }
     }
 
-    public void otvoriPrikaziRezervacijaForma(){
+    public void otvoriPrikaziRezervacijaForma() {
         prikazRezervacijaKontroler = new PrikazRezervacijaKontroler(new PrikazRezervacijaForma());
         prikazRezervacijaKontroler.otvoriFormu();
     }
@@ -100,7 +104,17 @@ public class Koordinator {
     }
 
     public void otvoriDodajUsluguForma() {
-        
+        dodajUsluguKontroler = new DodajUsluguKontroler(new DodajUsluguForma());
+        dodajUsluguKontroler.otvoriFormu();
+    }
+
+    public void otvoriIzmeniUsluguFormu(Usluga u) {
+        dodajUsluguKontroler = new DodajUsluguKontroler(new DodajUsluguForma(), u);
+        dodajUsluguKontroler.otvoriFormu();
+    }
+
+    public void osveziGlavnuFormu() {
+        glavnaFormaKontroler.osveziFormu();
     }
 
 }

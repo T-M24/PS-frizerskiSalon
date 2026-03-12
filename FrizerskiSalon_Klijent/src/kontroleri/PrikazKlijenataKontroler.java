@@ -14,10 +14,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class PrikazKlijenataKontroler {
 
     private final PrikazKlijenataForma pkf;
@@ -39,6 +35,7 @@ public class PrikazKlijenataKontroler {
                     Klijent k = mtk.getListaSvihKlijenata().get(selektovaniRed);
                     try {
                         komunikacija.Komunikacija.getInstance().obrisiKlijenta(k);
+                        koordinator.Koordinator.getInstance().osveziGlavnuFormu();
                         pripremiFormu();
                         JOptionPane.showMessageDialog(pkf, "Sistem je uspesno obrisao klijenta!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                     } catch (Exception ex) {
@@ -94,9 +91,9 @@ public class PrikazKlijenataKontroler {
             pkf.getjComboBoxMesto().addItem(m);
         }
     }
-    
-    public void osveziTabelu(){
+
+    public void osveziTabelu() {
         pripremiFormu();
     }
-    
+
 }

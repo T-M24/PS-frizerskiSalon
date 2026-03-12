@@ -47,13 +47,13 @@ public class DodajRezervacijaKontroler {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (drf.getjTextFieldKolicina().getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(drf, "Unesite kolicinu!");
+                        JOptionPane.showMessageDialog(drf, "Unesite količinu!");
                         return;
                     }
 
                     int kolicina = Integer.parseInt(drf.getjTextFieldKolicina().getText());
                     if (kolicina <= 0) {
-                        JOptionPane.showMessageDialog(drf, "Kolicina mora biti veca od 0!");
+                        JOptionPane.showMessageDialog(drf, "Količina mora biti veca od 0!");
                         return;
                     }
 
@@ -78,7 +78,7 @@ public class DodajRezervacijaKontroler {
                     drf.getjTextAreaOpis().setText("");
 
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(drf, "Kolicina mora biti broj!");
+                    JOptionPane.showMessageDialog(drf, "Količina mora biti broj!");
                 }
             }
         });
@@ -156,7 +156,8 @@ public class DodajRezervacijaKontroler {
 
                     komunikacija.Komunikacija.getInstance().dodajRezervaciju(rezervacija);
 
-                    JOptionPane.showMessageDialog(drf, "Rezervacija je uspesno sacuvana!");
+                    JOptionPane.showMessageDialog(drf, "Rezervacija je uspešno sačuvana!");
+                    koordinator.Koordinator.getInstance().osveziGlavnuFormu();
                     osveziFormu(mts);
 
                 } catch (Exception ex) {

@@ -12,10 +12,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class DodajKlijentaKontroler {
 
     private final DodajKlijentaForma dkf;

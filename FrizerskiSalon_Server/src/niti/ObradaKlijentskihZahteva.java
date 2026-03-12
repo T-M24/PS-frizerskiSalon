@@ -22,10 +22,6 @@ import komunikacija.Posiljalac;
 import komunikacija.Primalac;
 import kontroler.Kontroler;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class ObradaKlijentskihZahteva extends Thread {
 
     Socket socket;
@@ -116,7 +112,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setResponse(frizeri);
                         break;
                     case IZMENI_REZERVACIJU:
-    try {
+                    try {
                         Rezervacija r = (Rezervacija) zahtev.getParametar();
                         Kontroler.getInstance().izmeniRezervaciju(r);
                         odgovor.setResponse(null);
@@ -124,6 +120,31 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setResponse(ex);
                     }
                     break;
+                    case DODAJ_USLUGU:
+                        try {
+                        Usluga u = (Usluga) zahtev.getParametar();
+                        System.out.println("OKZ,Usluga: " + u);
+                        Kontroler.getInstance().dodajUslugu(u);
+                        odgovor.setResponse(null);
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
+                    case IZMENI_USLUGU:
+                        try {
+                        Usluga u = (Usluga) zahtev.getParametar();
+                        Kontroler.getInstance().izmeniUslugu(u);
+                        odgovor.setResponse(null);
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
+                    case OBRISI_USLUGU:
+                        try {
+                        Usluga u = (Usluga) zahtev.getParametar();
+                        Kontroler.getInstance().obrisiUslugu(u);
+                        odgovor.setResponse(null);
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
                     default:
                         System.out.println("Ova operacija ne postoji.");
                 }

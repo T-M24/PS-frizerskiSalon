@@ -74,9 +74,9 @@ public class Komunikacija {
         if (odgovor.getResponse() == null) {
             System.out.println("Sistem je uspesno obrisao klijenta!");
         } else {
-            System.out.println("Sistem nije mogao da obrise klijenta!");
+            System.out.println("Sistem nije mogao da obriše klijenta!");
             ((Exception) odgovor.getResponse()).printStackTrace();
-            throw new Exception("Sistem nije mogao da obrise klijenta!");
+            throw new Exception("Sistem nije mogao da obriše klijenta!");
         }
     }
 
@@ -104,7 +104,7 @@ public class Komunikacija {
             System.out.println("Sistem je uspesno izmenio klijenta!");
         } else {
             ((Exception) odgovor.getResponse()).printStackTrace();
-            throw new Exception("Sistem nije mogao da zimeni korisnika!");
+            throw new Exception("Sistem nije mogao da izmeni korisnika!");
         }
     }
 
@@ -147,6 +147,39 @@ public class Komunikacija {
         if (odgovor.getResponse() != null) {
             Exception ex = (Exception) odgovor.getResponse();
             throw new Exception(ex.getMessage());
+        }
+    }
+
+    public void dodajUslugu(Usluga usluga) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_USLUGU, usluga);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        if (odgovor.getResponse() != null) {
+            Exception ex = (Exception) odgovor.getResponse();
+            ex.printStackTrace();
+            throw new Exception(ex.getMessage());
+        }
+    }
+
+    public void izmeniUslugu(Usluga u) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.IZMENI_USLUGU, u);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        if (odgovor.getResponse() != null) {
+            throw new Exception(((Exception) odgovor.getResponse()).getMessage());
+        }
+    }
+
+    public void obrisiUslugu(Usluga u) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_USLUGU, u);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        if (odgovor.getResponse() == null) {
+            System.out.println("Sistem je uspešno obrisao klijenta!");
+        } else {
+            System.out.println("Sistem nije mogao da obriše klijenta!");
+            ((Exception) odgovor.getResponse()).printStackTrace();
+            throw new Exception("Sistem nije mogao da obriše klijenta!");
         }
     }
 

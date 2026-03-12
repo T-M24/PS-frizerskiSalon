@@ -4,10 +4,9 @@
  */
 package forme;
 
-/**
- *
- * @author Nikola Manjencic
- */
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 public class DodajUsluguForma extends javax.swing.JFrame {
 
     /**
@@ -15,6 +14,50 @@ public class DodajUsluguForma extends javax.swing.JFrame {
      */
     public DodajUsluguForma() {
         initComponents();
+    }
+
+    public JButton getjButtonDodaj() {
+        return jButtonDodaj;
+    }
+
+    public JButton getjButtonIzmeni() {
+        return jButtonIzmeni;
+    }
+
+    public JTextField getjTextFieldCena() {
+        return jTextFieldCena;
+    }
+
+    public JTextField getjTextFieldNaziv() {
+        return jTextFieldNaziv;
+    }
+
+    public JTextField getjTextFieldVremeTrajanja() {
+        return jTextFieldVremeTrajanja;
+    }
+
+    public void addBtnDodajActionListener(java.awt.event.ActionListener actionListener) {
+        jButtonDodaj.addActionListener(actionListener);
+    }
+
+    public void addBtnIzmeniActionListener(java.awt.event.ActionListener actionListener) {
+        jButtonIzmeni.addActionListener(actionListener);
+    }
+
+    public void sakrijiDugmeIzmeni() {
+        jButtonIzmeni.setVisible(false);
+    }
+
+    public void prikaziDugmeIzmeni() {
+        jButtonIzmeni.setVisible(true);
+    }
+
+    public void sakrijiDugmeDodaj() {
+        jButtonDodaj.setVisible(false);
+    }
+
+    public void prikaziDugmeDodaj() {
+        jButtonDodaj.setVisible(true);
     }
 
     /**
@@ -35,7 +78,7 @@ public class DodajUsluguForma extends javax.swing.JFrame {
         jButtonDodaj = new javax.swing.JButton();
         jButtonIzmeni = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Naziv");
 

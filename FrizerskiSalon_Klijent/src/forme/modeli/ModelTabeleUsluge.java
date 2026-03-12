@@ -26,8 +26,11 @@ public class ModelTabeleUsluge extends AbstractTableModel {
     public ModelTabeleUsluge(List<Usluga> listaSvihUsluga) {
         this.listaSvihUsluga = listaSvihUsluga;
     }
-    
 
+    public List<Usluga> getListaSvihUsluga() {
+        return listaSvihUsluga;
+    }
+    
     @Override
     public int getColumnCount() {
         return kolone.length;
@@ -54,5 +57,7 @@ public class ModelTabeleUsluge extends AbstractTableModel {
     public String getColumnName(int column) {
         return kolone[column];
     }
+
+    
 
 }

@@ -7,7 +7,6 @@ package forme;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
-
 public class PrikazUslugaForma extends javax.swing.JFrame {
 
     /**
@@ -27,6 +26,14 @@ public class PrikazUslugaForma extends javax.swing.JFrame {
 
     public JTable getjTableUsluga() {
         return jTableUsluga;
+    }
+
+    public void addBtnIzmeniActionListener(java.awt.event.ActionListener al) {
+        jButtonIzmeni.addActionListener(al);
+    }
+
+    public void addBtnObrisiActionListener(java.awt.event.ActionListener al) {
+        jButtonObrisi.addActionListener(al);
     }
 
     /**

@@ -22,6 +22,9 @@ import operacije.frizer.UcitajFrizereSO;
 import operacije.rezervacija.DodajRezervacijuSO;
 import operacije.rezervacija.IzmeniRezervacijuSO;
 import operacije.rezervacija.UcitajRezervacijeSO;
+import operacije.usluga.DodajUsluguSO;
+import operacije.usluga.IzmeniUsluguSO;
+import operacije.usluga.ObrisiUsluguSO;
 import operacije.usluga.UcitajUslugeSO;
 
 /**
@@ -105,5 +108,20 @@ public class Kontroler {
     public void izmeniRezervaciju(Rezervacija r) throws Exception {
         IzmeniRezervacijuSO operacija = new IzmeniRezervacijuSO();
         operacija.izvrsi(r, null);
+    }
+
+    public void dodajUslugu(Usluga u) throws Exception {
+        DodajUsluguSO operacija = new DodajUsluguSO();
+        operacija.izvrsi(u, null);
+    }
+
+    public void izmeniUslugu(Usluga u) throws Exception {
+        IzmeniUsluguSO operacija = new IzmeniUsluguSO();
+        operacija.izvrsi(u, null);
+    }
+
+    public void obrisiUslugu(Usluga u) throws Exception {
+        ObrisiUsluguSO operacija = new ObrisiUsluguSO();
+        operacija.izvrsi(u, null);
     }
 }

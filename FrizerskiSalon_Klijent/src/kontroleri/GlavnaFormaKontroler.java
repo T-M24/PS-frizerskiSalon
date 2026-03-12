@@ -181,6 +181,10 @@ public class GlavnaFormaKontroler {
         });
     }
 
+    public void osveziFormu() {
+        pripremiFormu();
+    }
+
     private void pripremiFormu() {
         punjenje = true; // ukljuci flag
 
@@ -214,4 +218,5 @@ public class GlavnaFormaKontroler {
         ukupnoVreme = 0;
         ukupanIznos = 0;
     }
+
 }

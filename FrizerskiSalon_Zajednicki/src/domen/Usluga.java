@@ -117,7 +117,7 @@ public class Usluga implements AbstractDomainObject {
 
     @Override
     public String getInsertValues() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "'" + naziv + "', " + vremeTrajanja + ", " + cena;
     }
 
     @Override
