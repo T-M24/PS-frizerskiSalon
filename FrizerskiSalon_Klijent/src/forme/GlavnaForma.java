@@ -212,7 +212,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 8, 0, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
 
-        jLabel4.setText("Ukupno vreme");
+        jLabel4.setText("Ukupno vreme (u minutima)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 12;
@@ -473,6 +473,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenu4.add(jMenuItem8);
 
         jMenuItem9.setText("Dodaj");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem9);
 
         jMenuBar1.add(jMenu4);
@@ -509,6 +514,10 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         koordinator.Koordinator.getInstance().otvoriPrikazSertifikataForma();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        koordinator.Koordinator.getInstance().otvoriDodajSertifikatForma();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     public JLabel getjLabelUsername() {
         return jLabelUsername;

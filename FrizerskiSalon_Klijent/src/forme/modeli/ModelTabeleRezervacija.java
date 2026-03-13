@@ -1,6 +1,9 @@
 package forme.modeli;
 
+import domen.Frizer;
+import domen.Klijent;
 import domen.Rezervacija;
+import domen.Usluga;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -56,15 +59,30 @@ public class ModelTabeleRezervacija extends AbstractTableModel {
         return kolone[column];
     }
 
-    public void pretrazi(String imeFrizera) {
-        if (imeFrizera == null || imeFrizera.isEmpty()) {
-            listaRezervacija = new java.util.ArrayList<>(originalnaLista);
-        } else {
-            listaRezervacija = originalnaLista.stream()
-                    .filter(r -> (r.getFrizer().getIme() + " " + r.getFrizer().getPrezime())
-                    .toLowerCase().contains(imeFrizera.toLowerCase()))
-                    .collect(java.util.stream.Collectors.toList());
-        }
+    public boolean pretrazi(Frizer frizer, Klijent klijent, Usluga usluga) {
+        listaRezervacija = originalnaLista.stream()
+                .filter(r -> {
+                    // filter po frizeru
+                    if (frizer != null && r.getFrizer().getIdFrizer() != frizer.getIdFrizer()) {
+                        return false;
+                    }
+                    // filter po klijentu
+                    if (klijent != null && r.getKlijent().getIdKlijent() != klijent.getIdKlijent()) {
+                        return false;
+                    }
+                    // filter po usluzi - proveravamo stavke rezervacije
+                    if (usluga != null) {
+                        boolean imaUslugu = r.getStavke().stream()
+                                .anyMatch(s -> s.getUsluga().getIdUsluga() == usluga.getIdUsluga());
+                        if (!imaUslugu) {
+                            return false;
+                        }
+                    }
+                    return true;
+                })
+                .collect(java.util.stream.Collectors.toList());
+
         fireTableDataChanged();
+        return !listaRezervacija.isEmpty();
     }
 }

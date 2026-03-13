@@ -107,8 +107,14 @@ public class Frizer implements AbstractDomainObject {
     public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
         List<AbstractDomainObject> lista = new ArrayList<>();
         while (rs.next()) {
+            int id = rs.getInt("idFrizer");
+            boolean postoji = lista.stream()
+                    .anyMatch(o -> ((Frizer) o).getIdFrizer() == id);
+            if (postoji) {
+                continue; //preskakanje duplikata, morala sam zbog pretrage rez
+            }
             Frizer f = new Frizer();
-            f.setIdFrizer(rs.getInt("idFrizer"));
+            f.setIdFrizer(id);
             f.setIme(rs.getString("ime"));
             f.setPrezime(rs.getString("prezime"));
             f.setKorisnickoIme(rs.getString("korisnickoIme"));

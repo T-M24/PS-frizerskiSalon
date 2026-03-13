@@ -163,6 +163,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setResponse(ex);
                     }
                     break;
+                    case DODAJ_SERTIFIKAT:
+                    try {
+                        Sertifikat s = (Sertifikat) zahtev.getParametar();
+                        Kontroler.getInstance().dodajSertifikat(s);
+                        odgovor.setResponse(null);
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
+                    break;
                     default:
                         System.out.println("Ova operacija ne postoji.");
                 }

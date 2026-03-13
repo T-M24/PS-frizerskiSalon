@@ -2,7 +2,6 @@ package kontroleri;
 
 import domen.Frizer;
 import domen.Klijent;
-import domen.Mesto;
 import domen.Rezervacija;
 import domen.StavkaRezervacije;
 import domen.Usluga;
@@ -30,7 +29,6 @@ public class DodajRezervacijaKontroler {
 
     private void addActionListener() {
 
-        // kad se izabere usluga, automatski popuni cenu
         drf.addCmbUslugaActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,7 +39,6 @@ public class DodajRezervacijaKontroler {
             }
         });
 
-        // Dodaj stavku
         drf.addBtnDodajStavkuActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,7 +80,6 @@ public class DodajRezervacijaKontroler {
             }
         });
 
-        // Obrisi stavku
         drf.addBtnObrisiStavkuActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -105,17 +101,14 @@ public class DodajRezervacijaKontroler {
             }
         });
 
-        // Sacuvaj rezervaciju
         drf.addBtnDodajRezervacijuActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     // validacija klijenta
-                    if (drf.getjTextFieldIme().getText().isEmpty()
-                            || drf.getjTextFieldPrezime().getText().isEmpty()
-                            || drf.getjTextFieldBrojTelefona().getText().isEmpty()
-                            || drf.getjTextFieldEmail().getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(drf, "Popunite sve podatke o klijentu!");
+                    Klijent klijent = (Klijent) drf.getjComboBoxKlijent().getSelectedItem();
+                    if (klijent == null) {
+                        JOptionPane.showMessageDialog(drf, "Izaberite klijenta!");
                         return;
                     }
 
@@ -130,7 +123,7 @@ public class DodajRezervacijaKontroler {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
                         datum = LocalDateTime.parse(drf.getjTextFieldDatum().getText(), formatter);
                     } catch (DateTimeParseException ex) {
-                        JOptionPane.showMessageDialog(drf, "Datum mora biti u formatu dd-MM-yyyy!");
+                        JOptionPane.showMessageDialog(drf, "Datum mora biti u formatu dd-MM-yyyy HH:mm!");
                         return;
                     }
 
@@ -140,14 +133,6 @@ public class DodajRezervacijaKontroler {
                         JOptionPane.showMessageDialog(drf, "Morate dodati bar jednu stavku!");
                         return;
                     }
-
-                    // kreiraj klijenta
-                    Klijent klijent = new Klijent();
-                    klijent.setIme(drf.getjTextFieldIme().getText());
-                    klijent.setPrezime(drf.getjTextFieldPrezime().getText());
-                    klijent.setBrojTelefona(drf.getjTextFieldBrojTelefona().getText());
-                    klijent.setEmail(drf.getjTextFieldEmail().getText());
-                    klijent.setMesto((Mesto) drf.getjComboBoxMesto().getSelectedItem());
 
                     Frizer frizer = (Frizer) drf.getjComboBoxFrizer().getSelectedItem();
 
@@ -174,10 +159,10 @@ public class DodajRezervacijaKontroler {
     }
 
     private void pripremiFormu() {
-        List<Mesto> mesta = komunikacija.Komunikacija.getInstance().ucitajMesta();
-        drf.getjComboBoxMesto().removeAllItems();
-        for (Mesto m : mesta) {
-            drf.getjComboBoxMesto().addItem(m);
+        List<Klijent> klijenti = komunikacija.Komunikacija.getInstance().ucitajKlijente();
+        drf.getjComboBoxKlijent().removeAllItems();
+        for (Klijent k : klijenti) {
+            drf.getjComboBoxKlijent().addItem(k);
         }
 
         List<Usluga> usluge = komunikacija.Komunikacija.getInstance().ucitajUsluge();
@@ -204,10 +189,6 @@ public class DodajRezervacijaKontroler {
         mts.fireTableDataChanged();
         ukupnoVreme = 0;
         ukupanIznos = 0;
-        drf.getjTextFieldIme().setText("");
-        drf.getjTextFieldPrezime().setText("");
-        drf.getjTextFieldBrojTelefona().setText("");
-        drf.getjTextFieldEmail().setText("");
         drf.getjTextFieldDatum().setText("");
         drf.getjTextFieldKolicina().setText("");
         drf.getjTextAreaOpis().setText("");

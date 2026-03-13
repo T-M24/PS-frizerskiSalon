@@ -202,4 +202,13 @@ public class Komunikacija {
         }
     }
 
+    public void dodajSertifikat(Sertifikat s) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_SERTIFIKAT, s);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        if (odgovor.getResponse() instanceof Exception) {
+            throw (Exception) odgovor.getResponse();
+        }
+    }
+
 }

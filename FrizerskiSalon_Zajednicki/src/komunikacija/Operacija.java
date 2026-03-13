@@ -22,5 +22,6 @@ public enum Operacija implements Serializable {
     DODAJ_USLUGU,
     IZMENI_USLUGU,
     OBRISI_USLUGU,
-    UCITAJ_SERTIFIKATE;
+    UCITAJ_SERTIFIKATE,
+    DODAJ_SERTIFIKAT;
 }

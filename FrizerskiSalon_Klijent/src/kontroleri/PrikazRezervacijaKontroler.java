@@ -4,7 +4,10 @@
  */
 package kontroleri;
 
+import domen.Klijent;
+import domen.Frizer;
 import domen.Rezervacija;
+import domen.Usluga;
 import forme.PrikazRezervacijaForma;
 import forme.modeli.ModelTabeleRezervacija;
 import java.awt.event.ActionEvent;
@@ -30,29 +33,37 @@ public class PrikazRezervacijaKontroler {
         prf.addBtnPretraziActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String imeFrizera = prf.getjTextFieldImeFrizera().getText().trim();
+                Frizer frizer = (Frizer) prf.getjComboBoxFrizer().getSelectedItem();
+                Klijent klijent = (Klijent) prf.getjComboBoxKlijent().getSelectedItem();
+                Usluga usluga = (Usluga) prf.getjComboBoxUsluga().getSelectedItem();
+
                 ModelTabeleRezervacija mtr = (ModelTabeleRezervacija) prf.getjTableRezervacija().getModel();
-                mtr.pretrazi(imeFrizera);
+                boolean nadjena = mtr.pretrazi(frizer, klijent, usluga);
+
+                if (!nadjena) {
+                    JOptionPane.showMessageDialog(prf, "Sistem ne može da nađe rezervacije po zadatim kriterijumima!", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(prf, "Sistem je našao rezervacije po zadatim kriterijumima!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
+
         prf.addBtnObrisiActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selektovaniRed = prf.getjTableRezervacija().getSelectedRow();
                 if (selektovaniRed == -1) {
-                    JOptionPane.showMessageDialog(prf, "Sistem nije uspeo da obriše rezervaciju!", "Greška", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    ModelTabeleRezervacija mtr = (ModelTabeleRezervacija) prf.getjTableRezervacija().getModel();
-                    Rezervacija r = mtr.getListaRezervacija().get(selektovaniRed);
-                    try {
-                        komunikacija.Komunikacija.getInstance().obrisiRezervaciju(r);
-                        koordinator.Koordinator.getInstance().osveziGlavnuFormu();
-                        pripremiFormu();
-                        JOptionPane.showMessageDialog(prf, "Sistem je uspešno obrisao rezervaciju!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(prf, "Sistem nije uspeo da obriše rezervaciju!", "Greška", JOptionPane.ERROR_MESSAGE);
-                        ex.printStackTrace();
-                    }
+                    JOptionPane.showMessageDialog(prf, "Selektujte rezervaciju za brisanje!", "Greška", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                ModelTabeleRezervacija mtr = (ModelTabeleRezervacija) prf.getjTableRezervacija().getModel();
+                Rezervacija r = mtr.getListaRezervacija().get(selektovaniRed);
+                try {
+                    komunikacija.Komunikacija.getInstance().obrisiRezervaciju(r);
+                    koordinator.Koordinator.getInstance().osveziGlavnuFormu();
+                    pripremiFormu();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
         });
@@ -62,5 +73,26 @@ public class PrikazRezervacijaKontroler {
         List<Rezervacija> rezervacije = komunikacija.Komunikacija.getInstance().ucitajRezervacije();
         ModelTabeleRezervacija mtr = new ModelTabeleRezervacija(rezervacije);
         prf.getjTableRezervacija().setModel(mtr);
+
+        List<Frizer> frizeri = komunikacija.Komunikacija.getInstance().ucitajFrizere();
+        prf.getjComboBoxFrizer().removeAllItems();
+        prf.getjComboBoxFrizer().addItem(null);
+        for (Frizer f : frizeri) {
+            prf.getjComboBoxFrizer().addItem(f);
+        }
+
+        List<Klijent> klijenti = komunikacija.Komunikacija.getInstance().ucitajKlijente();
+        prf.getjComboBoxKlijent().removeAllItems();
+        prf.getjComboBoxKlijent().addItem(null);
+        for (Klijent k : klijenti) {
+            prf.getjComboBoxKlijent().addItem(k);
+        }
+
+        List<Usluga> usluge = komunikacija.Komunikacija.getInstance().ucitajUsluge();
+        prf.getjComboBoxUsluga().removeAllItems();
+        prf.getjComboBoxUsluga().addItem(null);
+        for (Usluga u : usluge) {
+            prf.getjComboBoxUsluga().addItem(u);
+        }
     }
 }

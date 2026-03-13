@@ -29,39 +29,16 @@ public class DodajRezervacijuSO extends ApstraktnaGenerickaOperacija {
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
         Rezervacija r = (Rezervacija) param;
 
-        // proveri da li klijent vec postoji po broju telefona
-        Statement st = DbConnectionFactory.getInstance().getConnection().createStatement();
-        ResultSet rs = st.executeQuery("SELECT idKlijent FROM klijent WHERE brojTelefona='"
-                + r.getKlijent().getBrojTelefona() + "'");
-
-        if (rs.next()) {
-            // klijent vec postoji, samo uzmi njegov ID
-            r.getKlijent().setIdKlijent(rs.getInt("idKlijent"));
-        } else {
-            // klijent ne postoji, dodaj ga
-            broker.add(r.getKlijent());
-            rs.close();
-            st.close();
-            st = DbConnectionFactory.getInstance().getConnection().createStatement();
-            rs = st.executeQuery("SELECT LAST_INSERT_ID() as id");
-            if (rs.next()) {
-                r.getKlijent().setIdKlijent(rs.getInt("id"));
-            }
-        }
-        rs.close();
-        st.close();
-
-        // dodaj rezervaciju
         broker.add(r);
-        st = DbConnectionFactory.getInstance().getConnection().createStatement();
-        rs = st.executeQuery("SELECT LAST_INSERT_ID() as id");
+
+        Statement st = DbConnectionFactory.getInstance().getConnection().createStatement();
+        ResultSet rs = st.executeQuery("SELECT LAST_INSERT_ID() as id");
         if (rs.next()) {
             r.setIdRezervacija(rs.getInt("id"));
         }
         rs.close();
         st.close();
 
-        // dodaj stavke
         for (StavkaRezervacije stavka : r.getStavke()) {
             stavka.setRezervacija(r);
             broker.add(stavka);

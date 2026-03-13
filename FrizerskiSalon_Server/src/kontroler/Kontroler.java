@@ -24,12 +24,12 @@ import operacije.rezervacija.DodajRezervacijuSO;
 import operacije.rezervacija.IzmeniRezervacijuSO;
 import operacije.rezervacija.ObrisiRezervacijuSO;
 import operacije.rezervacija.UcitajRezervacijeSO;
+import operacije.sertifikat.DodajSertifikatSO;
 import operacije.sertifikat.UcitajSertifikateSO;
 import operacije.usluga.DodajUsluguSO;
 import operacije.usluga.IzmeniUsluguSO;
 import operacije.usluga.ObrisiUsluguSO;
 import operacije.usluga.UcitajUslugeSO;
-
 
 public class Kontroler {
 
@@ -127,12 +127,16 @@ public class Kontroler {
         ObrisiRezervacijuSO operacija = new ObrisiRezervacijuSO();
         operacija.izvrsi(r, null);
     }
-    
-    public List<Sertifikat> ucitajSertifikate() throws Exception{
+
+    public List<Sertifikat> ucitajSertifikate() throws Exception {
         UcitajSertifikateSO operacija = new UcitajSertifikateSO();
         operacija.izvrsi(null, null);
         return operacija.getSertifikati();
     }
 
+    public void dodajSertifikat(Sertifikat s) throws Exception {
+        DodajSertifikatSO so = new DodajSertifikatSO();
+        so.izvrsi(s, null);
+    }
 
 }
