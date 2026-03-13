@@ -34,7 +34,7 @@ public class FormaKonfiguracijaPort extends javax.swing.JDialog {
 
         jLabel1.setText("Port:");
 
-        jButtonSacuvaj.setText("Sacuvaj");
+        jButtonSacuvaj.setText("Sačuvaj");
         jButtonSacuvaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSacuvajActionPerformed(evt);
@@ -71,7 +71,7 @@ public class FormaKonfiguracijaPort extends javax.swing.JDialog {
 
     private void jButtonSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajActionPerformed
         if (jTextFieldPort.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Port ne sme biti prazan!", "Greska!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Port ne sme biti prazan!", "Greška!", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -79,7 +79,7 @@ public class FormaKonfiguracijaPort extends javax.swing.JDialog {
         try {
             port = Integer.parseInt(jTextFieldPort.getText().trim());
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Port mora biti broj!", "Greska!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Port mora biti broj!", "Greška!", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -89,7 +89,7 @@ public class FormaKonfiguracijaPort extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Parametri su uspesno sačuvani!", "Uspeh!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Port mora biti izmedju 0 i 65535!", "Greska!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Port mora biti izmedju 0 i 65535!", "Greška!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonSacuvajActionPerformed
 

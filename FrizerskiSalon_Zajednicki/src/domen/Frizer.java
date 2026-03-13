@@ -106,14 +106,14 @@ public class Frizer implements AbstractDomainObject {
     @Override
     public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
         List<AbstractDomainObject> lista = new ArrayList<>();
-        while(rs.next()){
-            int idFrizer = rs.getInt("idFrizer");
-            String ime = rs.getString("ime");
-            String prezime = rs.getString("prezime");
-            String korisnickoIme = rs.getString("korisnickoIme");
-            String sifra = rs.getString("sifra");
-            Frizer frizer = new Frizer(idFrizer, ime, prezime, korisnickoIme, sifra);
-            lista.add(frizer);
+        while (rs.next()) {
+            Frizer f = new Frizer();
+            f.setIdFrizer(rs.getInt("idFrizer"));
+            f.setIme(rs.getString("ime"));
+            f.setPrezime(rs.getString("prezime"));
+            f.setKorisnickoIme(rs.getString("korisnickoIme"));
+            f.setSifra(rs.getString("sifra"));
+            lista.add(f);
         }
         return lista;
     }

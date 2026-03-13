@@ -8,6 +8,7 @@ import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
 import domen.Rezervacija;
+import domen.Sertifikat;
 import domen.StavkaRezervacije;
 import domen.Usluga;
 import java.io.IOException;
@@ -121,14 +122,14 @@ public class ObradaKlijentskihZahteva extends Thread {
                     }
                     break;
                     case OBRISI_REZERVACIJU:
-                        try{
-                            Rezervacija r = (Rezervacija) zahtev.getParametar();
-                            Kontroler.getInstance().obrisiRezervaciju(r);
-                            odgovor.setResponse(null);
-                        }catch(Exception ex){
-                            odgovor.setResponse(ex);
-                        }
-                        break;
+                        try {
+                        Rezervacija r = (Rezervacija) zahtev.getParametar();
+                        Kontroler.getInstance().obrisiRezervaciju(r);
+                        odgovor.setResponse(null);
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
+                    break;
                     case DODAJ_USLUGU:
                         try {
                         Usluga u = (Usluga) zahtev.getParametar();
@@ -154,6 +155,14 @@ public class ObradaKlijentskihZahteva extends Thread {
                     } catch (Exception ex) {
                         odgovor.setResponse(ex);
                     }
+                    case UCITAJ_SERTIFIKATE:
+                    try {
+                        List<Sertifikat> sertifikati = Kontroler.getInstance().ucitajSertifikate();
+                        odgovor.setResponse(sertifikati);
+                    } catch (Exception ex) {
+                        odgovor.setResponse(ex);
+                    }
+                    break;
                     default:
                         System.out.println("Ova operacija ne postoji.");
                 }

@@ -39,7 +39,7 @@ public class PrikazKlijenataKontroler {
                         pripremiFormu();
                         JOptionPane.showMessageDialog(pkf, "Sistem je uspešno obrisao klijenta!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(pkf, "Sistem nije uspeo da obriše klijenta!", "Greška", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(pkf, "Sistem nije uspeo da obriše klijenta, postoji rezervacija za istog!", "Greška", JOptionPane.ERROR_MESSAGE);
                         ex.printStackTrace(); //ConstraintViolationException
                     }
                 }

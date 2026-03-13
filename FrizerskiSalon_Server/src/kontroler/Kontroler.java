@@ -8,6 +8,7 @@ import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
 import domen.Rezervacija;
+import domen.Sertifikat;
 import domen.StavkaRezervacije;
 import domen.Usluga;
 import java.util.List;
@@ -23,6 +24,7 @@ import operacije.rezervacija.DodajRezervacijuSO;
 import operacije.rezervacija.IzmeniRezervacijuSO;
 import operacije.rezervacija.ObrisiRezervacijuSO;
 import operacije.rezervacija.UcitajRezervacijeSO;
+import operacije.sertifikat.UcitajSertifikateSO;
 import operacije.usluga.DodajUsluguSO;
 import operacije.usluga.IzmeniUsluguSO;
 import operacije.usluga.ObrisiUsluguSO;
@@ -125,4 +127,12 @@ public class Kontroler {
         ObrisiRezervacijuSO operacija = new ObrisiRezervacijuSO();
         operacija.izvrsi(r, null);
     }
+    
+    public List<Sertifikat> ucitajSertifikate() throws Exception{
+        UcitajSertifikateSO operacija = new UcitajSertifikateSO();
+        operacija.izvrsi(null, null);
+        return operacija.getSertifikati();
+    }
+
+
 }

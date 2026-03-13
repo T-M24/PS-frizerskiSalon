@@ -22,7 +22,10 @@ public class UcitajFrizereSO extends ApstraktnaGenerickaOperacija{
 
     @Override
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
-        frizeri = broker.getAll(new Frizer(), "");
+        frizeri = broker.getAll(new Frizer(),
+            " JOIN frizersertifikat ON frizer.idFrizer = frizersertifikat.frizer"
+            + " JOIN sertifikat ON frizersertifikat.sertifikat = sertifikat.idSertifikat"
+            + " ORDER BY frizer.idFrizer");
     }
     
 }

@@ -2,24 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package operacija.klijenti;
+package operacije.sertifikat;
 
-import domen.Klijent;
+import domen.Frizer;
+import domen.Sertifikat;
+import java.util.List;
 import operacija.ApstraktnaGenerickaOperacija;
 
+public class UcitajSertifikateSO extends ApstraktnaGenerickaOperacija {
 
-public class ObrisiKlijentaSO extends ApstraktnaGenerickaOperacija{
+    List<Sertifikat> sertifikati;
+
+    public List<Sertifikat> getSertifikati() {
+        return sertifikati;
+    }
 
     @Override
     protected void preduslovi(Object param) throws Exception {
-        if(param == null || !(param instanceof Klijent)){
-           throw new Exception("Sistem ne moze da obriše klijenta!");
-        }
     }
 
     @Override
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
-        broker.delete((Klijent) param);
+        sertifikati = broker.getAll(new Sertifikat(), "");
     }
-    
 }

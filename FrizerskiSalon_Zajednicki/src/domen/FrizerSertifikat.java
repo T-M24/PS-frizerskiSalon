@@ -7,6 +7,7 @@ package domen;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -82,7 +83,20 @@ public class FrizerSertifikat implements AbstractDomainObject {
 
     @Override
     public List<AbstractDomainObject> getList(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<AbstractDomainObject> lista = new ArrayList<>();
+        while (rs.next()) {
+            Frizer frizer = new Frizer();
+            frizer.setIdFrizer(rs.getInt("frizer"));
+
+            Sertifikat sertifikat = new Sertifikat();
+            sertifikat.setIdSertifikat(rs.getInt("sertifikat"));
+
+            LocalDateTime datum = rs.getTimestamp("datumIzdavanja").toLocalDateTime();
+
+            FrizerSertifikat fs = new FrizerSertifikat(datum, frizer, sertifikat);
+            lista.add(fs);
+        }
+        return lista;
     }
 
     @Override

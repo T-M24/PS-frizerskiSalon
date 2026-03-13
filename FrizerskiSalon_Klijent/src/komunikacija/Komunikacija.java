@@ -8,6 +8,7 @@ import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
 import domen.Rezervacija;
+import domen.Sertifikat;
 import domen.StavkaRezervacije;
 import domen.Usluga;
 import java.io.IOException;
@@ -154,10 +155,8 @@ public class Komunikacija {
         Zahtev zahtev = new Zahtev(Operacija.DODAJ_USLUGU, usluga);
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
-        if (odgovor.getResponse() != null) {
-            Exception ex = (Exception) odgovor.getResponse();
-            ex.printStackTrace();
-            throw new Exception(ex.getMessage());
+        if (odgovor.getResponse() instanceof Exception) { // naknadno dodato, imala sam problem
+            throw (Exception) odgovor.getResponse();
         }
     }
 
@@ -165,8 +164,8 @@ public class Komunikacija {
         Zahtev zahtev = new Zahtev(Operacija.IZMENI_USLUGU, u);
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
-        if (odgovor.getResponse() != null) {
-            throw new Exception(((Exception) odgovor.getResponse()).getMessage());
+        if (odgovor.getResponse() instanceof Exception) { // naknadno dodato, imala sam problem
+            throw (Exception) odgovor.getResponse();
         }
     }
 
@@ -174,12 +173,8 @@ public class Komunikacija {
         Zahtev zahtev = new Zahtev(Operacija.OBRISI_USLUGU, u);
         posiljalac.send(zahtev);
         Odgovor odgovor = (Odgovor) primalac.accept();
-        if (odgovor.getResponse() == null) {
-            System.out.println("Sistem je uspešno obrisao klijenta!");
-        } else {
-            System.out.println("Sistem nije mogao da obriše klijenta!");
-            ((Exception) odgovor.getResponse()).printStackTrace();
-            throw new Exception("Sistem nije mogao da obriše klijenta!");
+        if (odgovor.getResponse() instanceof Exception) {
+            throw (Exception) odgovor.getResponse();
         }
     }
 
@@ -191,4 +186,20 @@ public class Komunikacija {
             throw new Exception(((Exception) odgovor.getResponse()).getMessage());
         }
     }
+
+    public List<Sertifikat> ucitajSertifikate() {
+        try {
+            Zahtev zahtev = new Zahtev(Operacija.UCITAJ_SERTIFIKATE, null);
+            posiljalac.send(zahtev);
+            Odgovor odgovor = (Odgovor) primalac.accept();
+            if (odgovor.getResponse() instanceof Exception) {
+                throw (Exception) odgovor.getResponse();
+            }
+            return (List<Sertifikat>) odgovor.getResponse();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
 }

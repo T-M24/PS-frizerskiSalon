@@ -21,5 +21,6 @@ public enum Operacija implements Serializable {
     OBRISI_REZERVACIJU,
     DODAJ_USLUGU,
     IZMENI_USLUGU,
-    OBRISI_USLUGU;
+    OBRISI_USLUGU,
+    UCITAJ_SERTIFIKATE;
 }
