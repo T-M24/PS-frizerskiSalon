@@ -4,10 +4,7 @@
  */
 package repozitorijum_db;
 
-/**
- *
- * @author Nikola Manjencic
- */
+
 public interface DBRepozitorijum<T> extends repozitorijum.Repozitorijum<T> {
 
     default public void connect() throws Exception {

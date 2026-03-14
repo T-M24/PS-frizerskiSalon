@@ -23,7 +23,7 @@ public class IzmeniRezervacijuSO extends ApstraktnaGenerickaOperacija {
         r.izracunajUkupnoVreme();
         broker.edit(r);
 
-        // obrisi SVE stavke te rezervacije
+        // obrisi SVE stavke te rezervacije!!!!!!!!!
         java.sql.Statement st = repozitorijum_db.DbConnectionFactory.getInstance().getConnection().createStatement();
         st.executeUpdate("DELETE FROM stavkarezervacije WHERE rezervacija=" + r.getIdRezervacija());
         st.close();

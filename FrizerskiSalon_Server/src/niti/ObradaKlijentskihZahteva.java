@@ -139,6 +139,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                     } catch (Exception ex) {
                         odgovor.setResponse(ex);
                     }
+                    break;
                     case IZMENI_USLUGU:
                         try {
                         Usluga u = (Usluga) zahtev.getParametar();
@@ -147,6 +148,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                     } catch (Exception ex) {
                         odgovor.setResponse(ex);
                     }
+                    break;
                     case OBRISI_USLUGU:
                         try {
                         Usluga u = (Usluga) zahtev.getParametar();
@@ -155,6 +157,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                     } catch (Exception ex) {
                         odgovor.setResponse(ex);
                     }
+                    break;
                     case UCITAJ_SERTIFIKATE:
                     try {
                         List<Sertifikat> sertifikati = Kontroler.getInstance().ucitajSertifikate();

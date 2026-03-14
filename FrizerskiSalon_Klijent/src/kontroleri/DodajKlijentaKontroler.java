@@ -73,10 +73,10 @@ public class DodajKlijentaKontroler {
                     selektovaniKlijent.setMesto((Mesto) dkf.getjComboBoxMesta().getSelectedItem());
 
                     komunikacija.Komunikacija.getInstance().izmeniKlijenta(selektovaniKlijent);
-                    JOptionPane.showMessageDialog(dkf, "Klijent je uspesno izmenjen!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem je zapamtio klijenta!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(dkf, "Sistem nije uspeo da izmeni klijenta!", "Greška", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem ne može da zapamti klijenta!", "Greška", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -96,9 +96,11 @@ public class DodajKlijentaKontroler {
             dkf.getjTextFieldEmail().setText(selektovaniKlijent.getEmail());
             dkf.getjComboBoxMesta().setSelectedItem(selektovaniKlijent.getMesto());
             dkf.prikaziDugmeIzmeni();
+            dkf.sakrijDugmeDodaj();
         } else {
             // forma za dodavanje, sakrij dugme izmeni
-            dkf.sakrijiDugmeIzmeni();
+            dkf.sakrijDugmeIzmeni();
+            dkf.prikaziDugmeDodaj();
         }
     }
 }

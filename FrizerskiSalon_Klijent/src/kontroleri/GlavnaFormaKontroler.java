@@ -41,13 +41,14 @@ public class GlavnaFormaKontroler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (punjenje) {
-                    return;  // ovo moram zbog nullpointer exception u comboboxu
+                    return;
                 }
                 Rezervacija r = (Rezervacija) gf.getjComboBoxRezervacija().getSelectedItem();
                 if (r == null) {
+                    JOptionPane.showMessageDialog(gf, "Sistem ne može da nađe rezervaciju!", "Greška", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
+                
                 Klijent k = r.getKlijent();
                 gf.getjTextFieldIme().setText(k.getIme());
                 gf.getjTextFieldPrezime().setText(k.getPrezime());
@@ -70,6 +71,8 @@ public class GlavnaFormaKontroler {
 
                 ukupnoVreme = r.getUkupnoVremeTrajanja();
                 ukupanIznos = r.getUkupanIznos();
+
+                JOptionPane.showMessageDialog(gf, "Sistem je našao rezervaciju!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -171,11 +174,11 @@ public class GlavnaFormaKontroler {
                     r.setStavke(mts.getListaStavki());
                     komunikacija.Komunikacija.getInstance().izmeniRezervaciju(r);
 
-                    JOptionPane.showMessageDialog(gf, "Rezervacija je uspešno izmenjena!");
+                    JOptionPane.showMessageDialog(gf, "Sistem je zapamtio rezervaciju!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                     pripremiFormu();
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(gf, "Greška: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(gf, "Sistem ne može da zapamti rezervaciju!", "Greška", JOptionPane.ERROR_MESSAGE);
                     ex.printStackTrace();
                 }
             }

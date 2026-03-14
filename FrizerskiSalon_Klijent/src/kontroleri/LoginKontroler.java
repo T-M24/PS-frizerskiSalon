@@ -44,14 +44,20 @@ public class LoginKontroler {
                     Frizer ulogovani = Komunikacija.getInstance().login(username, password);
 
                     if (ulogovani == null) {
-                        JOptionPane.showMessageDialog(lf, "Korisnik sa ovim parametrima ne postoji!", "Greška", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(lf, "Korisničko ime i šifra nisu ispravni!", "Greška", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(lf, "Prijava na sistem je uspešna!", "Uspeh!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(lf, "Korisničko ime i šifra su ispravni!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                         Koordinator.getInstance().setUlogovani(ulogovani);
-                        koordinator.Koordinator.getInstance().otvoriGlavnuFormu();
-                        lf.dispose();
+                        try {
+                            koordinator.Koordinator.getInstance().otvoriGlavnuFormu();
+                            lf.dispose();
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(lf, "Ne može da se otvori glavna forma i meni!", "Greška", JOptionPane.ERROR_MESSAGE);
+                            ex.printStackTrace();
+                        }
                     }
                 } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(lf, "Ne može da se otvori glavna forma i meni!", "Greška", JOptionPane.ERROR_MESSAGE);
                     Logger.getLogger(LoginKontroler.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

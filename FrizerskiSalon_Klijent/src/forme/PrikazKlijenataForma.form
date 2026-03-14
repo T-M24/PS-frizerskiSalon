@@ -47,6 +47,8 @@
                           <Component id="jComboBoxMesto" min="-2" pref="122" max="-2" attributes="0"/>
                           <Component id="jButtonPretrazi" min="-2" pref="122" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="jButtonDetalji" min="-2" pref="111" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -56,17 +58,25 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldIme" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBoxMesto" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldPrezime" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonPretrazi" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldIme" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxMesto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldPrezime" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonPretrazi" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="jButtonDetalji" min="-2" pref="41" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="229" max="-2" attributes="0"/>
@@ -139,6 +149,11 @@
     <Component class="javax.swing.JButton" name="jButtonPretrazi">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pretra&#x17e;i"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonDetalji">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detalji"/>
       </Properties>
     </Component>
   </SubComponents>

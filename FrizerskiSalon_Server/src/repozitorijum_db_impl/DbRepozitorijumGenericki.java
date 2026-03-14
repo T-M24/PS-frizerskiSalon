@@ -62,9 +62,6 @@ public class DbRepozitorijumGenericki implements DBRepozitorijum<AbstractDomainO
         st.close();
     }
 
-    @Override
-    public List<AbstractDomainObject> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 
 }

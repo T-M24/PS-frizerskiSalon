@@ -8,6 +8,7 @@ import domen.Klijent;
 import domen.Frizer;
 import domen.Rezervacija;
 import domen.Usluga;
+import forme.DetaljiRezervacijeForma;
 import forme.PrikazRezervacijaForma;
 import forme.modeli.ModelTabeleRezervacija;
 import java.awt.event.ActionEvent;
@@ -62,9 +63,26 @@ public class PrikazRezervacijaKontroler {
                     komunikacija.Komunikacija.getInstance().obrisiRezervaciju(r);
                     koordinator.Koordinator.getInstance().osveziGlavnuFormu();
                     pripremiFormu();
+                    JOptionPane.showMessageDialog(prf, "Sistem je uspešno obrisao rezervaciju!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                 } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(prf, "Sistem nije uspeo da obriše rezervaciju!", "Greška", JOptionPane.ERROR_MESSAGE);
                     ex.printStackTrace();
                 }
+            }
+        });
+        prf.addBtnDetaljiActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selektovaniRed = prf.getjTableRezervacija().getSelectedRow();
+                if (selektovaniRed == -1) {
+                    JOptionPane.showMessageDialog(prf, "Sistem ne može da nađe rezervaciju!", "Greška", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                ModelTabeleRezervacija mtr = (ModelTabeleRezervacija) prf.getjTableRezervacija().getModel();
+                Rezervacija r = mtr.getListaRezervacija().get(selektovaniRed);
+                JOptionPane.showMessageDialog(prf, "Sistem je našao rezervaciju!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                DetaljiRezervacijeForma drf = new DetaljiRezervacijeForma(r);
+                drf.setVisible(true);
             }
         });
     }

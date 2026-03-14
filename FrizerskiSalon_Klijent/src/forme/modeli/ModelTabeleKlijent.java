@@ -13,10 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Nikola Manjencic
- */
+
 public class ModelTabeleKlijent extends AbstractTableModel {
 
     List<Klijent> originalnaLista;
@@ -68,7 +65,7 @@ public class ModelTabeleKlijent extends AbstractTableModel {
         return listaSvihKlijenata;
     }
 
-    public void pretrazi(String ime, String prezime, Mesto mesto) {
+    public boolean pretrazi(String ime, String prezime, Mesto mesto) {
 
         listaSvihKlijenata = originalnaLista.stream()
                 .filter(klijent -> (ime == null || ime.isEmpty() || klijent.getIme().toLowerCase().contains(ime.toLowerCase())))
@@ -77,6 +74,7 @@ public class ModelTabeleKlijent extends AbstractTableModel {
                 .collect(Collectors.toList());
 
         fireTableDataChanged();
+        return !listaSvihKlijenata.isEmpty();
     }
 
 }

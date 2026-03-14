@@ -169,11 +169,19 @@ public class DodajKlijentaForma extends javax.swing.JFrame {
         jButtonIzmeni.addActionListener(actionListener);
     }
 
-    public void sakrijiDugmeIzmeni() {
+    public void sakrijDugmeIzmeni() {
         jButtonIzmeni.setVisible(false);
     }
 
     public void prikaziDugmeIzmeni() {
         jButtonIzmeni.setVisible(true);
+    }
+
+    public void sakrijDugmeDodaj() {
+        jButtonDodaj.setVisible(false);
+    }
+
+    public void prikaziDugmeDodaj() {
+        jButtonDodaj.setVisible(true);
     }
 }

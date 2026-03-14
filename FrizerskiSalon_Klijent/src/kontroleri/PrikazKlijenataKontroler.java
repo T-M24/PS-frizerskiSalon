@@ -67,7 +67,33 @@ public class PrikazKlijenataKontroler {
                 Mesto mesto = (Mesto) pkf.getjComboBoxMesto().getSelectedItem();
 
                 ModelTabeleKlijent mtk = (ModelTabeleKlijent) pkf.getjTableKlijenti().getModel();
-                mtk.pretrazi(ime, prezime, mesto);
+                boolean nadjen = mtk.pretrazi(ime, prezime, mesto);
+
+                if (!nadjen) {
+                    JOptionPane.showMessageDialog(pkf, "Sistem ne može da nađe klijente po zadatim kriterijumima!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(pkf, "Sistem je našao klijente po zadatim kriterijumima!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        pkf.addBtnDetaljiActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selektovaniRed = pkf.getjTableKlijenti().getSelectedRow();
+                if (selektovaniRed == -1) {
+                    JOptionPane.showMessageDialog(pkf, "Sistem ne može da nađe klijenta!", "Greška", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                ModelTabeleKlijent mtk = (ModelTabeleKlijent) pkf.getjTableKlijenti().getModel();
+                Klijent k = mtk.getListaSvihKlijenata().get(selektovaniRed);
+
+                String detalji = "Ime: " + k.getIme() + "\n"
+                        + "Prezime: " + k.getPrezime() + "\n"
+                        + "Broj telefona: " + k.getBrojTelefona() + "\n"
+                        + "Email: " + k.getEmail() + "\n"
+                        + "Mesto: " + (k.getMesto() != null ? k.getMesto().getNaziv() : "N/A");
+
+                JOptionPane.showMessageDialog(pkf, detalji, "Sistem je našao klijenta!", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 

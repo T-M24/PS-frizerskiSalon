@@ -146,7 +146,7 @@ public class DodajRezervacijaKontroler {
                     osveziFormu(mts);
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(drf, "Greška: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(drf, "Sistem ne može da zapamti rezervaciju!");
                     ex.printStackTrace();
                 }
             }

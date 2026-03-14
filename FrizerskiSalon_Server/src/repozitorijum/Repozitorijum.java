@@ -16,6 +16,5 @@ public interface Repozitorijum<T> {
     void add(T param) throws Exception;
     void edit(T param) throws Exception;
     void delete(T param) throws Exception;
-    List<T> getAll();
 
 }

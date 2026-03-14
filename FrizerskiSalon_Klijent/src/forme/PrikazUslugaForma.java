@@ -28,12 +28,12 @@ public class PrikazUslugaForma extends javax.swing.JFrame {
         return jTableUsluga;
     }
 
-    public void addBtnIzmeniActionListener(java.awt.event.ActionListener al) {
-        jButtonIzmeni.addActionListener(al);
+    public void addBtnIzmeniActionListener(java.awt.event.ActionListener actionListener) {
+        jButtonIzmeni.addActionListener(actionListener);
     }
 
-    public void addBtnObrisiActionListener(java.awt.event.ActionListener al) {
-        jButtonObrisi.addActionListener(al);
+    public void addBtnObrisiActionListener(java.awt.event.ActionListener actionListener) {
+        jButtonObrisi.addActionListener(actionListener);
     }
 
     /**
