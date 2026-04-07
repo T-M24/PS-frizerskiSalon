@@ -12,17 +12,14 @@ import java.sql.ResultSet;
 import repozitorijum_db.DbConnectionFactory;
 import repozitorijum_db.DBRepozitorijum;
 
-/**
- *
- * @author Nikola Manjencic
- */
+
 public class DbRepozitorijumGenericki implements DBRepozitorijum<AbstractDomainObject> {
 
     @Override
     public List<AbstractDomainObject> getAll(AbstractDomainObject param, String uslov) throws Exception {
         List<AbstractDomainObject> list = new ArrayList<>();
         String upit = "SELECT * FROM " + param.getTableName();
-        if (uslov != null) { //ovde se vracam posle
+        if (uslov != null) {
             upit += uslov;
         }
         System.out.println(upit);

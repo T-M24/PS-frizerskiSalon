@@ -6,10 +6,7 @@ package main;
 
 import forme.ServerskaForma;
 
-/**
- *
- * @author Nikola Manjencic
- */
+
 public class Main {
     public static void main(String[] args) {
         ServerskaForma sf = new ServerskaForma();

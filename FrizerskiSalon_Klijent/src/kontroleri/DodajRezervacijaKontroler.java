@@ -80,27 +80,6 @@ public class DodajRezervacijaKontroler {
             }
         });
 
-        drf.addBtnObrisiStavkuActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int row = drf.getjTableStavke().getSelectedRow();
-                if (row >= 0) {
-                    ModelTabeleStavke mts = (ModelTabeleStavke) drf.getjTableStavke().getModel();
-                    StavkaRezervacije stavka = mts.getListaStavki().get(row);
-
-                    ukupnoVreme -= stavka.getUsluga().getVremeTrajanja() * stavka.getKolicina();
-                    ukupanIznos -= stavka.getIznos();
-
-                    drf.getjTextFieldUkupnoVreme().setText(String.valueOf(ukupnoVreme));
-                    drf.getjTextFieldUkupanIznos().setText(String.format("%.2f", ukupanIznos));
-
-                    mts.obrisiStavku(row);
-                } else {
-                    JOptionPane.showMessageDialog(drf, "Selektujte stavku za brisanje!");
-                }
-            }
-        });
-
         drf.addBtnDodajRezervacijuActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -127,6 +106,11 @@ public class DodajRezervacijaKontroler {
                         return;
                     }
 
+                    if (datum.isBefore(LocalDateTime.now())) {
+                        JOptionPane.showMessageDialog(drf, "Datum rezervacije ne može biti u prošlosti!");
+                        return;
+                    }
+
                     // validacija stavki
                     ModelTabeleStavke mts = (ModelTabeleStavke) drf.getjTableStavke().getModel();
                     if (mts.getRowCount() == 0) {
@@ -134,7 +118,17 @@ public class DodajRezervacijaKontroler {
                         return;
                     }
 
+                    // provera frizera 
                     Frizer frizer = (Frizer) drf.getjComboBoxFrizer().getSelectedItem();
+
+                    boolean frizerZauzet = komunikacija.Komunikacija.getInstance()
+                            .frizerZauzet(frizer, datum, ukupnoVreme);
+
+                    if (frizerZauzet) {
+                        JOptionPane.showMessageDialog(drf,
+                                "Frizer " + frizer + " je već zauzet u izabranom terminu!");
+                        return;
+                    }
 
                     Rezervacija rezervacija = new Rezervacija(frizer, klijent, 0, datum, ukupnoVreme, ukupanIznos);
                     rezervacija.setStavke(mts.getListaStavki());
@@ -149,6 +143,27 @@ public class DodajRezervacijaKontroler {
                     JOptionPane.showMessageDialog(drf, "Sistem ne može da zapamti rezervaciju!");
                     ex.printStackTrace();
                 }
+            }
+        });
+        drf.addBtnObrisiStavkuActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = drf.getjTableStavke().getSelectedRow();
+                if (row < 0) {
+                    JOptionPane.showMessageDialog(drf, "Selektujte stavku za brisanje!");
+                    return;
+                }
+
+                ModelTabeleStavke mts = (ModelTabeleStavke) drf.getjTableStavke().getModel();
+                StavkaRezervacije stavka = mts.getListaStavki().get(row);
+
+                ukupnoVreme -= stavka.getUsluga().getVremeTrajanja() * stavka.getKolicina();
+                ukupanIznos -= stavka.getIznos();
+
+                drf.getjTextFieldUkupnoVreme().setText(String.valueOf(ukupnoVreme));
+                drf.getjTextFieldUkupanIznos().setText(String.format("%.2f", ukupanIznos));
+
+                mts.obrisiStavku(row);
             }
         });
     }

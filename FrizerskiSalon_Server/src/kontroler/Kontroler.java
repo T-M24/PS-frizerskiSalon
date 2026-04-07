@@ -18,6 +18,7 @@ import operacija.klijenti.IzmeniKlijentaSO;
 import operacija.klijenti.ObrisiKlijentaSO;
 import operacija.login.LoginOperacija;
 import operacija.klijenti.UcitajKlijenteSO;
+import operacija.mesta.DodajMestoSO;
 import operacija.mesta.UcitajMestaSO;
 import operacije.frizer.UcitajFrizereSO;
 import operacije.rezervacija.DodajRezervacijuSO;
@@ -137,6 +138,11 @@ public class Kontroler {
     public void dodajSertifikat(Sertifikat s) throws Exception {
         DodajSertifikatSO so = new DodajSertifikatSO();
         so.izvrsi(s, null);
+    }
+
+    public void dodajMesto(Mesto m) throws Exception {
+        DodajMestoSO so = new DodajMestoSO();
+        so.izvrsi(m, null);
     }
 
 }

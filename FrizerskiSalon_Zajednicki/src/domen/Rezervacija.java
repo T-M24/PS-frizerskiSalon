@@ -7,6 +7,7 @@ package domen;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -189,7 +190,12 @@ public class Rezervacija implements AbstractDomainObject {
 
     @Override
     public String getInsertValues() {
-        return "'" + datumRezervacije + "'," + ukupanIznos + "," + ukupnoVremeTrajanja + "," + frizer.getIdFrizer() + "," + klijent.getIdKlijent();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return "'" + datumRezervacije.format(formatter) + "',"
+                + ukupanIznos + ","
+                + ukupnoVremeTrajanja + ","
+                + frizer.getIdFrizer() + ","
+                + klijent.getIdKlijent();
     }
 
     @Override
@@ -204,7 +210,12 @@ public class Rezervacija implements AbstractDomainObject {
 
     @Override
     public String getEditableValues() {
-        return "datumRezervacije='" + datumRezervacije + "', ukupanIznos=" + ukupanIznos + ", ukupnoVremeTrajanja=" + ukupnoVremeTrajanja + ", frizer=" + frizer.getIdFrizer() + ", klijent=" + klijent.getIdKlijent();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return "datumRezervacije='" + datumRezervacije.format(formatter) + "', ukupanIznos="
+                + ukupanIznos + ", ukupnoVremeTrajanja="
+                + ukupnoVremeTrajanja + ", frizer="
+                + frizer.getIdFrizer() + ", klijent="
+                + klijent.getIdKlijent();
     }
 
     public void izracunajUkupnoVreme() {
@@ -219,4 +230,5 @@ public class Rezervacija implements AbstractDomainObject {
         this.ukupnoVremeTrajanja = ukupnoVreme;
         this.ukupanIznos = ukupnoIznos;
     }
+
 }

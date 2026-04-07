@@ -13,6 +13,7 @@ import domen.StavkaRezervacije;
 import domen.Usluga;
 import java.io.IOException;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -209,6 +210,39 @@ public class Komunikacija {
         if (odgovor.getResponse() instanceof Exception) {
             throw (Exception) odgovor.getResponse();
         }
+    }
+
+    public void dodajMesto(Mesto m) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_MESTO, m);
+        posiljalac.send(zahtev);
+        Odgovor odgovor = (Odgovor) primalac.accept();
+        if (odgovor.getResponse() instanceof Exception) {
+            throw (Exception) odgovor.getResponse();
+        }
+    }
+
+    public boolean frizerZauzet(Frizer frizer, LocalDateTime noviDatum, int novoVreme) {
+        List<Rezervacija> rezervacije = ucitajRezervacije(); // tvoja postojeća metoda
+
+        LocalDateTime noviKraj = noviDatum.plusMinutes(novoVreme);
+
+        for (Rezervacija r : rezervacije) {
+            if (r.getFrizer().getIdFrizer() != frizer.getIdFrizer()) {
+                continue;
+            }
+
+            LocalDateTime postojeciPocetak = r.getDatumRezervacije();
+            LocalDateTime postojeciKraj = postojeciPocetak.plusMinutes(r.getUkupnoVremeTrajanja());
+
+            boolean preklapanje = noviDatum.isBefore(postojeciKraj)
+                    && noviKraj.isAfter(postojeciPocetak);
+
+            if (preklapanje) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

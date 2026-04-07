@@ -48,7 +48,7 @@ public class GlavnaFormaKontroler {
                     JOptionPane.showMessageDialog(gf, "Sistem ne može da nađe rezervaciju!", "Greška", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
+
                 Klijent k = r.getKlijent();
                 gf.getjTextFieldIme().setText(k.getIme());
                 gf.getjTextFieldPrezime().setText(k.getPrezime());
@@ -190,7 +190,7 @@ public class GlavnaFormaKontroler {
     }
 
     private void pripremiFormu() {
-        punjenje = true; // ukljuci flag
+        punjenje = true;
 
         List<Rezervacija> rezervacije = komunikacija.Komunikacija.getInstance().ucitajRezervacije();
         gf.getjComboBoxRezervacija().removeAllItems();
@@ -210,8 +210,6 @@ public class GlavnaFormaKontroler {
             gf.getjComboBoxUsluga().addItem(u);
         }
 
-        punjenje = false; // iskljuci flag
-
         gf.getjTableStavke().setModel(new ModelTabeleStavke(new ArrayList<>()));
         gf.getjTextFieldIme().setText("");
         gf.getjTextFieldPrezime().setText("");
@@ -221,6 +219,8 @@ public class GlavnaFormaKontroler {
         gf.getjTextFieldUkupanIznos().setText("0.00");
         ukupnoVreme = 0;
         ukupanIznos = 0;
+
+        punjenje = false;
     }
 
 }

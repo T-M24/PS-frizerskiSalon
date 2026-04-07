@@ -25,9 +25,7 @@ public abstract class ApstraktnaGenerickaOperacija {
         } catch(Exception e){
             ponistiTransakciju();
             throw e;
-        } finally{
-//            ugasiKonekciju(); OVDE SE VRATITI
-        }
+        } 
     }
 
     protected abstract void preduslovi(Object param) throws Exception;

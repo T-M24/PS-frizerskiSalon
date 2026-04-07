@@ -9,6 +9,7 @@ import domen.Klijent;
 import domen.Rezervacija;
 import domen.Usluga;
 import forme.DodajKlijentaForma;
+import forme.DodajMestoForma;
 import forme.DodajRezervacijaForma;
 import forme.DodajSertifikatForma;
 import forme.DodajUsluguForma;
@@ -19,6 +20,7 @@ import forme.PrikazRezervacijaForma;
 import forme.PrikazSertifikataForma;
 import forme.PrikazUslugaForma;
 import kontroleri.DodajKlijentaKontroler;
+import kontroleri.DodajMestoKontroler;
 import kontroleri.DodajRezervacijaKontroler;
 import kontroleri.DodajSertifikatKontroler;
 import kontroleri.DodajUsluguKontroler;
@@ -43,6 +45,7 @@ public class Koordinator {
     private DodajUsluguKontroler dodajUsluguKontroler;
     private PrikazSertifikataKontroler prikazSertifikataKontroler;
     private DodajSertifikatKontroler dodajSertifikatKontroler;
+    private DodajMestoKontroler dodajMestoKontroler;
 
     public static Koordinator getInstance() {
         if (instance == null) {
@@ -131,6 +134,11 @@ public class Koordinator {
     public void otvoriDodajSertifikatForma() {
         dodajSertifikatKontroler = new DodajSertifikatKontroler(new DodajSertifikatForma());
         dodajSertifikatKontroler.otvoriFormu();
+    }
+
+    public void otvoriDodajMestoForma() {
+        dodajMestoKontroler = new DodajMestoKontroler(new DodajMestoForma());
+        dodajMestoKontroler.otvoriFormu();
     }
 
 }

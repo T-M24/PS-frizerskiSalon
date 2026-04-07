@@ -8,12 +8,9 @@ import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import server.PokreniServer;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class ServerskaForma extends javax.swing.JFrame {
 
     PokreniServer ps;
@@ -136,7 +133,19 @@ public class ServerskaForma extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButtonPokreniServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPokreniServerActionPerformed
+        ps = new PokreniServer();
         ps.start();
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+        }
+
+        if (!ps.isPokrenut()) {
+            JOptionPane.showMessageDialog(this, "Port je već zauzet, server se ne može pokrenuti!", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         jLabelStatus.setText("Pokrenut");
         jLabelStatus.setForeground(Color.GREEN);
         jButtonZaustaviServer.setEnabled(true);

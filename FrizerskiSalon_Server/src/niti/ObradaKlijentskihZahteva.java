@@ -41,7 +41,6 @@ public class ObradaKlijentskihZahteva extends Thread {
         while (!kraj) {
             try {
                 Zahtev zahtev = (Zahtev) primalac.accept();
-                ////////////////// NAKNADNO DODATO, proveriti da li sme ovako?
                 if (zahtev == null) {
                     kraj = true;
                     break;
@@ -175,6 +174,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setResponse(ex);
                     }
                     break;
+                    case DODAJ_MESTO:
+                        try{
+                            Mesto m = (Mesto) zahtev.getParametar();
+                            Kontroler.getInstance().dodajMesto(m);
+                            odgovor.setResponse(null);
+                        }catch(Exception ex){
+                            odgovor.setResponse(ex);
+                        }
+                        break;
                     default:
                         System.out.println("Ova operacija ne postoji.");
                 }

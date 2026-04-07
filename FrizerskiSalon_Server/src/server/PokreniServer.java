@@ -23,18 +23,32 @@ public class PokreniServer extends Thread {
     public PokreniServer() {
         listaKlijenata = new ArrayList<>();
     }
+    private boolean pokrenut = false;
+
+    public boolean isPokrenut() {
+        return pokrenut;
+    }
 
     @Override
     public void run() {
         try {
             serverSocket = new ServerSocket(9000);
+            pokrenut = true;
             while (!kraj) {
                 Socket s = serverSocket.accept();
+                listaKlijenata.removeIf(okz -> !okz.isAlive());
+                if (!listaKlijenata.isEmpty()) {
+                    System.out.println("Klijent je već povezan, odbijam konekciju!");
+                    s.close();
+                    continue;
+                }
                 System.out.println("Klijent je povezan!");
                 ObradaKlijentskihZahteva okz = new ObradaKlijentskihZahteva(s);
-                listaKlijenata.add(okz); //prijem vise klijenata
+                listaKlijenata.add(okz);
                 okz.start();
             }
+        } catch (java.net.BindException ex) {
+            System.out.println("Port je već zauzet, server se ne može pokrenuti!");
         } catch (IOException ex) {
             Logger.getLogger(PokreniServer.class.getName()).log(Level.SEVERE, null, ex);
         }
