@@ -57,6 +57,18 @@ public class PrikazRezervacijaKontroler {
                     JOptionPane.showMessageDialog(prf, "Selektujte rezervaciju za brisanje!", "Greška", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+
+                int potvrda = JOptionPane.showConfirmDialog(
+                        prf,
+                        "Da li ste sigurni da želite da obrišete rezervaciju?",
+                        "Potvrda brisanja",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+                if (potvrda != JOptionPane.YES_OPTION) {
+                    return;
+                }
                 ModelTabeleRezervacija mtr = (ModelTabeleRezervacija) prf.getjTableRezervacija().getModel();
                 Rezervacija r = mtr.getListaRezervacija().get(selektovaniRed);
                 try {

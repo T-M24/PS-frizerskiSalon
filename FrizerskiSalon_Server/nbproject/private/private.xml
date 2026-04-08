@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nikola%20Manjencic/Desktop/frizerkiSalon%20projektovanje%20softvera/FrizerskiSalon_Server/src/kontroler/Kontroler.java</file>
-            <file>file:/C:/Users/Nikola%20Manjencic/Desktop/frizerkiSalon%20projektovanje%20softvera/FrizerskiSalon_Server/src/repozitorijum_db/DBRepozitorijum.java</file>
-            <file>file:/C:/Users/Nikola%20Manjencic/Desktop/frizerkiSalon%20projektovanje%20softvera/FrizerskiSalon_Server/src/operacija/ApstraktnaGenerickaOperacija.java</file>
-            <file>file:/C:/Users/Nikola%20Manjencic/Desktop/frizerkiSalon%20projektovanje%20softvera/FrizerskiSalon_Server/src/repozitorijum_db_impl/DbRepozitorijumGenericki.java</file>
             <file>file:/C:/Users/Nikola%20Manjencic/Desktop/frizerkiSalon%20projektovanje%20softvera/FrizerskiSalon_Server/src/repozitorijum/Repozitorijum.java</file>
-            <file>file:/C:/Users/Nikola%20Manjencic/Desktop/frizerkiSalon%20projektovanje%20softvera/FrizerskiSalon_Server/src/operacije/rezervacija/UcitajRezervacijeSO.java</file>
             <file>file:/C:/Users/Nikola%20Manjencic/Desktop/frizerkiSalon%20projektovanje%20softvera/FrizerskiSalon_Server/src/niti/ObradaKlijentskihZahteva.java</file>
             <file>file:/C:/Users/Nikola%20Manjencic/Desktop/frizerkiSalon%20projektovanje%20softvera/FrizerskiSalon_Server/src/operacije/rezervacija/IzmeniRezervacijuSO.java</file>
         </group>
