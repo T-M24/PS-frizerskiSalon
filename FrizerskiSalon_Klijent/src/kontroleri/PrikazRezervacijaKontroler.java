@@ -57,7 +57,7 @@ public class PrikazRezervacijaKontroler {
                     JOptionPane.showMessageDialog(prf, "Selektujte rezervaciju za brisanje!", "Greška", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
+                
                 int potvrda = JOptionPane.showConfirmDialog(
                         prf,
                         "Da li ste sigurni da želite da obrišete rezervaciju?",

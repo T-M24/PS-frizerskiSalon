@@ -4,9 +4,18 @@
  */
 package main;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+
 public class Main {
+
     public static void main(String[] args) {
-        koordinator.Koordinator.getInstance().otvoriLoginFormu();
+        FlatMacDarkLaf.setup();
+        
+        java.awt.EventQueue.invokeLater(() -> {
+            koordinator.Koordinator.getInstance().otvoriLoginFormu();
+        });
     }
-    
 }

@@ -4,13 +4,21 @@
  */
 package main;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import forme.ServerskaForma;
-
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 public class Main {
+
     public static void main(String[] args) {
-        ServerskaForma sf = new ServerskaForma();
-        sf.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        sf.setVisible(true);
+        FlatMacDarkLaf.setup();
+        
+        java.awt.EventQueue.invokeLater(() -> {
+            ServerskaForma sf = new ServerskaForma();
+            sf.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+            sf.setVisible(true);
+        });
     }
 }
