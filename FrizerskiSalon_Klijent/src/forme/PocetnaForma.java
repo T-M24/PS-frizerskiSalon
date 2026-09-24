@@ -84,6 +84,14 @@ public class PocetnaForma extends javax.swing.JFrame {
         jButtonIzmeniRezervaciju = new JButton("Izmeni rezervaciju");
         jButtonDodajRezervaciju = new JButton("Dodaj rezervaciju");
 
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/resources/edit.png"));
+        Image img1 = icon1.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        jButtonIzmeniRezervaciju.setIcon(new ImageIcon(img1));
+        
+        ImageIcon icon2 = new ImageIcon(getClass().getResource("/resources/doc.png"));
+        Image img2 = icon2.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        jButtonDodajRezervaciju.setIcon(new ImageIcon(img2));
+
         jButtonIzmeniRezervaciju.setPreferredSize(new Dimension(220, 45));
         jButtonDodajRezervaciju.setPreferredSize(new Dimension(220, 45));
 
