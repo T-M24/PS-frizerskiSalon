@@ -22,6 +22,8 @@ public class GlavnaForma extends javax.swing.JFrame {
      */
     public GlavnaForma() {
         initComponents();
+        dodajDugmeNazad();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -35,7 +37,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jMenuItem5 = new javax.swing.JMenuItem();
-        jLabelUsername = new javax.swing.JLabel();
         jLabelImeKorisnika = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -92,15 +93,6 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
-
-        jLabelUsername.setText("Ulogovani");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 169;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 17, 0, 0);
-        getContentPane().add(jLabelUsername, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -253,7 +245,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(174, 174, 174)
                         .addComponent(jButtonSacuvajRezervaciju, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -512,13 +504,13 @@ public class GlavnaForma extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBrojTelefonaActionPerformed
 
-    public JLabel getjLabelUsername() {
-        return jLabelUsername;
-    }
-
-    public void setjLabelUsername(JLabel jLabelUsername) {
-        this.jLabelUsername = jLabelUsername;
-    }
+//    public JLabel getjLabelUsername() {
+//        return jLabelUsername;
+//    }
+//
+//    public void setjLabelUsername(JLabel jLabelUsername) {
+//        this.jLabelUsername = jLabelUsername;
+//    }
 
     public JButton getjButtonDodajStavku() {
         return jButtonDodajStavku;
@@ -620,6 +612,16 @@ public class GlavnaForma extends javax.swing.JFrame {
         jComboBoxRezervacija.addActionListener(actionListener);
     }
 
+    private void dodajDugmeNazad() {
+        javax.swing.JButton jButtonNazad = new javax.swing.JButton("Nazad na početnu");
+        jButtonNazad.setBounds(10, 40, 180, 35);
+        jButtonNazad.addActionListener(e -> {
+            koordinator.Koordinator.getInstance().otvoriPocetnuFormu();
+            dispose();
+        });
+        getLayeredPane().add(jButtonNazad, javax.swing.JLayeredPane.PALETTE_LAYER);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDodajStavku;
     private javax.swing.JButton jButtonObrisiStavku;
@@ -641,7 +643,6 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelIme;
     private javax.swing.JLabel jLabelImeKorisnika;
-    private javax.swing.JLabel jLabelUsername;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

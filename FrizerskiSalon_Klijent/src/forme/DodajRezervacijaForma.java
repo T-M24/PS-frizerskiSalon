@@ -22,6 +22,8 @@ public class DodajRezervacijaForma extends javax.swing.JFrame {
      */
     public DodajRezervacijaForma() {
         initComponents();
+        dodajDugmeNazad();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -333,6 +335,16 @@ public class DodajRezervacijaForma extends javax.swing.JFrame {
 
     public void addCmbUslugaActionListener(ActionListener actionListener) {
         jComboBoxUsluga.addActionListener(actionListener);
+    }
+
+    private void dodajDugmeNazad() {
+        javax.swing.JButton jButtonNazad = new javax.swing.JButton("Nazad na početnu");
+        jButtonNazad.setBounds(10, 40, 180, 35);
+        jButtonNazad.addActionListener(e -> {
+            koordinator.Koordinator.getInstance().otvoriPocetnuFormu();
+            dispose();
+        });
+        getLayeredPane().add(jButtonNazad, javax.swing.JLayeredPane.PALETTE_LAYER);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

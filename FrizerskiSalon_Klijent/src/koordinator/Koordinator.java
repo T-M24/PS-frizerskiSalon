@@ -15,6 +15,7 @@ import forme.DodajSertifikatForma;
 import forme.DodajUsluguForma;
 import forme.GlavnaForma;
 import forme.LoginForma;
+import forme.PocetnaForma;
 import forme.PrikazKlijenataForma;
 import forme.PrikazRezervacijaForma;
 import forme.PrikazSertifikataForma;
@@ -46,6 +47,7 @@ public class Koordinator {
     private PrikazSertifikataKontroler prikazSertifikataKontroler;
     private DodajSertifikatKontroler dodajSertifikatKontroler;
     private DodajMestoKontroler dodajMestoKontroler;
+    private PocetnaForma pf;
 
     public static Koordinator getInstance() {
         if (instance == null) {
@@ -56,6 +58,21 @@ public class Koordinator {
 
     private Koordinator() {
 
+    }
+
+
+    public void otvoriPocetnuFormu() {
+        pf = new PocetnaForma();
+
+        pf.addIzmeniRezervacijuActionListener(e -> {
+            otvoriGlavnuFormu();
+        });
+
+        pf.addDodajRezervacijuActionListener(e -> {
+            otvoriDodajRezervacijaForma();
+        });
+
+        pf.setVisible(true);
     }
 
     public void otvoriLoginFormu() {

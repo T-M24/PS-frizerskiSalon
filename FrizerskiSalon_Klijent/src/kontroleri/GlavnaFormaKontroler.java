@@ -29,7 +29,7 @@ public class GlavnaFormaKontroler {
 
     public void otvoriFormu() {
         Frizer ulogovani = koordinator.Koordinator.getInstance().getUlogovani();
-        gf.getjLabelUsername().setText(ulogovani.getIme() + " " + ulogovani.getPrezime());
+        //gf.getjLabelUsername().setText(ulogovani.getIme() + " " + ulogovani.getPrezime());
         pripremiFormu();
         gf.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         gf.setVisible(true);

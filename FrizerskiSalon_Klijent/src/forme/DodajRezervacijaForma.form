@@ -122,10 +122,8 @@
                           </Group>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jComboBoxFrizer" pref="317" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jComboBoxKlijent" pref="317" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldDatum" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jComboBoxKlijent" alignment="0" pref="317" max="32767" attributes="0"/>
+                              <Component id="jTextFieldDatum" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>

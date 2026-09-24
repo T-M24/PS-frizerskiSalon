@@ -49,7 +49,7 @@ public class LoginKontroler {
                         JOptionPane.showMessageDialog(lf, "Korisničko ime i šifra su ispravni!", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                         Koordinator.getInstance().setUlogovani(ulogovani);
                         try {
-                            koordinator.Koordinator.getInstance().otvoriGlavnuFormu();
+                            koordinator.Koordinator.getInstance().otvoriPocetnuFormu();
                             lf.dispose();
                         } catch (Exception ex) {
                             JOptionPane.showMessageDialog(lf, "Ne može da se otvori glavna forma i meni!", "Greška", JOptionPane.ERROR_MESSAGE);

@@ -8,10 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Nikola Manjencic
- */
 public class PrikazSertifikataForma extends javax.swing.JFrame {
 
     /**
