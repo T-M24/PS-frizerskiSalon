@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PocetnaForma extends javax.swing.JFrame {
@@ -18,12 +19,14 @@ public class PocetnaForma extends javax.swing.JFrame {
     private JButton jButtonIzmeniRezervaciju;
     private JButton jButtonDodajRezervaciju;
     private Image pozadinaSlika;
+    private JLabel JLabelUlogovani;
 
     /**
      * Creates new form PocetnaForma
      */
     public PocetnaForma() {
         initComponents();
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         dodajSadrzaj();
     }
 
@@ -55,38 +58,6 @@ public class PocetnaForma extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PocetnaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PocetnaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PocetnaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PocetnaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PocetnaForma().setVisible(true);
-            }
-        });
-    }
-
     private void dodajSadrzaj() {
         URL url = getClass().getResource("/resources/BedHead.png");
         pozadinaSlika = (url != null) ? new ImageIcon(url).getImage() : null;
@@ -105,6 +76,10 @@ public class PocetnaForma extends javax.swing.JFrame {
         };
         setContentPane(pozadinaPanel);
 
+        JLabelUlogovani = new JLabel();
+        JLabelUlogovani.setForeground(Color.BLACK);
+        JLabelUlogovani.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 16));
+
         jButtonIzmeniRezervaciju = new JButton("Izmeni rezervaciju");
         jButtonDodajRezervaciju = new JButton("Dodaj rezervaciju");
 
@@ -116,9 +91,12 @@ public class PocetnaForma extends javax.swing.JFrame {
         gbc.gridx = 0;
 
         gbc.gridy = 0;
-        pozadinaPanel.add(jButtonIzmeniRezervaciju, gbc);
+        pozadinaPanel.add(JLabelUlogovani, gbc);
 
         gbc.gridy = 1;
+        pozadinaPanel.add(jButtonIzmeniRezervaciju, gbc);
+
+        gbc.gridy = 2;
         pozadinaPanel.add(jButtonDodajRezervaciju, gbc);
 
         setSize(800, 600);
@@ -141,6 +119,10 @@ public class PocetnaForma extends javax.swing.JFrame {
 
     public void addDodajRezervacijuActionListener(ActionListener actionListener) {
         jButtonDodajRezervaciju.addActionListener(actionListener);
+    }
+
+    public JLabel getjLabelUlogovani() {
+        return JLabelUlogovani;
     }
 }
 

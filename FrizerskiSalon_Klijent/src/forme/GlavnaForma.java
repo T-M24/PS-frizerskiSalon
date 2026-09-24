@@ -22,6 +22,7 @@ public class GlavnaForma extends javax.swing.JFrame {
      */
     public GlavnaForma() {
         initComponents();
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         dodajDugmeNazad();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }

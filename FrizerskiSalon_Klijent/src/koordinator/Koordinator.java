@@ -60,9 +60,14 @@ public class Koordinator {
 
     }
 
-
     public void otvoriPocetnuFormu() {
         pf = new PocetnaForma();
+
+        Frizer f = getUlogovani();
+
+        pf.getjLabelUlogovani().setText(
+                "Ulogovani korisnik: " + f.getIme() + " " + f.getPrezime()
+        );
 
         pf.addIzmeniRezervacijuActionListener(e -> {
             otvoriGlavnuFormu();
