@@ -27,6 +27,7 @@ public class PocetnaForma extends javax.swing.JFrame {
     public PocetnaForma() {
         initComponents();
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        setResizable(false);
         dodajSadrzaj();
     }
 
@@ -99,7 +100,6 @@ public class PocetnaForma extends javax.swing.JFrame {
         gbc.gridy = 2;
         pozadinaPanel.add(jButtonDodajRezervaciju, gbc);
 
-        setSize(800, 600);
         setLocationRelativeTo(null);
         revalidate();
         repaint();

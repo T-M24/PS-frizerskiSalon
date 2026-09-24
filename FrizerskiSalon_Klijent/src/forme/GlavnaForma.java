@@ -22,8 +22,10 @@ public class GlavnaForma extends javax.swing.JFrame {
      */
     public GlavnaForma() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        dodajDugmeNazad();
+//        dodajDugmeNazad();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -512,7 +514,6 @@ public class GlavnaForma extends javax.swing.JFrame {
 //    public void setjLabelUsername(JLabel jLabelUsername) {
 //        this.jLabelUsername = jLabelUsername;
 //    }
-
     public JButton getjButtonDodajStavku() {
         return jButtonDodajStavku;
     }
