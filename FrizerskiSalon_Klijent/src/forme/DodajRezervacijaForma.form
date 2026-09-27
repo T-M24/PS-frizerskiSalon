@@ -232,8 +232,11 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonDodajRezervaciju">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Dodaj rezervaciju"/>
+            <Property name="text" type="java.lang.String" value="Sa&#x10d;uvaj rezervaciju"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDodajRezervacijuActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>

@@ -135,7 +135,7 @@ public class DodajRezervacijaKontroler {
 
                     komunikacija.Komunikacija.getInstance().dodajRezervaciju(rezervacija);
 
-                    JOptionPane.showMessageDialog(drf, "Rezervacija je uspešno sačuvana!");
+                    JOptionPane.showMessageDialog(drf, "Sistem je zapamtio rezervaciju!");
                     koordinator.Koordinator.getInstance().osveziGlavnuFormu();
                     osveziFormu(mts);
 

@@ -79,7 +79,12 @@ public class DodajRezervacijaForma extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Kreiranje rezervacije");
 
-        jButtonDodajRezervaciju.setText("Dodaj rezervaciju");
+        jButtonDodajRezervaciju.setText("Sačuvaj rezervaciju");
+        jButtonDodajRezervaciju.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDodajRezervacijuActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Klijent:");
@@ -272,6 +277,10 @@ public class DodajRezervacijaForma extends javax.swing.JFrame {
     private void jButtonObrisiStavkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiStavkuActionPerformed
     }//GEN-LAST:event_jButtonObrisiStavkuActionPerformed
 
+    private void jButtonDodajRezervacijuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDodajRezervacijuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDodajRezervacijuActionPerformed
+
     public JButton getjButtonDodajRezervaciju() {
         return jButtonDodajRezervaciju;
     }
@@ -344,6 +353,14 @@ public class DodajRezervacijaForma extends javax.swing.JFrame {
         ImageIcon icon1 = new ImageIcon(getClass().getResource("/resources/floppy-disk.png"));
         Image img1 = icon1.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         jButtonDodajRezervaciju.setIcon(new ImageIcon(img1));
+        
+        ImageIcon icon2 = new ImageIcon(getClass().getResource("/resources/doc.png"));
+        Image img2 = icon2.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        jButtonDodajStavku.setIcon(new ImageIcon(img2));
+        
+        ImageIcon icon3 = new ImageIcon(getClass().getResource("/resources/garbage.png"));
+        Image img3 = icon3.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        jButtonObrisiStavku.setIcon(new ImageIcon(img3));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
