@@ -8,7 +8,9 @@ import domen.Frizer;
 import domen.Klijent;
 import domen.Mesto;
 import domen.Usluga;
+import java.awt.Image;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -22,9 +24,9 @@ public class DodajRezervacijaForma extends javax.swing.JFrame {
      */
     public DodajRezervacijaForma() {
         initComponents();
+        dodajIkonice();
         setLocationRelativeTo(null);
-        setResizable(false);           
-//        dodajDugmeNazad();
+        setResizable(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -75,7 +77,7 @@ public class DodajRezervacijaForma extends javax.swing.JFrame {
         jTextFieldUkupanIznos.setEditable(false);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("Rezervacija");
+        jLabel6.setText("Kreiranje rezervacije");
 
         jButtonDodajRezervaciju.setText("Dodaj rezervaciju");
 
@@ -130,21 +132,14 @@ public class DodajRezervacijaForma extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jButtonDodajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(127, 127, 127)
-                                .addComponent(jButtonObrisiStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(24, 24, 24))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jButtonDodajStavku, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(127, 127, 127)
+                        .addComponent(jButtonObrisiStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(24, 24, 24))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,7 +189,10 @@ public class DodajRezervacijaForma extends javax.swing.JFrame {
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 25, Short.MAX_VALUE))))
+                        .addGap(0, 25, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,14 +340,10 @@ public class DodajRezervacijaForma extends javax.swing.JFrame {
         jComboBoxUsluga.addActionListener(actionListener);
     }
 
-    private void dodajDugmeNazad() {
-        javax.swing.JButton jButtonNazad = new javax.swing.JButton("Nazad na početnu");
-        jButtonNazad.setBounds(10, 40, 180, 35);
-        jButtonNazad.addActionListener(e -> {
-            koordinator.Koordinator.getInstance().otvoriPocetnuFormu();
-            dispose();
-        });
-        getLayeredPane().add(jButtonNazad, javax.swing.JLayeredPane.PALETTE_LAYER);
+    private void dodajIkonice() {
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/resources/floppy-disk.png"));
+        Image img1 = icon1.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        jButtonDodajRezervaciju.setIcon(new ImageIcon(img1));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

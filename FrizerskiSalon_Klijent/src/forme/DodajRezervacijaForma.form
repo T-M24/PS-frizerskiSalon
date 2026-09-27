@@ -47,26 +47,16 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Component id="jButtonDodajStavku" min="-2" pref="182" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
-                                  <Component id="jButtonObrisiStavku" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" pref="121" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jButtonDodajStavku" min="-2" pref="182" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                          <Component id="jButtonObrisiStavku" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -133,6 +123,10 @@
                           <EmptySpace pref="118" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="317" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -233,7 +227,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Rezervacija"/>
+            <Property name="text" type="java.lang.String" value="Kreiranje rezervacije"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonDodajRezervaciju">
